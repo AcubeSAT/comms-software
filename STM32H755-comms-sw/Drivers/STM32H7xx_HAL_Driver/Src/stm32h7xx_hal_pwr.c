@@ -31,7 +31,7 @@
        device lines. This difference is due to characteristics of each device.
 
    (#) Domain architecture overview for the different H7 lines:
-      (+) Dual core lines are STM32H745, STM32H747, STM32H755 and STM32H757.
+      (+) Dual core lines are STM32H745, STM32H747, STM32H755-comms-sw and STM32H757.
           These devices have 3 power domains (D1, D2 and D3).
           The domain D1 contains a CPU (Cortex-M7), a Flash memory and some
           peripherals. The D2 domain contains peripherals and a CPU
