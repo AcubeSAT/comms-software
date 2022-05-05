@@ -152,7 +152,7 @@ add_custom_target(${PROJECT_NAME}_ALL
         )
 
 if (WIN32)
-    find_program(STM32_PROGRAMMER_PATH "C:/Program Files/STM32CubeIDE_1.8.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.0.200.202202231230/tools/bin/STM32_Programmer_CLI.exe")
+    find_program(STM32_PROGRAMMER_PATH "C:/ST/STM32CubeIDE_1.8.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.0.200.202202231230/tools/bin/STM32_Programmer_CLI.exe")
 else()
     find_program(STM32_PROGRAMMER_PATH "/opt/st/stm32cubeide_1.8.0/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.linux64_2.0.100.202110141430/tools/bin/STM32_Programmer_CLI")
 endif()
