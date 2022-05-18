@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "string.h"
-
+#include <stdio.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -157,9 +157,19 @@ Error_Handler();
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
+    char str[100]="";
+    volatile HAL_StatusTypeDef statusTypeDef;
+
+    while (1)
   {
-    /* USER CODE END WHILE */
+      HAL_Delay(100);
+      uint32_t e = 1;
+      sprintf(str,"Time needed to modulate 200 kbits %d ms\r\n", e);
+      statusTypeDef = HAL_UART_Transmit(&huart3, str, sizeof(str), 100);
+
+
+
+      /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
