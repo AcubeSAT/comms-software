@@ -1,0 +1,3 @@
+[submodule "STM32H755-comms-sw/Lib/etl"]
+	path = STM32H755-comms-sw/Lib/etl
+	url = https://github.com/ETLCPP/etl
