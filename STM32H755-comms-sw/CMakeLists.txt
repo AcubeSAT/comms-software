@@ -52,6 +52,8 @@ project(STM32H755 C CXX ASM)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
 
+include_directories("${PROJECT_SOURCE_DIR}/inc" "${PROJECT_SOURCE_DIR}/Lib/etl/include")
+
 #    Generic compiler settings
 add_compile_options(-mthumb -mthumb-interwork)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
@@ -153,9 +155,9 @@ add_custom_target(${PROJECT_NAME}_ALL
 
 if (WIN32)
     find_program(STM32_PROGRAMMER_PATH "C:/ST/STM32CubeIDE_1.8.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.win32_2.0.200.202202231230/tools/bin/STM32_Programmer_CLI.exe")
-else()
+else ()
     find_program(STM32_PROGRAMMER_PATH "/opt/st/stm32cubeide_1.8.0/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.linux64_2.0.100.202110141430/tools/bin/STM32_Programmer_CLI")
-endif()
+endif ()
 
 add_custom_target(${PROJECT_NAME}_FLASH
         ${STM32_PROGRAMMER_PATH} -c port=swd shared -d $<TARGET_FILE:${PROJECT_NAME}_CM7.elf> -d $<TARGET_FILE:${PROJECT_NAME}_CM4.elf> -rst

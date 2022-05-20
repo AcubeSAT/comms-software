@@ -43,7 +43,7 @@ extern "C" {
 /* USER CODE BEGIN EC */
 
 /* USER CODE END EC */
-
+uint32_t main_cpp();
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 
