@@ -44,7 +44,8 @@ set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
 set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
-
+add_compile_options(-mcpu=cortex-m7 -mfloat-abi=hard -mfpu=fpv4-sp-d16)
+add_link_options(-mcpu=cortex-m7 -mfloat-abi=hard -mfpu=fpv4-sp-d16)
 # Project settings.
 project(STM32H755 C CXX ASM)
 # Common compile settings
@@ -57,6 +58,27 @@ add_compile_options(-mthumb -mthumb-interwork)
 add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
 add_link_options(-mthumb -mthumb-interwork)
 add_link_options(-Wl,-gc-sections,--print-memory-usage)
+
+
+
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Inc")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Inc/FreeRTOSTasks")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/src/FreeRTOSTasks")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/include")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable/GCC")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM7")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable/MemMang")
+
+#file(GLOB_RECURSE SOURCES "${PROJECT_SOURCE_DIR}/CM7/Core/src/*.c" "${PROJECT_SOURCE_DIR}/CM7/Core/src/*.cpp")
+file(GLOB_RECURSE FREERTOS_SOURCES "${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/*.c")
+
+#add_executable(${FREERTOS_SOURCES}})
+
 
 #    Build types
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
@@ -103,7 +125,7 @@ add_executable(${PROJECT_NAME}_CM4.elf ${LINKER_SCRIPT_CM4} ${CM4_SRC})
 
 #    Cortex-M7
 file(GLOB_RECURSE CM7_SRC "CM7/*.*" "Common/*.*")
-add_executable(${PROJECT_NAME}_CM7.elf ${LINKER_SCRIPT_CM7} ${CM7_SRC} CM7/Core/Inc/bch_decoder.hpp)
+add_executable(${PROJECT_NAME}_CM7.elf ${LINKER_SCRIPT_CM7} ${FREERTOS_SOURCES} ${CM7_SRC} CM7/Core/Inc/bch_decoder.hpp)
 
 # Kernel-specific build settings
 target_compile_options(${PROJECT_NAME}_CM4.elf PRIVATE -mcpu=cortex-m4)

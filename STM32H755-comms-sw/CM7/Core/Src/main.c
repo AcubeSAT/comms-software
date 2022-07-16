@@ -20,6 +20,7 @@
 #include "main.h"
 #include "string.h"
 #include <stdio.h>
+#include "main_cpp.cpp"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -166,7 +167,7 @@ Error_Handler();
       uint32_t e = 1;
       sprintf(str,"Time needed to modulate 200 kbits %d ms\r\n", e);
       statusTypeDef = HAL_UART_Transmit(&huart3, str, sizeof(str), 100);
-
+      main_cpp();
 
 
       /* USER CODE END WHILE */
