@@ -20,7 +20,7 @@
 #include "main.h"
 #include "string.h"
 #include <stdio.h>
-#include "main_cpp.cpp"
+#include "main.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
