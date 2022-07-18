@@ -73,11 +73,10 @@ include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM7")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/Source/portable/MemMang")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/Physical-Layer/cpp_implementation/external/etl/include")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/lib/Physical-Layer/cpp_implementation/inc")
 
-#file(GLOB_RECURSE SOURCES "${PROJECT_SOURCE_DIR}/CM7/Core/src/*.c" "${PROJECT_SOURCE_DIR}/CM7/Core/src/*.cpp")
 file(GLOB_RECURSE FREERTOS_SOURCES "${PROJECT_SOURCE_DIR}/CM7/Core/lib/FreeRTOS/*.c")
-
-#add_executable(${FREERTOS_SOURCES}})
 
 
 #    Build types
@@ -96,9 +95,6 @@ else ()
     add_compile_options(-Og -g3)
 endif ()
 
-#    Enable hardware FPU
-#add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
-#add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
 add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
 #    Uncomment to mitigate c++17 register variable warnings
 #add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-Wno-register>)
