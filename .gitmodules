@@ -1,3 +1,6 @@
 [submodule "STM32H755-comms-sw/Lib/etl"]
 	path = STM32H755-comms-sw/Lib/etl
 	url = https://github.com/ETLCPP/etl
+[submodule "STM32H755-comms-sw/CM7/Core/lib/Physical-Layer"]
+	path = STM32H755-comms-sw/CM7/Core/lib/Physical-Layer
+	url = https://gitlab.com/acubesat/comms/software/tc_synchronization.git
