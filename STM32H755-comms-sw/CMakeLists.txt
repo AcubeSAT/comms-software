@@ -121,7 +121,7 @@ add_executable(${PROJECT_NAME}_CM4.elf ${LINKER_SCRIPT_CM4} ${CM4_SRC})
 
 #    Cortex-M7
 file(GLOB_RECURSE CM7_SRC "CM7/*.*" "Common/*.*")
-add_executable(${PROJECT_NAME}_CM7.elf ${LINKER_SCRIPT_CM7} ${FREERTOS_SOURCES} ${CM7_SRC} CM7/Core/Inc/bch_decoder.hpp)
+add_executable(${PROJECT_NAME}_CM7.elf ${LINKER_SCRIPT_CM7} ${FREERTOS_SOURCES} ${CM7_SRC})
 
 # Kernel-specific build settings
 target_compile_options(${PROJECT_NAME}_CM4.elf PRIVATE -mcpu=cortex-m4)
