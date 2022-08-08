@@ -48,3 +48,5 @@ Quoting [these instructions](https://github.com/elmot/h7-trace-probe/blob/master
  * target remote args: `tcp::2000`
  * GDB Server: `/opt/st/stm32cubeide_1.9.0/plugins/com.st.stm32cube.ide.mcu.externaltools.stlink-gdb-server.linux64_2.0.200.202202231230/tools/bin/ST-LINK_gdbserver`
 * GDB Server args: `-cp /opt/st/stm32cubeide_1.9.0/plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.linux64_2.0.200.202202231230/tools/bin/ -t -d -p 2000 -m 0`
+
+![image.png](./image.png)
