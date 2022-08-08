@@ -163,10 +163,10 @@ Error_Handler();
 
     while (1)
   {
-      HAL_Delay(100);
-      uint32_t e = 1;
-      sprintf(str,"Time needed to modulate 200 kbits %d ms\r\n", e);
-      statusTypeDef = HAL_UART_Transmit(&huart3, str, sizeof(str), 100);
+//      HAL_Delay(100);
+//      uint32_t e = 1;
+//      sprintf(str,"Time needed to modulate 200 kbits %d ms\r\n", e);
+//      HAL_UART_Transmit(&huart3, str, sizeof(str), 100);
       main_cpp();
 
 
