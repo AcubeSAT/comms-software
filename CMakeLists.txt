@@ -31,7 +31,7 @@
 #
 # Written by ilia.motornyi[%]jetbrains.com
 #
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.7)
 
 # Cross compilers and tools
 set(CMAKE_SYSTEM_NAME Generic)
@@ -116,11 +116,11 @@ endforeach ()
 
 # Kernel-specific sources
 #    Cortex-M4
-file(GLOB_RECURSE CM4_SRC "CM4/*.*" "Common/*.*")
+file(GLOB_RECURSE CM4_SRC "CM4/Core/Startup/*.s" "CM4/Core/Src/*.cpp" "CM4/Core/Src/*.c" "Common/*.*")
 add_executable(${PROJECT_NAME}_CM4.elf ${LINKER_SCRIPT_CM4} ${CM4_SRC})
 
 #    Cortex-M7
-file(GLOB_RECURSE CM7_SRC "CM7/*.*" "Common/*.*")
+file(GLOB_RECURSE CM7_SRC "CM7/Core/Startup/*.s" "CM7/Core/Src/*.cpp" "CM7/Core/Src/*.c" "Common/*.*")
 add_executable(${PROJECT_NAME}_CM7.elf ${LINKER_SCRIPT_CM7} ${FREERTOS_SOURCES} ${CM7_SRC})
 
 # Kernel-specific build settings
