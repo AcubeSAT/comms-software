@@ -36,9 +36,9 @@ extern "C" void main_cpp(){
 
     vTaskStartScheduler();
 
-//    while (true) {
-//
-//
-//    }
+    while (true) {
+
+
+    }
     return;
 }
