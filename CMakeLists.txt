@@ -66,12 +66,12 @@ include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Inc")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Inc/FreeRTOSTasks")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/src/FreeRTOSTasks")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Src/main.cpp")
-include_directories("${PROJECT_SOURCE_DIR}/CM7/Middlewares/Third_Party/FreeRTOS/Source")
-include_directories("${PROJECT_SOURCE_DIR}/CM7/Middlewares/Third_Party/FreeRTOS/Source/include")
-include_directories("${PROJECT_SOURCE_DIR}/CM7/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F")
-include_directories("${PROJECT_SOURCE_DIR}/CM7/Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang")
+include_directories("CM7/Core/lib/FreeRTOS/Source")
+include_directories("CM7/Core/lib/FreeRTOS/Source/include")
+include_directories("CM7/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F")
+include_directories("CM7/Core/lib/FreeRTOS/Source/portable/MemMang")
 
-file(GLOB_RECURSE FREERTOS_SOURCES "${PROJECT_SOURCE_DIR}/CM7/Middlewares/Third_Party/FreeRTOS/Source/*.c")
+file(GLOB_RECURSE FREERTOS_SOURCES "CM7/Core/lib/FreeRTOS/Source/*.c")
 
 
 #    Build types
