@@ -3,7 +3,7 @@
 	url = https://gitlab.com/acubesat/comms/software/tc_synchronization.git
 [submodule "STM32H755-comms-sw/CM7/Core/lib/Data-Link-Layer"]
 	path = CM7/Core/lib/Data-Link-Layer
-	url = https://gitlab.com/acubesat/comms/software/ccsds-telemetry-packets.gites
+	url = https://gitlab.com/acubesat/comms/software/ccsds-telemetry-packets.git
 [submodule "CM7/Core/lib/ecss-services"]
 	path = CM7/Core/lib/ecss-services
 	url = https://gitlab.com/acubesat/obc/ecss-services
