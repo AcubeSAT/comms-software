@@ -1,6 +1,0 @@
-[submodule "STM32H755-comms-sw/CM7/Core/lib/Physical-Layer"]
-	path = CM7/Core/lib/Physical-Layer
-	url = https://gitlab.com/acubesat/comms/software/tc_synchronization.git
-[submodule "STM32H755-comms-sw/CM7/Core/lib/Data-Link-Layer"]
-	path = CM7/Core/lib/Data-Link-Layer
-	url = https://gitlab.com/acubesat/comms/software/ccsds-telemetry-packets.git
