@@ -97,7 +97,8 @@ namespace PlatformParameters {
         NANDUsedMemoryPartition = 2032,
         LastFailedEvent = 2033,
         COMMSMCUSystick = 2034,
-
+        COMMSFLASHInt = 2035,
+        COMMSSRAMInt = 2036
     };
 
     // Parameters used for testing
@@ -146,6 +147,8 @@ namespace PlatformParameters {
     inline Parameter<memoryPartition> nandUsedMemoryPartition(firstPartition);
     inline Parameter<uint16_t> lastFailedEvent(0);
     inline Parameter<uint32_t> commsMCUSystick(0);
+    inline Parameter<uint32_t> commsFlashInt(0);
+    inline Parameter<uint32_t> commsSRAMInt(0);
 }
 
 #endif
