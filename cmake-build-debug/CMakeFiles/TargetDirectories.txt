@@ -1,3 +1,0 @@
-/home/yoggerdev/comms_software/cmake-build-debug/CMakeFiles/STM32H7A3ZIQSetup.elf.dir
-/home/yoggerdev/comms_software/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/yoggerdev/comms_software/cmake-build-debug/CMakeFiles/rebuild_cache.dir

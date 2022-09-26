@@ -29,10 +29,9 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7xx_hal.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "FreeRTOSConfig.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
