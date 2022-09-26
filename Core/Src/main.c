@@ -42,7 +42,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-UART_HandleTypeDef huart3;
+extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 
@@ -94,11 +94,12 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_OTG_HS_USB_Init();
   /* USER CODE BEGIN 2 */
-    xTaskCreate(vTask1, "Task 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vTask2, "Task 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    vTaskStartScheduler();
-
-    for(;;)
+//    xTaskCreate(vTask1, "Task 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(vTask2, "Task 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+//    vTaskStartScheduler();
+//
+//    for(;;)
+    main_cpp();
   /* USER CODE END 2 */
 
   /* Infinite loop */

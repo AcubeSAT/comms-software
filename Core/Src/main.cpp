@@ -11,13 +11,15 @@ static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
 
+UART_HandleTypeDef huart3;
+
 void vTask1(void * pvParameters) {
     char count1 = 0;
     for(;;)
     {
         count1++;
-        HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_0);
-        HAL_Delay(1000);
+        char str[100] = "Task 1 running\n\r";
+        HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t *>(str), sizeof(str), 100);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -27,6 +29,8 @@ void vTask2(void * pvParameters) {
     for(;;)
     {
         count2++;
+        char str[100] = "Task 2 running\n\r";
+        HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t *>(str), sizeof(str), 100);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
