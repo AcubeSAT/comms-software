@@ -94,11 +94,6 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USB_OTG_HS_USB_Init();
   /* USER CODE BEGIN 2 */
-//    xTaskCreate(vTask1, "Task 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(vTask2, "Task 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-//    vTaskStartScheduler();
-//
-//    for(;;)
     main_cpp();
   /* USER CODE END 2 */
 
@@ -329,28 +324,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void vTask1(void * pvParameters) {
-    char count1 = 0;
-    for(;;)
-    {
-        count1++;
-        char str[100] = "Task 1 running\n\r";
-        HAL_UART_Transmit(&huart3, str, sizeof(str), 100);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
 
-void vTask2(void * pvParameters) {
-    char count2 = 0;
-    for(;;)
-    {
-        count2++;
-        char str[100] = "Task 2 running\n\r";
-        HAL_UART_Transmit(&huart3, str, sizeof(str), 100);
-//        HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_0);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
 /* USER CODE END 4 */
 
 /**
