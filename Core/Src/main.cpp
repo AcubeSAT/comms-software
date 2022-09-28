@@ -55,14 +55,17 @@ void blinkyTask2(void * pvParameters){
 
 extern "C" void main_cpp(){
 
-    xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */
 //    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    dummyTask.emplace();
+
+    dummyTask->createTask();
     vTaskStartScheduler();
 
     for(;;)
