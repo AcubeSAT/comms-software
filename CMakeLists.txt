@@ -59,6 +59,12 @@ include_directories("Core/lib/FreeRTOS/Source/include")
 include_directories("Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F")
 include_directories("Core/lib/FreeRTOS/Source/portable/MemMang")
 include_directories(Drivers/Src)
+include_directories(Core/lib/physical_layer/inc)
+include_directories(Core/lib/physical_layer/lib/etl/include)
+include_directories(Core/lib/physical_layer/lib/Catch2)
+include_directories(Core/lib/ccsds-telemetry-packets/inc)
+include_directories(Core/lib/ecss-services/inc)
+include_directories(Core/lib/ecss-services/lib/logger)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
 
