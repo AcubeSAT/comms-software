@@ -3,9 +3,12 @@
 #include "list.h"
 #include "task.h"
 #include "FreeRTOSTasks/DummyTask.h"
-
+#include "CCSDSChannel.hpp"
+#include "CCSDSServiceChannel.hpp"
 #include <iostream>
+#include "TmTxDataLinkTask.hpp"
 
+etl::unique_ptr<ServiceChannel> serviceChannelptr;
 template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
@@ -52,20 +55,57 @@ void blinkyTask2(void * pvParameters){
         HAL_Delay(300);
     }
 }
+/*
+void InitializeChannells(PhysicalChannel& physicalChannel, MasterChannel* masterChannel, ServiceChannel* serviceChannel){
+    physicalChannel = PhysicalChannel(1024, true, 12, 1024, 220000, 20);
 
+}
+*/
 extern "C" void main_cpp(){
+    //Initiallize Tasks
+    PhysicalChannel physicalChannel = PhysicalChannel(1024, true,
+                                                      12, 1024, 220000, 20);
 
-//    xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    etl::flat_map<uint8_t, MAPChannel, MaxMapChannels> mapChannels = {};
+
+    MasterChannel masterChannel = MasterChannel();
+
+    masterChannel.addVC(0, 128, true, 3, 2, true, false, 0,
+                        true, SynchronizationFlag::FORWARD_ORDERED,
+                        255, 20, 20,
+                        10);
+
+    masterChannel.addVC(1, 128, false, 3, 2,
+                        true, false, 0,
+                        true, SynchronizationFlag::FORWARD_ORDERED,
+                        255, 20, 20,
+                        10);
+
+    masterChannel.addVC(2, 128, false, 3, 2,
+                        true, false, 0,
+                        true, SynchronizationFlag::FORWARD_ORDERED,
+                        255, 3, 3, 10);
+
+    etl::unique_ptr<ServiceChannel> servChannel(new ServiceChannel(masterChannel, physicalChannel));
+    serviceChannelptr = etl::move(servChannel);
+
+    xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */
-//    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    //xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+
+    tmTxDataLinkTask.emplace();
+
+    tmTxDataLinkTask->createTask();
+
     dummyTask.emplace();
 
     dummyTask->createTask();
+
     vTaskStartScheduler();
 
     for(;;)
