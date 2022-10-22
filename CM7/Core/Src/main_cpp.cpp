@@ -5,6 +5,7 @@
 #include "FreeRTOSTasks/DummyTask.h"
 
 #include <iostream>
+#include "CANDriver.hpp"
 
 template<class T>
 static void vClassTask(void *pvParameters) {
