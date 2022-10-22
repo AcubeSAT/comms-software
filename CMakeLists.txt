@@ -63,6 +63,7 @@ add_link_options(-Wl,-gc-sections,--print-memory-usage)
 
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Src")
+include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Src/Platform")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Inc")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Inc/Platform")
 include_directories("${PROJECT_SOURCE_DIR}/CM7/Core/Inc/Platform/Parameters")
