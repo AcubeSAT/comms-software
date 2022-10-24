@@ -1,18 +1,38 @@
-#ifndef TC_SYNCHRONIZATION_TASK_HPP
-#define TC_SYNCHRONIZATION_TASK_HPP
+#pragma once
 
 #include "FreeRTOS.h"
 #include "task.h"
+#include "list.h"
+#include "main.h"
 
 /**
  * Base class, whose method 'execute' is meant to be inherited by each and every individual FreeRTOS task.
  */
 class Task {
+protected:
+    /**
+     * taskBuffer parameter of each FreeRTOS task that holds the new task's data structures
+     */
+    StaticTask_t taskBuffer;
+
+    /**
+     * A native FreeRTOS task that calls the `->execute()` function of a C++ Task.
+     *
+     * Useful for converting between native C-style tasks, and tasks defined as C++ classes.
+     *
+     * @tparam T A class with an `execute()` function that represent the state of a FreeRTOS task
+     * @param pvParameters This argument is passed by FreeRTOS and should contain a pointer to the Task object
+     */
+    template<class T>
+    static void vClassTask(void *pvParameters) {
+        (static_cast<T *>(pvParameters))->execute();
+    }
+
 public:
     /**
      * Name of each task.
      */
-    const char *taskName;
+    const char *TaskName;
     /**
      * Handle of each FreeRTOS task.
      */
@@ -23,10 +43,5 @@ public:
      */
     const uint16_t taskStackDepth = 2000;
 
-    Task(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth) : taskName(taskName),
-                                                                                         taskHandle(taskHandle),
-                                                                                         taskStackDepth(
-                                                                                                 taskStackDepth) {}
+    Task(const char *TaskName) : TaskName(TaskName){}
 };
-
-#endif

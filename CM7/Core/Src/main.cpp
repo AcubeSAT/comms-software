@@ -31,8 +31,12 @@ void vTask2(void * pvParameters) {
 
 extern "C" void main_cpp(){
 
-    xTaskCreate(vTask1, "Task 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vTask2, "Task 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    //xTaskCreate(vTask1, "Task 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    //xTaskCreate(vTask2, "Task 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    dummyTask.emplace();
+    dummyTask->createTask();
+
+
     vTaskStartScheduler();
 
     for(;;)
