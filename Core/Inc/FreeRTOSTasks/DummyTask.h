@@ -15,7 +15,7 @@ public:
 
     void createTask(){
         xTaskCreateStatic(vClassTask<DummyTask>, this->TaskName,
-                          DummyTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
+                          DummyTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2,
                           this->taskStack, &(this->taskBuffer));
     }
 };

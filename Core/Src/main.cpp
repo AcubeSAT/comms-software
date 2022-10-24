@@ -63,6 +63,7 @@ void InitializeChannells(PhysicalChannel& physicalChannel, MasterChannel* master
 */
 extern "C" void main_cpp(){
     //Initiallize Tasks
+
     PhysicalChannel physicalChannel = PhysicalChannel(1024, true,
                                                       12, 1024, 220000, 20);
 
@@ -89,22 +90,22 @@ extern "C" void main_cpp(){
     etl::unique_ptr<ServiceChannel> servChannel(new ServiceChannel(masterChannel, physicalChannel));
     serviceChannelptr = etl::move(servChannel);
 
-    xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    //xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    //xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */
     //xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    //xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     tmTxDataLinkTask.emplace();
 
     tmTxDataLinkTask->createTask();
 
-    dummyTask.emplace();
+    //dummyTask.emplace();
 
-    dummyTask->createTask();
+    //dummyTask->createTask();
 
     vTaskStartScheduler();
 
