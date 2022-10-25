@@ -69,13 +69,17 @@ include_directories(Core/lib/ecss-services/lib/logger)
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c")
+file(GLOB_RECURSE PHYSICAL_LAYER "Core/lib/physical_layer/src/*.cpp")
+list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
+file(GLOB_RECURSE DATA_LAYER "Core/lib/ccsds-telemetry-packets/src/*.cpp")
+list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/main.cpp")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H7A3ZITXQ_FLASH.ld)
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
 
-add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${PHYSICAL_LAYER} ${DATA_LAYER} ${LINKER_SCRIPT})
 
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
