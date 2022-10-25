@@ -49,6 +49,10 @@ else ()
     add_compile_options(-Og -g)
 endif ()
 
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
+
 include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32H7xx/Include Drivers/CMSIS/Include)
 include_directories(Drivers/STM32H7xx_HAL_Driver/Src)
 include_directories(Core/Inc/FreeRTOSTasks)
