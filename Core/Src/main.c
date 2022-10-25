@@ -42,7 +42,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 
-extern UART_HandleTypeDef huart3;
+UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 

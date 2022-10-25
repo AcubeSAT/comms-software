@@ -3,6 +3,7 @@
 #include "list.h"
 #include "task.h"
 #include "FreeRTOSTasks/DummyTask.h"
+#include "FreeRTOSTasks/txUHFTask.hpp"
 
 #include <iostream>
 
@@ -11,7 +12,7 @@ static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
 
-UART_HandleTypeDef huart3;
+extern UART_HandleTypeDef huart3;
 
 void uartTask1(void * pvParameters) {
     char count1 = 0;
@@ -63,9 +64,9 @@ extern "C" void main_cpp(){
      */
 //    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    dummyTask.emplace();
+    txUHFTask.emplace(48000, 4800, false);
 
-    dummyTask->createTask();
+    txUHFTask->createTask();
     vTaskStartScheduler();
 
     for(;;)
