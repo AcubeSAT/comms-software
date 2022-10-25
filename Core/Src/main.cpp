@@ -5,6 +5,7 @@
 #include "FreeRTOSTasks/DummyTask.h"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
+#include "FreeRTOSTasks/txUHFTask.hpp"
 
 #include <iostream>
 
