@@ -5,8 +5,8 @@
 extern UART_HandleTypeDef huart3;
 
 void TmTxDataLinkTask::execute(){
-    volatile char byte = 0;
-    char str[30];
+    char index = 0;
+
     uint8_t packet[] = {34,5,76,21,34,2,1,3};
     uint8_t packetDestination[TmTransferFrameSize] ={0};
     for(;;) {
@@ -18,20 +18,13 @@ void TmTxDataLinkTask::execute(){
         HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_1);
         HAL_Delay(100);
 
-        for(uint8_t i = 0 ; i<30 ; i++){
-            byte = packetDestination[i];
-            snprintf(str, sizeof(" %d", byte), " %d", byte);
-            HAL_UART_Transmit(&huart3, reinterpret_cast<uint8_t *>(str), sizeof(str), 100);
-        }
-        //(char *)packetDestination;
-        //(char)(kikaByte);
-        //snprintf(str, sizeof("[%d]TmTx Data Link Task\n\r"),"[%d]TmTx Data Link Task\n\r", serviceChannelptr->frameAfterALlFramesGenerationService()->packetData()[0]);
+        char str[35];
+        char byte = packetDestination[index];
+        snprintf(str, sizeof("\r\n Transfer Frame data byte %d: %d"),"\r\n Transfer Frame data byte %d: %d", index, byte);
+        HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(str), sizeof(str), 100);
+        index++;
 
-        //HAL_UART_Transmit(&huart3,reinterpret_cast<uint8_t *>(kikaByte),sizeof(kikaByte),100);
-        HAL_Delay(100);
-        //HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_1);
-        //vTaskDelay(pdMS_TO_TICKS(100));
-
+        HAL_Delay(1000);
     }
     
 }
