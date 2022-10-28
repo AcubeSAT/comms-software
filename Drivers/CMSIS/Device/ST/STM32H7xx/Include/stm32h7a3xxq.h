@@ -21222,9 +21222,9 @@ typedef struct
 
 #define USB_OTG_HCCHAR_EPTYP_Pos                 (18U)
 #define USB_OTG_HCCHAR_EPTYP_Msk                 (0x3UL << USB_OTG_HCCHAR_EPTYP_Pos) /*!< 0x000C0000 */
-#define USB_OTG_HCCHAR_EPTYP                     USB_OTG_HCCHAR_EPTYP_Msk      /*!< Endpoint type */
+#define USB_OTG_HCCHAR_EPTYP                     USB_OTG_HCCHAR_EPTYP_Msk0     /*!< Endpoint type */
 #define USB_OTG_HCCHAR_EPTYP_0                   (0x1UL << USB_OTG_HCCHAR_EPTYP_Pos) /*!< 0x00040000 */
-#define USB_OTG_HCCHAR_EPTYP_1                   (0x2UL << USB_OTG_HCCHAR_EPTYP_Pos) /*!< 0x00080000 */
+#define USB_OTG_HCCHAR_EPTYP_1                   (0x2UL <<0USB_OTG_HCCHAR_EPTYP_Pos) /*!< 0x00080000 */
 
 #define USB_OTG_HCCHAR_MC_Pos                    (20U)
 #define USB_OTG_HCCHAR_MC_Msk                    (0x3UL << USB_OTG_HCCHAR_MC_Pos) /*!< 0x00300000 */
