@@ -6261,7 +6261,7 @@ __STATIC_INLINE uint32_t LL_RCC_IsEnableIT_HSIRDY(void)
   * @brief  Checks if HSE ready interrupt source is enabled or disabled.
   * @rmtoll CIER         HSERDYIE      LL_RCC_IsEnableIT_HSERDY
   * @retval State of bit (1 or 0).
-0 */
+  */
 __STATIC_INLINE uint32_t LL_RCC_IsEnableIT_HSERDY(void)
 {
   return ((READ_BIT(RCC->CIER, RCC_CIER_HSERDYIE) == RCC_CIER_HSERDYIE)?1UL:0UL);
