@@ -3,9 +3,13 @@
 #include "list.h"
 #include "task.h"
 #include "FreeRTOSTasks/DummyTask.h"
+#include "CCSDSChannel.hpp"
+#include "CCSDSServiceChannel.hpp"
+#include "TmTxDataLinkTask.hpp"
 
 #include <iostream>
 
+etl::unique_ptr<ServiceChannel> serviceChannelptr;
 template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
@@ -29,17 +33,49 @@ void vTask2(void * pvParameters) {
     }
 }
 
+void initiallizeChannels(){
+    PhysicalChannel physicalChannel = PhysicalChannel(1024, true,
+                                                      12, 1024, 220000, 20);
+
+    etl::flat_map<uint8_t, MAPChannel, MaxMapChannels> mapChannels = {};
+
+    MasterChannel masterChannel = MasterChannel();
+
+    masterChannel.addVC(0, 128, true, 3, 2, true, false, 0,
+                        true, SynchronizationFlag::FORWARD_ORDERED,
+                        255, 20, 20,
+                        10);
+
+    masterChannel.addVC(1, 128, false, 3, 2,
+                        true, false, 0,
+                        true, SynchronizationFlag::FORWARD_ORDERED,
+                        255, 20, 20,
+                        10);
+
+    masterChannel.addVC(2, 128, false, 3, 2,
+                        true, false, 0,
+                        true, SynchronizationFlag::FORWARD_ORDERED,
+                        255, 3, 3, 10);
+
+    etl::unique_ptr<ServiceChannel> servChannel(new ServiceChannel(masterChannel, physicalChannel));
+    serviceChannelptr = etl::move(servChannel);
+}
+
 extern "C" void main_cpp(){
+    //Initiallize Tasks
+    initiallizeChannels();
 
-    //xTaskCreate(vTask1, "Task 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    //xTaskCreate(vTask2, "Task 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    dummyTask.emplace();
-    dummyTask->createTask();
+    tmTxDataLinkTask.emplace();
 
+    tmTxDataLinkTask->createTask();
+
+    //dummyTask.emplace();
+
+    //dummyTask->createTask();
 
     vTaskStartScheduler();
 
     for(;;)
 
-    return;
+        return;
 }

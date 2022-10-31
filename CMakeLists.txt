@@ -70,9 +70,15 @@ include_directories("CM7/Core/lib/FreeRTOS/Source")
 include_directories("CM7/Core/lib/FreeRTOS/Source/include")
 include_directories("CM7/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F")
 include_directories("CM7/Core/lib/FreeRTOS/Source/portable/MemMang")
+include_directories("CM7/Core/lib/Data-Link-Layer/inc")
+include_directories("CM7/Core/lib/Physical-Layer/inc")
+include_directories("CM7/Core/lib/Data-Link-Layer/lib/etl/include")
+include_directories("CM7/Core/lib/Data-Link-Layer/lib/Catch2")
 
 file(GLOB_RECURSE FREERTOS_SOURCES "CM7/Core/lib/FreeRTOS/Source/*.c")
-
+file(GLOB_RECURSE DATA_LAYER "CM7/Core/lib/Data-Link-Layer/src/*.cpp")
+list(FILTER DATA_LAYER EXCLUDE REGEX "CM7/Core/lib/Data-Link-Layer/src/main.cpp")
+file(GLOB_RECURSE PHYSICAL_LAYER "CM7/Core/lib/Physical-Layer/src/*.cpp")
 
 #    Build types
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
@@ -116,7 +122,7 @@ add_executable(${PROJECT_NAME}_CM4.elf ${LINKER_SCRIPT_CM4} ${CM4_SRC})
 
 #    Cortex-M7
 file(GLOB_RECURSE CM7_SRC "CM7/Core/Startup/*.s" "CM7/Core/Src/*.cpp" "CM7/Core/Src/*.c" "Common/*.*")
-add_executable(${PROJECT_NAME}_CM7.elf ${LINKER_SCRIPT_CM7} ${FREERTOS_SOURCES} ${CM7_SRC})
+add_executable(${PROJECT_NAME}_CM7.elf ${LINKER_SCRIPT_CM7} ${FREERTOS_SOURCES} ${CM7_SRC} ${DATA_LAYER})
 
 # Kernel-specific build settings
 target_compile_options(${PROJECT_NAME}_CM4.elf PRIVATE -mcpu=cortex-m4)
