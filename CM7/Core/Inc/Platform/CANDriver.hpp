@@ -17,7 +17,7 @@ public:
     /**
      * Buffer that stores a received message that is to be processed.
      */
-    static inline FDCAN_RxHeaderTypeDef rxFifo0;
+    static inline FDCAN_RxHeaderTypeDef rxFifo0; //probably wrong type
 
 
     /**

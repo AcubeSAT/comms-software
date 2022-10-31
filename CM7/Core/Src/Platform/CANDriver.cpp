@@ -52,7 +52,7 @@ void CANDriver::HAL_FDCAN_TxFifoCallback(FDCAN_HandleTypeDef *hfdcan, uint32_t T
     }
 }
 
-void CANDriver::logMessage(const FDCAN_RxHeaderTypeDef &rxBuf) {
+void CANDriver::logMessage(const FDCAN_RxHeaderTypeDef &rxBuf) { //wrong type
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
     uint32_t id = rxBuf.Identifier;
     const uint8_t MsgLength = convertDlcToLength(rxBuf.DataLength);
