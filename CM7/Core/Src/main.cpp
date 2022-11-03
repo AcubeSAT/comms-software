@@ -2,10 +2,12 @@
 #include "FreeRTOS.h"
 #include "list.h"
 #include "task.h"
+#include "queue.h"
 #include "FreeRTOSTasks/DummyTask.h"
 #include "CCSDSChannel.hpp"
 #include "CCSDSServiceChannel.hpp"
 #include "TmTxDataLinkTask.hpp"
+#include "DummyPacketMakerTask.hpp"
 
 #include <iostream>
 
@@ -60,10 +62,19 @@ void initiallizeChannels(){
     etl::unique_ptr<ServiceChannel> servChannel(new ServiceChannel(masterChannel, physicalChannel));
     serviceChannelptr = etl::move(servChannel);
 }
+QueueHandle_t transmitPacketsQueue;
+QueueHandle_t transmitPacketLengthsQueue;
 
 extern "C" void main_cpp(){
     //Initiallize Tasks
     initiallizeChannels();
+
+    transmitPacketsQueue = xQueueCreate(200, sizeof(uint8_t));
+    transmitPacketLengthsQueue = xQueueCreate(100, sizeof(uint8_t));
+
+    dummyPacketMakerTask.emplace();
+
+    dummyPacketMakerTask->createTask();
 
     tmTxDataLinkTask.emplace();
 
