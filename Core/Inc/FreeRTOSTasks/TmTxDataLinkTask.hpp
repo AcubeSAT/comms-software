@@ -1,6 +1,7 @@
 #include "CCSDSChannel.hpp"
 #include "CCSDSServiceChannel.hpp"
 #include "Task.hpp"
+#include "queue.h"
 
 class TmTxDataLinkTask : public Task {
 private:
@@ -14,10 +15,12 @@ public:
 
     void createTask(){
         xTaskCreateStatic(vClassTask<TmTxDataLinkTask>, this->TaskName,
-                          TmTxDataLinkTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
+                          TmTxDataLinkTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2,
                           this->taskStack, &(this->taskBuffer));
     }
 };
+extern UART_HandleTypeDef huart3;
 extern etl::unique_ptr<ServiceChannel> serviceChannelptr;
-
+extern QueueHandle_t transmitPacketsQueue;
+extern QueueHandle_t transmitPacketLengthsQueue;
 inline std::optional<TmTxDataLinkTask> tmTxDataLinkTask;

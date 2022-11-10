@@ -7,6 +7,7 @@
 #include "CCSDSServiceChannel.hpp"
 #include <iostream>
 #include "TmTxDataLinkTask.hpp"
+#include "DummyPacketMakerTask.hpp"
 
 etl::unique_ptr<ServiceChannel> serviceChannelptr;
 template<class T>
@@ -55,17 +56,8 @@ void blinkyTask2(void * pvParameters){
         HAL_Delay(300);
     }
 }
-/*
-void InitializeChannells(PhysicalChannel& physicalChannel, MasterChannel* masterChannel, ServiceChannel* serviceChannel){
-    physicalChannel = PhysicalChannel(1024, true, 12, 1024, 220000, 20);
-
-}
-*/
-extern "C" void main_cpp(){
-    //Initiallize Tasks
-
-    PhysicalChannel physicalChannel = PhysicalChannel(1024, true,
-                                                      12, 1024, 220000, 20);
+void initiallizeChannels(){
+    PhysicalChannel physicalChannel = PhysicalChannel(1024, 12, 1024, 220000, 20);
 
     etl::flat_map<uint8_t, MAPChannel, MaxMapChannels> mapChannels = {};
 
@@ -89,15 +81,20 @@ extern "C" void main_cpp(){
 
     etl::unique_ptr<ServiceChannel> servChannel(new ServiceChannel(masterChannel, physicalChannel));
     serviceChannelptr = etl::move(servChannel);
+}
+QueueHandle_t transmitPacketsQueue;
+QueueHandle_t transmitPacketLengthsQueue;
 
-    //xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    //xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+extern "C" void main_cpp(){
+    //Initiallize Tasks
+    initiallizeChannels();
 
-    /**
-     * Uncomment below and comment above for Led task visualization (for STM32H743)
-     */
-    //xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    //xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    transmitPacketsQueue = xQueueCreate(200, sizeof(uint8_t));
+    transmitPacketLengthsQueue = xQueueCreate(100, sizeof(uint8_t));
+
+    dummyPacketMakerTask.emplace();
+
+    dummyPacketMakerTask->createTask();
 
     tmTxDataLinkTask.emplace();
 
@@ -111,5 +108,5 @@ extern "C" void main_cpp(){
 
     for(;;)
 
-    return;
+        return;
 }
