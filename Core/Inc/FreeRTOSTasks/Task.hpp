@@ -4,6 +4,8 @@
 #include "task.h"
 #include "list.h"
 #include "main.h"
+#include "Logger.hpp"
+
 
 /**
  * Base class, whose method 'execute' is meant to be inherited by each and every individual FreeRTOS task.
