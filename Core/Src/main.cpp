@@ -82,56 +82,13 @@ extern "C" void main_cpp(){
 
     uint8_t irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
     uint16_t sum = 0;
+    uint8_t packet[] = {0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39};
+
     while(1){
-        HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
-        HAL_Delay(200);
-
-        // Test code for debugging purposes
-        uint8_t response = AT86RF215::transceiver.spi_read_8(0x06, error);
-
-        printf("%d", error);
-
-        AT86RF215::transceiver.setup(error);
-
-        uint8_t response_blck[3];
-        uint8_t *response_block = AT86RF215::transceiver.spi_block_read_8(0x05, 3, response_blck, error);
-        printf("%d", error);
-
-        response = AT86RF215::transceiver.spi_read_8(0x07, error);
-
-        printf("%d", response);
-
-        uint8_t vn = AT86RF215::transceiver.get_version_number(error);
-        AT86RF215::transceiver.set_state(AT86RF215::RF09,
-                                         AT86RF215::State::RF_TRXOFF, error);
-        AT86RF215::State state = AT86RF215::transceiver.get_state(
-                AT86RF215::RF09, error);
-        for (uint8_t i = 0; i < 100; i++) {
-            sum += HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_14);
-        }
-
-        irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
-        AT86RF215::transceiver.set_state(AT86RF215::RF09,
-                                         AT86RF215::State::RF_SLEEP, error);
-
-        for (uint8_t i = 0; i < 100; i++) {
-            sum += HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_14);
-        }
-
-        state = AT86RF215::transceiver.get_state(AT86RF215::RF09, error);
-        for (uint8_t i = 0; i < 100; i++) {
-            sum += HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_14);
-        }
-
-        irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
-        AT86RF215::transceiver.set_state(AT86RF215::RF09,
-                                         AT86RF215::State::RF_TRXOFF, error);
-        state = AT86RF215::transceiver.get_state(AT86RF215::RF09, error);
-        for (uint8_t i = 0; i < 100; i++) {
-            sum += HAL_GPIO_ReadPin(GPIOD, GPIO_PIN_14);
-        }
-
-        irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
+        volatile AT86RF215::State state = AT86RF215::transceiver.get_state(AT86RF215::RF09, error);
+        state;
+        AT86RF215::transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet, 12, error);
+        HAL_Delay(500);
     }
 
     for(;;)
