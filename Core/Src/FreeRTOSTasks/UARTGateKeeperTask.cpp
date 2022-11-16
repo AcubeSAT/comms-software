@@ -7,11 +7,10 @@ UARTGatekeeperTask::UARTGatekeeperTask() : Task("UARTGatekeeperTask") {
 }
 
 void UARTGatekeeperTask::execute() {
+    UART_HandleTypeDef huart2;
     etl::string<LOGGER_MAX_MESSAGE_SIZE> output;
     while (true) {
         xQueueReceive(xUartQueue, &output, portMAX_DELAY);
-
-//        const void *txRegisterAddress = const_cast<void *>(reinterpret_cast<volatile void *>(&USART1_REGS->US_THR));
-//        XDMAC_ChannelTransfer(XDMAC_CHANNEL_0, output.data(), txRegisterAddress, output.size());
+//        HAL_UART_Transmit(&huart2, output.data(), output.size(), 100);
     }
 }
