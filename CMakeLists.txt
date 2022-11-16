@@ -66,8 +66,13 @@ include_directories(Core/lib/ccsds-telemetry-packets/inc)
 include_directories(Core/lib/ecss-services/inc)
 include_directories(Core/lib/ecss-services/lib/logger)
 include_directories(Core/lib/component-drivers/AT86RF215/inc)
+include_directories(Drivers/CMSIS/DSP/Include)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
+find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
+
+# TODO (maybe): Find a way to use this symbol insted of our own
+#file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c")
 
@@ -80,11 +85,14 @@ list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/main.
 file(GLOB_RECURSE DRIVERS "Core/lib/component-drivers/AT86RF215/src/*cpp")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H7A3ZITXQ_FLASH.ld)
+
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
 
-add_executable(${PROJECT_NAME}.elf ${SOURCES} ${DRIVERS} ${PHYSICAL_LAYER} ${DATA_LAYER} ${LINKER_SCRIPT})
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${DRIVERS} ${PHYSICAL_LAYER} ${DATA_LAYER} ${LINKER_SCRIPT})
+link_directories(Drivers/CMSIS/Lib/GCC)
+target_link_libraries(${PROJECT_NAME}.elf ${CMSIS_DSP})
 
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
