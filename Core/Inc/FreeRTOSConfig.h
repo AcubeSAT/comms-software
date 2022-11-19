@@ -130,7 +130,7 @@ extern uint32_t SystemCoreClock;
 
 #define configMAX_PRIORITIES                     ( 56 )
 
-#define configMINIMAL_STACK_SIZE                 ((uint16_t)128)
+#define configMINIMAL_STACK_SIZE                 ((uint16_t)1280)
 
 #define configTOTAL_HEAP_SIZE                    ((size_t)15360)
 

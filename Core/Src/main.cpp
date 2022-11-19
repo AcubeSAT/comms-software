@@ -24,7 +24,7 @@ void uartTask1(void * pvParameters) {
         ++count1;
         etl::string<LOGGER_MAX_MESSAGE_SIZE> output;
         output.append("[%d]Task A running\n\r");
-        LOG_DEBUG<<"%d"<< count1 << output.c_str();
+        LOG_DEBUG<<output.c_str();
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -33,11 +33,11 @@ void uartTask2(void * pvParameters) {
     char count2 = 0;
     for(;;)
     {
-        UART_HandleTypeDef huart2;
         ++count2;
         etl::string<LOGGER_MAX_MESSAGE_SIZE> output;
         output.append("[%d]Task B running\n\r");
-        LOG_DEBUG<<"%d"<< count2 << output.c_str();
+        LOG_DEBUG<<output.c_str();
+//        HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t *>(output.c_str()), output.size(), 100);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -62,16 +62,16 @@ namespace AT86RF215 {
 }
 
 extern "C" void main_cpp(){
-    uartGatekeeperTask.emplace();
-    uartGatekeeperTask->createTask();
+//    uartGatekeeperTask.emplace();
+//    uartGatekeeperTask->createTask();
     xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */
-    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(blinkyTask1, "blinkyTask 2", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(blinkyTask2, "blinkyTask 2", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
 //    txUHFTask.emplace(48000, 4800, false);
 //
 //    txUHFTask->createTask();
