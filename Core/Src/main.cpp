@@ -6,6 +6,7 @@
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "FreeRTOSTasks/txUHFTask.hpp"
+#include "TransceiverIQPacketCreation.hpp"
 
 #include <iostream>
 
@@ -15,7 +16,7 @@ static void vClassTask(void *pvParameters) {
 }
 
 //UART_HandleTypeDef huart3;
-//SPI_HandleTypeDef hspi1;
+SPI_HandleTypeDef hspi1;
 
 void uartTask1(void * pvParameters) {
     char count1 = 0;
@@ -70,9 +71,12 @@ extern "C" void main_cpp(){
      */
 //    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    txUHFTask.emplace(48000, 4800, false);
+//    txUHFTask.emplace(48000, 4800, false);
 
-    txUHFTask->createTask();
+    transceiverIQPacketCreation.emplace();
+    transceiverIQPacketCreation->createTask();
+
+//    txUHFTask->createTask();
     vTaskStartScheduler();
 
     for(;;)

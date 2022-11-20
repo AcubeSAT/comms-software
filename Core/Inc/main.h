@@ -37,7 +37,7 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 extern SPI_HandleTypeDef hspi1;
-
+extern SPI_HandleTypeDef hspi3;
 extern UART_HandleTypeDef huart3;
 /* USER CODE END ET */
 
@@ -91,6 +91,8 @@ void main_cpp();
 #define USB_FS_N_GPIO_Port GPIOA
 #define USB_FS_P_Pin GPIO_PIN_12
 #define USB_FS_P_GPIO_Port GPIOA
+#define SPI3_NSS_Pin GPIO_PIN_6
+#define SPI3_NSS_GPIO_Port GPIOB
 #define LD2_Pin GPIO_PIN_1
 #define LD2_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
