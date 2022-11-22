@@ -73,7 +73,7 @@ extern "C" void main_cpp(){
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 //    txUHFTask.emplace(48000, 4800, false);
 
-    transceiverIQPacketCreation.emplace();
+    transceiverIQPacketCreation.emplace(100);
     transceiverIQPacketCreation->createTask();
 
 //    txUHFTask->createTask();

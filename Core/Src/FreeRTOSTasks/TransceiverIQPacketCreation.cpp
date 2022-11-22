@@ -15,13 +15,14 @@ extern UART_HandleTypeDef huart3;
 
 void TransceiverIQPacketCreation::execute(){
     for(;;) {
-        etl::string<230> string = "\r KikasTransceiverBytes: ";
+        etl::string<Length*SamplesPerSymbol> string = "\r TestTransceiverBytes: ";
         etl::format_spec format;
-        for(uint8_t i = 0 ; i < Length * SamplesPerSymbol ; i ++){
-            etl::to_string(transceiverData[i], string, format, true);
-            string.append(" \n\r");
-        }
+        etl::to_string(transceiverData[transmitCounter], string, format, true);
+        string.append(" \n\r");
+        transmitCounter++;
         HAL_SPI_Transmit(&hspi3, (uint8_t *) string.data(), string.size(), 100);
         HAL_UART_Transmit(&huart3,(uint8_t *) string.data(), string.size(), 100);
+        HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_0);
+        HAL_Delay(delayTime);
     }
 }
