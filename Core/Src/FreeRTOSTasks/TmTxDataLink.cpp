@@ -21,30 +21,30 @@ void TmTxDataLinkTask::execute(){
         err = serviceChannelptr->storePacketTm(packet, packetLength, 0);
         if(err != NO_SERVICE_EVENT){
             char errStr[20];
-            snprintf(errStr, sizeof("\n AAAAAAAA store packet "), "\n AAAAAAAA store packet ");
+            snprintf(errStr, sizeof("\n problema in store packet "), "\n problema in store packet ");
             HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(errStr), sizeof(errStr), 100);
         }
         err = serviceChannelptr->vcGenerationService(60, 0);
         if(err == MEMORY_POOL_FULL){
             char errStr[20];
-            snprintf(errStr, sizeof("\n AAAAAAAA AAAAAAAA MEMORY POOL  "), "\n AAAAAAAA MEMORY POOL ");
+            snprintf(errStr, sizeof("\n problema in memory pool "), "\n problema in memory pool ");
             HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(errStr), sizeof(errStr), 100);
         }
         err = serviceChannelptr->mcGenerationTMRequest();
         if(err == NO_RX_PACKETS_TO_PROCESS){
             char errStr[20];
-            snprintf(errStr, sizeof("\n AAAAAAAA adeio mc "), "\n AAAAAAAA adeio mc ");
+            snprintf(errStr, sizeof("\n problema: adeio mc "), "\n problema: adeio mc ");
             HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(errStr), sizeof(errStr), 100);
         }
         else if(err == TX_MC_FRAME_BUFFER_FULL){
             char errStr[20];
-            snprintf(errStr, sizeof("\n AAAAAAAA gemato mc "), "\n AAAAAAAA gemato mc ");
+            snprintf(errStr, sizeof("\n problema gemato mc "), "\n problema gemato mc ");
             HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(errStr), sizeof(errStr), 100);
         }
         err = serviceChannelptr->allFramesGenerationTMRequest(packetDestination, TmTransferFrameSize);
         if(err != NO_SERVICE_EVENT){
             char errStr[20];
-            snprintf(errStr, sizeof("\n AAAAAAAA allFrames "), "\n AAAAAAAA allFrames ");
+            snprintf(errStr, sizeof("\n problema in allFrames "), "\n problema in allFrames ");
             HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(errStr), sizeof(errStr), 100);
         }
 
