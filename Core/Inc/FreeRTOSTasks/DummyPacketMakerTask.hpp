@@ -6,7 +6,7 @@
 
 class DummyPacketMakerTask : public Task{
 private:
-    const static inline uint16_t TaskStackDepth = 2000;
+    static constexpr uint16_t TaskStackDepth = 2000;
 
     StackType_t taskStack[TaskStackDepth];
 public:

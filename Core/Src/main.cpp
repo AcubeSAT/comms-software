@@ -5,7 +5,6 @@
 #include "FreeRTOSTasks/DummyTask.h"
 #include "CCSDSChannel.hpp"
 #include "CCSDSServiceChannel.hpp"
-#include <iostream>
 #include "TmTxDataLinkTask.hpp"
 #include "DummyPacketMakerTask.hpp"
 
@@ -63,7 +62,7 @@ void initiallizeChannels(){
 
     etl::flat_map<uint8_t, MAPChannel, MaxMapChannels> mapChannels = {};
 
-    MasterChannel masterChannel = MasterChannel();
+    MasterChannel masterChannel = {};
 
     masterChannel.addVC(0, 128, true, 3, 2, true, false, 0,
                         true, SynchronizationFlag::FORWARD_ORDERED,
