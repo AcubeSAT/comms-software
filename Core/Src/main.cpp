@@ -9,7 +9,8 @@
 #include "TmTxDataLinkTask.hpp"
 #include "DummyPacketMakerTask.hpp"
 
-etl::unique_ptr<ServiceChannel> serviceChannelptr;
+ServiceChannel *serviceChannelptr;
+
 template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
@@ -56,6 +57,7 @@ void blinkyTask2(void * pvParameters){
         HAL_Delay(300);
     }
 }
+
 void initiallizeChannels(){
     PhysicalChannel physicalChannel = PhysicalChannel(1024, 12, 1024, 220000, 20);
 
@@ -79,8 +81,8 @@ void initiallizeChannels(){
                         true, SynchronizationFlag::FORWARD_ORDERED,
                         255, 3, 3, 10);
 
-    etl::unique_ptr<ServiceChannel> servChannel(new ServiceChannel(masterChannel, physicalChannel));
-    serviceChannelptr = etl::move(servChannel);
+    static ServiceChannel tserviceChannel = ServiceChannel(masterChannel, physicalChannel);
+    serviceChannelptr = &tserviceChannel;
 }
 QueueHandle_t transmitPacketsQueue;
 QueueHandle_t transmitPacketLengthsQueue;

@@ -20,7 +20,7 @@ public:
     }
 };
 extern UART_HandleTypeDef huart3;
-extern etl::unique_ptr<ServiceChannel> serviceChannelptr;
+extern ServiceChannel *serviceChannelptr;
 extern QueueHandle_t transmitPacketsQueue;
 extern QueueHandle_t transmitPacketLengthsQueue;
 inline std::optional<TmTxDataLinkTask> tmTxDataLinkTask;

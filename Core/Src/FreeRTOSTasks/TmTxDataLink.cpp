@@ -60,7 +60,7 @@ void TmTxDataLinkTask::execute(){
         }
         snprintf(str3, sizeof(" Packet Length: %d ")," Packet Length: %d ", packetLength);
         HAL_UART_Transmit(&huart3, reinterpret_cast<uint8_t *> (str3), sizeof(str3), 100);
-
+        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
         HAL_Delay(1000);
     }
 
