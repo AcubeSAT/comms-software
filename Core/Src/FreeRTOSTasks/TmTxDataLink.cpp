@@ -62,9 +62,9 @@ void TmTxDataLinkTask::execute(){
         }
 //        snprintf(str3, sizeof(" Packet Length: %d ")," Packet Length: %d ", packetLength);
         string.append(" Packet Length: ");
-        etl::to_string(packetLength, packetLength, string, format, true);
+        etl::to_string(packetLength, string, format, true);
         string.append(" \n ");
-        HAL_UART_Transmit(&huart3, reinterpret_cast<uint8_t *>(string.data()), sizeof(string), 100);
+        HAL_UART_Transmit(&huart3, (uint8_t*)(string.data()), sizeof(string), 100);
 
         HAL_Delay(1000);
     }
