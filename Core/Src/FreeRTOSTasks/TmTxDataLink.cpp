@@ -46,27 +46,16 @@ void TmTxDataLinkTask::execute(){
             snprintf(errStr, sizeof("\n error in allFrames "), "\n error in allFrames ");
             HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(errStr), sizeof(errStr), 100);
         }
-
-        etl::string<TmTransferFrameSize + 30> string = "\r\n Transfer Frame data bytes: ";
+        etl::string<200> string = "\r Transfer Frame data bytes: ";
         etl::format_spec format;
-//        char str1[30];
-//        char str2[3] = {0};
-//        char str3[18];
-//        snprintf(str1, sizeof("\r\n Transfer Frame data bytes: "), "\r\n Transfer Frame data bytes: ");
-//        HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t*>(str1), sizeof(str1), 100);
         for(uint8_t i = 0; i < packetLength + 10 ; i++){
-//            snprintf(str2, sizeof(" %d ")," %d ", packetDestination[i]);
-//            HAL_UART_Transmit(&huart3, reinterpret_cast<uint8_t *> (str2), sizeof(str2), 100);
             etl::to_string(packetDestination[i], string, format, true);
             string.append(" ");
         }
-//        snprintf(str3, sizeof(" Packet Length: %d ")," Packet Length: %d ", packetLength);
         string.append(" Packet Length: ");
         etl::to_string(packetLength, string, format, true);
-        string.append(" \n ");
-        HAL_UART_Transmit(&huart3, (uint8_t*)(string.data()), sizeof(string), 100);
-
+        string.append("\n");
+        HAL_UART_Transmit(&huart3, (uint8_t*)(string.data()), string.size(), 100);
         HAL_Delay(1000);
     }
-
 }
