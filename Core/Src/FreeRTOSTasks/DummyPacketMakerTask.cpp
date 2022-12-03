@@ -10,7 +10,7 @@ void DummyPacketMakerTask::execute() {
     for(;;) {
         uint8_t randomLength = rand() % 25;
         for (uint8_t i = 0 ; i < randomLength ; i++){
-            randomByte = rand() % 255;
+            randomByte = rand() % 256;
             xStatus = xQueueSend(transmitPacketsQueue, &randomByte, pdMS_TO_TICKS(1000));
             if(xStatus == pdFALSE){
                 vTaskDelay(pdMS_TO_TICKS(100));
