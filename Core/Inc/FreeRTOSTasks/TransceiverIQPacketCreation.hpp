@@ -36,7 +36,7 @@ public:
             uint8_t byte = idleData[i];
             for(uint8_t j = 0 ; j < 8 ; j++){
                 gmskIn.set(i*8 + j, (byte & 1));
-                byte >>= 1;
+                byte = (byte >> 1) & 0xff;
             }
         }
         GMSKTranscoder<SamplesPerSymbol, Length> gmskTranscoder(sampleFrequency,symbolRate,false);
