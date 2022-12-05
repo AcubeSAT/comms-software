@@ -2,8 +2,9 @@
 #include "CCSDSServiceChannel.hpp"
 #include "Task.hpp"
 #include "queue.h"
+#include <etl/optional.h>
 
-class TmTxDataLinkTask : public Task {
+class TmTxDataLinkTask final : public Task {
 private:
     static constexpr uint16_t TaskStackDepth = 2000;
 
@@ -23,4 +24,4 @@ extern UART_HandleTypeDef huart3;
 extern ServiceChannel *serviceChannelptr;
 extern QueueHandle_t transmitPacketsQueue;
 extern QueueHandle_t transmitPacketLengthsQueue;
-inline std::optional<TmTxDataLinkTask> tmTxDataLinkTask;
+inline etl::optional<TmTxDataLinkTask> tmTxDataLinkTask;

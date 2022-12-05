@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Task.hpp"
-#include "optional"
 #include "queue.h"
+#include <etl/optional.h>
 
 class DummyPacketMakerTask : public Task{
 private:
@@ -20,6 +20,6 @@ public:
                           this->taskStack, &(this->taskBuffer));
     }
 };
-inline std::optional<DummyPacketMakerTask> dummyPacketMakerTask;
+inline etl::optional<DummyPacketMakerTask> dummyPacketMakerTask;
 extern QueueHandle_t transmitPacketsQueue;
 extern QueueHandle_t transmitPacketLengthsQueue;

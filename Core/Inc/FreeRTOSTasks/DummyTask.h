@@ -2,6 +2,7 @@
 
 #include <optional>
 #include "Task.hpp"
+#include <etl/optional.h>
 
 class DummyTask : public Task {
 private:
@@ -20,5 +21,5 @@ public:
     }
 };
 
-inline std::optional<DummyTask> dummyTask;
+inline etl::optional<DummyTask> dummyTask;
 
