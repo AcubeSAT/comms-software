@@ -10,3 +10,6 @@
 [submodule "Core/lib/component-drivers"]
 	path = Core/lib/component-drivers
 	url = https://gitlab.com/acubesat/comms/software/component-drivers.git
+[submodule "Core/lib/cross-platform-software"]
+	path = Core/lib/cross-platform-software
+	url = https://gitlab.com/acubesat/obc/cross-platform-software.git
