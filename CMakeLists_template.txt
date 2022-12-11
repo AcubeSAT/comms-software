@@ -52,18 +52,21 @@ include_directories(${includes})
 include_directories(Drivers/STM32H7xx_HAL_Driver/Src)
 include_directories(Core/Inc/FreeRTOSTasks)
 include_directories(Core/src/FreeRTOSTasks)
-include_directories(Core/Src)
+include_directories(Core/Inc/Platform/Parameters)
+include_directories(Core/Src/)
 include_directories("Core/lib/FreeRTOS/Source")
 include_directories("Core/lib/FreeRTOS/Source/include")
 include_directories("Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F")
 include_directories("Core/lib/FreeRTOS/Source/portable/MemMang")
 include_directories(Drivers/Src)
+include_directories(Core/lib/cross-platform-software/lib/ecss-services/inc)
+include_directories(Core/lib/cross-platform-software/lib/ecss-services/inc/Platform/x86)
+include_directories(Core/lib/cross-platform-software/lib/ecss-services/lib/etl/include)
+include_directories(Core/lib/cross-platform-software/lib/ecss-services/lib/logger/inc)
 include_directories(Core/lib/physical_layer/inc)
 include_directories(Core/lib/physical_layer/lib/etl/include)
 include_directories(Core/lib/physical_layer/lib/Catch2)
 include_directories(Core/lib/ccsds-telemetry-packets/inc)
-include_directories(Core/lib/ecss-services/inc)
-include_directories(Core/lib/ecss-services/lib/logger)
 include_directories(Core/lib/component-drivers/AT86RF215/inc)
 include_directories(Drivers/CMSIS/DSP/Include)
 
@@ -72,6 +75,9 @@ find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
 
 # TODO (maybe): Find a way to use this symbol insted of our own
 #file(GLOB_RECURSE SOURCES ${sources})
+add_subdirectory(Core/lib/cross-platform-software)
+
+file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c")
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c")
 
@@ -80,7 +86,7 @@ list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
 
 file(GLOB_RECURSE DATA_LAYER "Core/lib/ccsds-telemetry-packets/src/*.cpp")
 list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/main.cpp")
-
+list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/Logger.cpp")
 file(GLOB_RECURSE DRIVERS "Core/lib/component-drivers/AT86RF215/src/*cpp")
 
 set(LINKER_SCRIPT $${CMAKE_SOURCE_DIR}/${linkerScript})
@@ -89,10 +95,12 @@ add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=$${PROJECT_BINARY_DI
 add_link_options(-mcpu=${mcpu} -mthumb -mthumb-interwork)
 add_link_options(-T $${LINKER_SCRIPT})
 
-add_executable($${PROJECT_NAME}.elf $${SOURCES} $${LINKER_SCRIPT} $${DRIVERS} $${PHYSICAL_LAYER} $${DATA_LAYER} $${LINKER_SCRIPT})
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DATA_LAYER} ${DRIVERS})
+add_subdirectory(Core/lib/cross-platform-software/lib/ecss-services EXCLUDE_FROM_ALL)
+target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross)
+target_compile_definitions(common_cross PUBLIC STM32)
 link_directories(Drivers/CMSIS/Lib/GCC)
-target_link_libraries($${PROJECT_NAME}.elf $${CMSIS_DSP})
-
+target_link_libraries(${PROJECT_NAME}.elf PRIVATE ${CMSIS_DSP})
 set(HEX_FILE $${PROJECT_BINARY_DIR}/$${PROJECT_NAME}.hex)
 set(BIN_FILE $${PROJECT_BINARY_DIR}/$${PROJECT_NAME}.bin)
 
