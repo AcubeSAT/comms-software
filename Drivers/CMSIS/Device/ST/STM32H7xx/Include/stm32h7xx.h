@@ -34,8 +34,7 @@
   * @{
   */
 
-#ifndef STM32H7xx_H
-#define STM32H7xx_H
+#pragma once
 
 #ifdef __cplusplus
  extern "C" {
@@ -287,7 +286,6 @@ typedef enum
 }
 #endif /* __cplusplus */
 
-#endif /* STM32H7xx_H */
 /**
   * @}
   */

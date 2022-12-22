@@ -16,8 +16,7 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef STM32H7xx_HAL_RCC_EX_H
-#define STM32H7xx_HAL_RCC_EX_H
+#pragma once
 
 #ifdef __cplusplus
  extern "C" {
@@ -4471,5 +4470,4 @@ void     HAL_RCCEx_CRS_ErrorCallback(uint32_t Error);
 }
 #endif
 
-#endif /* STM32H7xx_HAL_RCC_EX_H */
 

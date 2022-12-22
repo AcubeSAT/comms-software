@@ -18,8 +18,7 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef STM32H7xx_HAL_H
-#define STM32H7xx_HAL_H
+#pragma once
 
 #ifdef __cplusplus
  extern "C" {
@@ -1137,6 +1136,5 @@ void HAL_SYSCFG_ADC2ALT_Rout1Config(uint32_t Adc2AltRout1);
 }
 #endif
 
-#endif /* STM32H7xx_HAL_H */
 
 

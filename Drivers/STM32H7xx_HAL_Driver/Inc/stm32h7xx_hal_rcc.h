@@ -16,9 +16,7 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef STM32H7xx_HAL_RCC_H
-#define STM32H7xx_HAL_RCC_H
-
+#pragma once
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -8261,5 +8259,4 @@ void     HAL_RCC_CCSCallback(void);
 }
 #endif
 
-#endif /* STM32H7xx_HAL_RCC_H */
 

@@ -67,6 +67,10 @@ include_directories(Core/lib/ecss-services/inc)
 include_directories(Core/lib/ecss-services/lib/logger)
 include_directories(Core/lib/component-drivers/AT86RF215/inc)
 include_directories(Drivers/CMSIS/DSP/Include)
+include_directories("Core/Inc/FreeRTOSTasks/Platform")
+include_directories("Core/Inc/FreeRTOSTasks/Platform/Parameters")
+include_directories("Core/lib/ecss-services/inc/Platform/x86")
+
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
 find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)

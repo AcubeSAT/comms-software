@@ -18,8 +18,7 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef STM32H7xx_HAL_DEF
-#define STM32H7xx_HAL_DEF
+#pragma once
 
 #ifdef __cplusplus
  extern "C" {
@@ -215,6 +214,5 @@ typedef enum
 }
 #endif
 
-#endif /* STM32H7xx_HAL_DEF */
 
 
