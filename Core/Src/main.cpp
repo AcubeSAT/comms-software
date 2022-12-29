@@ -16,7 +16,7 @@ static void vClassTask(void *pvParameters) {
 }
 
 //UART_HandleTypeDef huart3;
-SPI_HandleTypeDef hspi1;
+//SPI_HandleTypeDef hspi1;
 
 void uartTask1(void * pvParameters) {
     char count1 = 0;
