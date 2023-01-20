@@ -27,18 +27,13 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32h7xx_hal.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "FreeRTOSConfig.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-extern SPI_HandleTypeDef hspi1;
 
-extern UART_HandleTypeDef huart3;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -50,6 +45,7 @@ extern UART_HandleTypeDef huart3;
 /* USER CODE BEGIN EM */
 
 /* USER CODE END EM */
+#include "stm32h7xx_hal.h"
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);

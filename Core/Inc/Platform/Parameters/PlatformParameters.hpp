@@ -150,6 +150,8 @@ namespace PlatformParameters {
     inline Parameter<uint32_t> commsMCUSystick(0);
     inline Parameter<uint32_t> commsFlashInt(0);
     inline Parameter<uint32_t> commsSRAMInt(0);
+    inline Parameter<bool> commsUseUART(true);
+
 
 }
 

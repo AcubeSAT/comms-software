@@ -1,7 +1,6 @@
 #include "txUHFTask.hpp"
-
+#include "UARTGatekeeperTask.hpp"
 extern UART_HandleTypeDef huart3;
-
 void TxUHFTask::execute() {
     uint16_t packetCount = 0;
     char log[100];
@@ -14,10 +13,10 @@ void TxUHFTask::execute() {
                 fragmentedEncodedPacket.set(i, tmEncodedPacket[j * ((CodewordLength * Rate) / NumberOfSubpackets) + i]);
             }
             gmskTranscoder.modulate(fragmentedEncodedPacket, inPhaseBuffer, quadraturePhaseBuffer);
-            // Add transceiver normalization method
-            // Send to FPGA through SPI
-            snprintf(log, sizeof("[%d]Sent sub-packet %d\n\r"), "[%d]Sent sub-packet %d\n\r", packetCount, j);
-            HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t *>(log), sizeof(log), 100);
+            uartGatekeeperTask->addToQueue("NEW");
+//            HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t *>("[%d]Sent sub-packet %d\n\r"), 10, 100);
+//            LOG_DEBUG<<"[%d]Sent sub-packet %d\n\r";
+
         }
         packetCount++;
     }
