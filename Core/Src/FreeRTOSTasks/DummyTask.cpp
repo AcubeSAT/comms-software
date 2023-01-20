@@ -1,5 +1,5 @@
 #include "FreeRTOSTasks/DummyTask.h"
-#include "FreeRTOSTasks/Task.hpp"
+#include "Task.hpp"
 #include <iostream>
 
 void DummyTask::execute() {

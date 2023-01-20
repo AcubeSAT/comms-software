@@ -7,5 +7,7 @@
 namespace CommonParameters {
 
     inline auto &time = PlatformParameters::commsMCUTime;
+    inline auto &useUART = PlatformParameters::commsUseUART;
+
 
 }
