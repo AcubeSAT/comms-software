@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FreeRTOSTasks/Task.hpp"
+#include "Task.hpp"
 #include "GMSKTranscoder.hpp"
 #include "ConvolutionalEncoder.hpp"
 #include "etl/bitset.h"

@@ -2,41 +2,34 @@
 #include "FreeRTOS.h"
 #include "list.h"
 #include "task.h"
-#include "FreeRTOSTasks/DummyTask.h"
+#include "DummyTask.h"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
-#include "FreeRTOSTasks/txUHFTask.hpp"
+#include "txUHFTask.hpp"
+#include "UARTGatekeeperTask.hpp"
+extern SPI_HandleTypeDef hspi1;
 
-#include <iostream>
 
 template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
 
-//UART_HandleTypeDef huart3;
-//SPI_HandleTypeDef hspi1;
 
 void uartTask1(void * pvParameters) {
-    char count1 = 0;
     for(;;)
     {
-        ++count1;
-        char str[30];
-        snprintf(str, sizeof("[%d]Task A running\n\r"),"[%d]Task A running\n\r", count1);
-        HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t *>(str), sizeof(str), 100);
+        etl::string<30> str = "[%d]Task A running\r\n";
+        uartGatekeeperTask->addToQueue(str);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
 void uartTask2(void * pvParameters) {
-    char count2 = 0;
     for(;;)
     {
-        ++count2;
-        char str[30];
-        snprintf(str, sizeof("[%d]Task B running\n\r"),"[%d]Task B running\n\r", count2);
-        HAL_UART_Transmit(&huart3, reinterpret_cast<const uint8_t *>(str), sizeof(str), 100);
+        etl::string<30> str = "[%d]Task B running\r\n";
+        uartGatekeeperTask->addToQueue(str);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -61,21 +54,25 @@ namespace AT86RF215 {
 }
 
 extern "C" void main_cpp(){
+    uartGatekeeperTask.emplace();
+    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    txUHFTask.emplace(48000, 4800, false);
+    txUHFTask->createTask();
+    uartGatekeeperTask->createTask();
+    auto output = String<ECSSMaxMessageSize>("New ");
+    LOG_DEBUG<<output.c_str();
+    vTaskStartScheduler();
 
-//    xTaskCreate(uartTask1, "uartTask 1", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(uartTask2, "uartTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */
-//    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, NULL, tskIDLE_PRIORITY + 1, NULL);
-    txUHFTask.emplace(48000, 4800, false);
+//    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 
-    txUHFTask->createTask();
-    vTaskStartScheduler();
 
-    for(;;)
+    for(;;);
 
     return;
 }
