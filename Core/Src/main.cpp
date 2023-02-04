@@ -70,7 +70,9 @@ void tempTask(void * pvParameters){
         else{
             value = "{Error getting temperature}\r\n";
         }
+        value = etl::to_string(temp.second, value, format);
         str.append(value);
+        str.append("\r\n");
         uartGatekeeperTask->addToQueue(str);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
