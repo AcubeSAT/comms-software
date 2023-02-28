@@ -1,7 +1,7 @@
 #THIS FILE IS AUTO GENERATED FROM THE TEMPLATE! DO NOT CHANGE!
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION 1)
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.24)
 
 # specify cross-compilers and tools
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
@@ -52,8 +52,8 @@ endif ()
 include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32H7xx/Include Drivers/CMSIS/Include)
 include_directories(Drivers/STM32H7xx_HAL_Driver/Src)
 include_directories(Core/Inc/FreeRTOSTasks)
-include_directories(Core/Inc/Platform/Parameters)
 include_directories(Core/src/FreeRTOSTasks)
+include_directories(Core/Inc/Platform/Parameters)
 include_directories(Core/Src/)
 include_directories("Core/lib/FreeRTOS/Source")
 include_directories("Core/lib/FreeRTOS/Source/include")
@@ -77,23 +77,26 @@ find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
 # TODO (maybe): Find a way to use this symbol insted of our own
 #file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
 add_subdirectory(Core/lib/cross-platform-software)
+add_subdirectory(Core/lib/physical_layer/lib/etl)
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c")
+
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c")
 
 file(GLOB_RECURSE PHYSICAL_LAYER "Core/lib/physical_layer/src/*.cpp")
 list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
+
 file(GLOB_RECURSE DATA_LAYER "Core/lib/ccsds-telemetry-packets/src/*.cpp")
 list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/main.cpp")
 list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/Logger.cpp")
-
+list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/Platform/x86/Logger.cpp")
 file(GLOB_RECURSE DRIVERS "Core/lib/component-drivers/AT86RF215/src/*cpp")
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H7A3ZITXQ_FLASH.ld)
+
 add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
 add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
-
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DATA_LAYER} ${DRIVERS})
 add_subdirectory(Core/lib/cross-platform-software/lib/ecss-services EXCLUDE_FROM_ALL)
@@ -101,7 +104,6 @@ target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross)
 target_compile_definitions(common_cross PUBLIC STM32)
 link_directories(Drivers/CMSIS/Lib/GCC)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE ${CMSIS_DSP})
-
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
 
