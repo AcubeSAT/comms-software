@@ -11,12 +11,19 @@ extern SPI_HandleTypeDef hspi1;
 
 ADC_HandleTypeDef hadc2;
 DMA_HandleTypeDef hdma_adc2;
-
 SPI_HandleTypeDef hspi1;
-
 TIM_HandleTypeDef htim3;
-
 UART_HandleTypeDef huart3;
+
+ADC_HandleTypeDef hadc1;
+TIM_HandleTypeDef htim2;
+
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+static void MX_ADC2_Init(void);
+static void MX_TIM3_Init(void);
+
+#define ADC_SAMPLES 100
 
 template<class T>
 static void vClassTask(void *pvParameters) {
@@ -63,27 +70,48 @@ void blinkyTask2(void * pvParameters){
 }
 
 void MCUTemperatureLoggingTask(void * pvParameters){
-    const uint16_t* const ADC_TEMP_3V3_30C =  reinterpret_cast<uint16_t*>(0x1FFF7A2C);
-    const uint16_t* const ADC_TEMP_3V3_110C =  reinterpret_cast<uint16_t*>(0x1FFF7A2E);
-    const float CALIBRATION_REFERENCE_VOLTAGE = 3.3F;
+    uint16_t ADC_Val[2] = {0};
 
-    const float REFERENCE_VOLTAGE = 3.0F; // supplied with Vref+ or VDDA
+    uint16_t AD_RES = 0;
 
-    // scale constants to current reference voltage
-    float adcCalTemp30C = static_cast<float>(*ADC_TEMP_3V3_30C) * (REFERENCE_VOLTAGE/CALIBRATION_REFERENCE_VOLTAGE);
-    float adcCalTemp110C = static_cast<float>(*ADC_TEMP_3V3_110C) * (REFERENCE_VOLTAGE/CALIBRATION_REFERENCE_VOLTAGE);
+
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
+    // Calibrate The ADC On Power-Up For Better Accuracy
+//    HAL_ADCEx_Calibration_Start(&hadc2);      What calibration mode?
+
     for(;;){
-        uint16_t adcTempValue = HAL_ADC_GetValue(&hadc2);
 
-        float temperature = (static_cast<float>(adcTempValue) - adcCalTemp30C)/(adcCalTemp110C - adcCalTemp30C) * (110.0F - 30.0F) + 30.0F;
-        etl::string<50> string = "Temp is ";
-        etl::format_spec format;
-        etl::string<10> temperatureString;
-        etl::to_string(temperature, temperatureString, format, true);
-        string.append(temperatureString);
-        string.append(" celcius\n\r");
-        uartGatekeeperTask->addToQueue(string);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        // Start ADC Conversion
+        HAL_ADC_Start(&hadc2);
+        // Poll ADC1 Perihperal & TimeOut = 1mSec
+        HAL_ADC_PollForConversion(&hadc2, 1);
+        // Read The ADC Conversion Result & Map It To PWM DutyCycle
+        AD_RES = HAL_ADC_GetValue(&hadc2);
+        HAL_Delay(1);
+
+//        HAL_ADC_Start(&hadc2);
+//        for(int i=0; i<2; i++){
+//            volatile HAL_StatusTypeDef a = HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY);
+//            ADC_Val[i] = HAL_ADC_GetValue(&hadc2);
+//         }
+//        volatile uint32_t VRefInt = __HAL_ADC_CALC_VREFANALOG_VOLTAGE(ADC_Val[1], hadc2.Init.Resolution);
+//        volatile uint32_t TSensor    = __HAL_ADC_CALC_TEMPERATURE(VRefInt, ADC_Val[4], hadc2.Init.Resolution);
+
+//          volatile int a=1;
+//        float temperature = (static_cast<float>(adcTempValue) - adcCalTemp30C)/(adcCalTemp110C - adcCalTemp30C) * (110.0F - 30.0F) + 30.0F;
+//        etl::string<50> string = "Temp is ";
+//        etl::format_spec format;
+//        etl::string<10> temperatureString;
+//        etl::to_string(temperature, temperatureString, format, true);
+//        string.append(temperatureString);
+//        string.append(" celcius\n\r");
+//        uartGatekeeperTask->addToQueue(string);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        HAL_ADC_Stop(&hadc2);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        HAL_Delay(100);
+
+
 
     }
 }
