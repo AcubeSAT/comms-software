@@ -23,8 +23,11 @@ static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
 
+//UART_HandleTypeDef huart3;
+//SPI_HandleTypeDef hspi1;
 
 void uartTask1(void * pvParameters) {
+    char count1 = 0;
     for(;;)
     {
         etl::string<30> str = "[%d]Task A running\r\n";
@@ -34,6 +37,7 @@ void uartTask1(void * pvParameters) {
 }
 
 void uartTask2(void * pvParameters) {
+    char count2 = 0;
     for(;;)
     {
         etl::string<30> str = "[%d]Task B running\r\n";
