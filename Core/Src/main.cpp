@@ -2,7 +2,7 @@
 #include "FreeRTOS.h"
 #include "list.h"
 #include "task.h"
-#include "DummyTask.h"
+#include "FreeRTOSTasks/DummyTask.h"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "txUHFTask.hpp"
@@ -20,6 +20,7 @@ static void vClassTask(void *pvParameters) {
 
 
 void uartTask1(void * pvParameters) {
+    char count1 = 0;
     for(;;)
     {
         etl::string<30> str = "[%d]Task A running\r\n";
@@ -97,7 +98,7 @@ extern "C" void main_cpp(){
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 
 
-    for(;;);
+    for(;;)
 
     return;
 }
