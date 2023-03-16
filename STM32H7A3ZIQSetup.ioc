@@ -1,4 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
+CAD.formats=
+CAD.pinconfig=
+CAD.provider=
 File.Version=6
 I2C2.IPParameters=Timing
 I2C2.Timing=0x10B0DCFB
@@ -179,6 +182,7 @@ ProjectManager.PreviousToolchain=STM32CubeIDE
 ProjectManager.ProjectBuild=false
 ProjectManager.ProjectFileName=STM32H7A3ZIQSetup.ioc
 ProjectManager.ProjectName=STM32H7A3ZIQSetup
+ProjectManager.ProjectStructure=
 ProjectManager.RegisterCallBack=
 ProjectManager.StackSize=0x400
 ProjectManager.TargetToolchain=STM32CubeIDE
