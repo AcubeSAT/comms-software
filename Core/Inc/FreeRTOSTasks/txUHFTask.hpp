@@ -6,7 +6,7 @@
 #include "etl/bitset.h"
 
 constexpr uint16_t CodewordLength = 2048;
-constexpr uint8_t Rate = 2;
+constexpr uint8_t Rate = 1;
 constexpr uint8_t SamplesPerSymbol = 6;
 
 /**
