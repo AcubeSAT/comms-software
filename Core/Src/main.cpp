@@ -7,6 +7,7 @@
 #include "at86rf215config.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
+#include <etl/string.h>
 extern SPI_HandleTypeDef hspi1;
 
 ADC_HandleTypeDef hadc2;
@@ -86,16 +87,15 @@ void MCUTemperatureLoggingTask(void * pvParameters){
         // Poll ADC1 Perihperal & TimeOut = 1mSec
         HAL_ADC_PollForConversion(&hadc2, 1);
         // Read The ADC Conversion Result & Map It To PWM DutyCycle
-        AD_RES = HAL_ADC_GetValue(&hadc2);
+//        AD_RES = HAL_ADC_GetValue(&hadc2);
         HAL_Delay(1);
 
 //        HAL_ADC_Start(&hadc2);
-//        for(int i=0; i<2; i++){
-//            volatile HAL_StatusTypeDef a = HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY);
-//            ADC_Val[i] = HAL_ADC_GetValue(&hadc2);
-//         }
-//        volatile uint32_t VRefInt = __HAL_ADC_CALC_VREFANALOG_VOLTAGE(ADC_Val[1], hadc2.Init.Resolution);
-//        volatile uint32_t TSensor    = __HAL_ADC_CALC_TEMPERATURE(VRefInt, ADC_Val[4], hadc2.Init.Resolution);
+        for(int i=0; i<2; i++){
+            ADC_Val[i] = HAL_ADC_GetValue(&hadc2);
+         }
+        volatile uint32_t VRefInt = __HAL_ADC_CALC_VREFANALOG_VOLTAGE(ADC_Val[1], hadc2.Init.Resolution);
+        volatile uint32_t TSensor    = __HAL_ADC_CALC_TEMPERATURE(VRefInt, ADC_Val[4], hadc2.Init.Resolution);
 
 //          volatile int a=1;
 //        float temperature = (static_cast<float>(adcTempValue) - adcCalTemp30C)/(adcCalTemp110C - adcCalTemp30C) * (110.0F - 30.0F) + 30.0F;
@@ -109,7 +109,7 @@ void MCUTemperatureLoggingTask(void * pvParameters){
 //        vTaskDelay(pdMS_TO_TICKS(1000));
 //        HAL_ADC_Stop(&hadc2);
 //        vTaskDelay(pdMS_TO_TICKS(1000));
-//        HAL_Delay(100);
+        HAL_Delay(100);
 
 
 
