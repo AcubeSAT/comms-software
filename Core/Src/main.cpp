@@ -2,7 +2,7 @@
 #include "FreeRTOS.h"
 #include "list.h"
 #include "task.h"
-#include "FreeRTOSTasks/DummyTask.h"
+#include "DummyTask.h"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "txUHFTask.hpp"
@@ -20,11 +20,9 @@ static void vClassTask(void *pvParameters) {
 
 
 void uartTask1(void * pvParameters) {
-    char count1 = 0;
     for(;;)
     {
-        etl::string<30> str = "[%d]Task A running\r\n";
-        uartGatekeeperTask->addToQueue(str);
+        LOG_DEBUG << "Task A running";
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -32,8 +30,7 @@ void uartTask1(void * pvParameters) {
 void uartTask2(void * pvParameters) {
     for(;;)
     {
-        etl::string<30> str = "[%d]Task B running\r\n";
-        uartGatekeeperTask->addToQueue(str);
+        LOG_DEBUG << "Task B running";
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -81,6 +78,10 @@ void tempTask(void * pvParameters){
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
+    uartGatekeeperTask->createTask();
+    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+
     xTaskCreate(tempTask, "tempTask", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    txUHFTask.emplace(48000, 4800, false);
@@ -98,7 +99,7 @@ extern "C" void main_cpp(){
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 
 
-    for(;;)
+    for(;;);
 
     return;
 }
