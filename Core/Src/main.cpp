@@ -7,7 +7,7 @@
 #include "at86rf215config.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
-#include "TMP117.hpp"
+#include "TemperatureSensorsTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern I2C_HandleTypeDef hi2c2;
@@ -23,7 +23,7 @@ void uartTask1(void * pvParameters) {
     for(;;)
     {
         LOG_DEBUG << "Task A running";
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(4000));
     }
 }
 
@@ -31,7 +31,7 @@ void uartTask2(void * pvParameters) {
     for(;;)
     {
         LOG_DEBUG << "Task B running";
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(3000));
     }
 }
 
@@ -54,35 +54,14 @@ namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
 }
 
-void tempTask(void * pvParameters){
-    auto config = TMP117::Config();
-    TMP117::TMP117 tempSensor = TMP117::TMP117(hi2c2, TMP117::I2CAddress::ADDRESS_1, config);
-    etl::format_spec format;
-    for(;;){
-        std::pair<TMP117::Error, uint16_t> temp = tempSensor.getTemperature(true);
-        etl::string<50> str = "Temperature is ";
-        etl::string<30> value;
-        if (temp.first == TMP117::Error::NO_ERRORS){
-            etl::to_string(tempSensor.convertTemperature(temp.second), value, format);
-        }
-        else{
-            value = "{Error getting temperature}\r\n";
-        }
-        value = etl::to_string(temp.second, value, format);
-        str.append(value);
-        str.append("\r\n");
-        uartGatekeeperTask->addToQueue(str);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
-
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
     uartGatekeeperTask->createTask();
-    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    temperatureSensorsTask.emplace();
+    temperatureSensorsTask->createTask();
+//    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 
-    xTaskCreate(tempTask, "tempTask", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
     vTaskStartScheduler();
 
 
