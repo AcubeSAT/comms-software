@@ -53,13 +53,10 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
+    uartGatekeeperTask->createTask();
     xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
     xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    txUHFTask.emplace(48000, 4800, false);
-//    txUHFTask->createTask();
-    uartGatekeeperTask->createTask();
-//    auto output = String<ECSSMaxMessageSize>("New ");
-//    LOG_DEBUG<<output.c_str();
+
     vTaskStartScheduler();
 
 
