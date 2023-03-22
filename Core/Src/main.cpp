@@ -83,12 +83,6 @@ extern "C" void main_cpp(){
     xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 
     xTaskCreate(tempTask, "tempTask", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    txUHFTask.emplace(48000, 4800, false);
-//    txUHFTask->createTask();
-    uartGatekeeperTask->createTask();
-//    auto output = String<ECSSMaxMessageSize>("New ");
-//    LOG_DEBUG<<output.c_str();
     vTaskStartScheduler();
 
 
