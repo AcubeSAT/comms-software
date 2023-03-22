@@ -19,8 +19,7 @@ static void vClassTask(void *pvParameters) {
 void uartTask1(void * pvParameters) {
     for(;;)
     {
-        etl::string<30> str = "[%d]Task A running\r\n";
-        uartGatekeeperTask->addToQueue(str);
+        LOG_DEBUG << "Task A running";
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -28,8 +27,7 @@ void uartTask1(void * pvParameters) {
 void uartTask2(void * pvParameters) {
     for(;;)
     {
-        etl::string<30> str = "[%d]Task B running\r\n";
-        uartGatekeeperTask->addToQueue(str);
+        LOG_DEBUG << "Task B running";
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -55,13 +53,10 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
+    uartGatekeeperTask->createTask();
     xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
     xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-    txUHFTask.emplace(48000, 4800, false);
-    txUHFTask->createTask();
-    uartGatekeeperTask->createTask();
-    auto output = String<ECSSMaxMessageSize>("New ");
-    LOG_DEBUG<<output.c_str();
+
     vTaskStartScheduler();
 
 
