@@ -43,9 +43,7 @@
 /* Private variables ---------------------------------------------------------*/
 extern ADC_HandleTypeDef hadc2;
 extern DMA_HandleTypeDef hdma_adc2;
-
 extern SPI_HandleTypeDef hspi1;
-
 extern TIM_HandleTypeDef htim3;
 
 extern UART_HandleTypeDef huart3;

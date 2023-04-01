@@ -5,6 +5,7 @@
 #include "DummyTask.h"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
+#include "MCUTemperatureTask.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include <etl/string.h>
@@ -16,8 +17,8 @@ SPI_HandleTypeDef hspi1;
 TIM_HandleTypeDef htim3;
 UART_HandleTypeDef huart3;
 
-ADC_HandleTypeDef hadc1;
-TIM_HandleTypeDef htim2;
+//ADC_HandleTypeDef hadc1;
+//TIM_HandleTypeDef htim2;
 
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
@@ -146,6 +147,10 @@ extern "C" void main_cpp(){
     LOG_DEBUG<<output.c_str();
     vTaskStartScheduler();
 
+
+    mcuTemperatureTask.emplace();
+    mcuTemperatureTask->createTask();
+    
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
