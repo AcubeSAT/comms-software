@@ -137,22 +137,20 @@ namespace AT86RF215 {
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
 //    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//   xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    xTaskCreate(MCUTemperatureLoggingTask, "TemperatureLoggingTask", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    txUHFTask.emplace(48000, 4800, false);
 //    txUHFTask->createTask();
+    mcuTemperatureTask.emplace();
+
 
     uartGatekeeperTask->createTask();
+    mcuTemperatureTask->createTask();
+
     auto output = String<ECSSMaxMessageSize>("New ");
     LOG_DEBUG<<output.c_str();
 
-    mcuTemperatureTask.emplace();
-    mcuTemperatureTask->createTask();
     vTaskStartScheduler();
-
-
-
-    
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
