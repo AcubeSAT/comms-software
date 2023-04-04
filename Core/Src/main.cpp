@@ -71,64 +71,7 @@ void blinkyTask2(void * pvParameters){
     }
 }
 
-//void MCUTemperatureLoggingTask(void * pvParameters){
-//    uint16_t ADC_Val[2] = {0};
-//
-//    uint16_t AD_RES = 0;
-//
-//
-//    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-//    // Calibrate The ADC On Power-Up For Better Accuracy
-////    HAL_ADCEx_Calibration_Start(&hadc2);      What calibration mode?
-//
-//    for(;;){
-//
-//        // Start ADC Conversion
-//        HAL_ADC_Start(&hadc2);
-//        // Poll ADC1 Perihperal & TimeOut = 1mSec
-//        HAL_ADC_PollForConversion(&hadc2, 1);
-//        // Read The ADC Conversion Result & Map It To PWM DutyCycle
-////        AD_RES = HAL_ADC_GetValue(&hadc2);
-//        HAL_Delay(1);
-//
-////        HAL_ADC_Start(&hadc2);
-//        for(int i=0; i<2; i++){
-//            ADC_Val[i] = HAL_ADC_GetValue(&hadc2);
-//         }
-//        volatile uint32_t VRefInt = __HAL_ADC_CALC_VREFANALOG_VOLTAGE(ADC_Val[1], hadc2.Init.Resolution);
-//        volatile uint32_t TSensor    = __HAL_ADC_CALC_TEMPERATURE(VRefInt, ADC_Val[4], hadc2.Init.Resolution);
-//
-////          volatile int a=1;
-//        float temperature = (static_cast<float>(TSensor) + 45.0F)/(125.0F + 40.0F) * (110.0F + 30.0F) + 30.0F;
-////        float temperature = ADC_Val[0];
-//        etl::string<100> string = "\n Temp is ";
-//        etl::format_spec format;
-//        etl::string<20> vrefstring;
-//        etl::string<20> tsensorstring;
-//        etl::string<20> temperatureString;
-//        etl::to_string(temperature, temperatureString, format, true);
-//        etl::to_string(TSensor, tsensorstring, format, true);
-//        etl::to_string(VRefInt, vrefstring, format, true);
-//
-//
-//        string.append(temperatureString);
-//        string.append(" celcius\n");
-//        string.append(" vref: ");
-//        string.append(vrefstring);
-//
-//        string.append(" Tsensor:");
-//        string.append(tsensorstring);
-//
-//        uartGatekeeperTask->addToQueue(string);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-////       HAL_ADC_Stop(&hadc2);
-////        vTaskDelay(pdMS_TO_TICKS(1000));
-//        HAL_Delay(100);
-//
-//
-//
-//    }
-//}
+
 
 namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
