@@ -77,7 +77,6 @@ find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
 # TODO (maybe): Find a way to use this symbol insted of our own
 #file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
 add_subdirectory(Core/lib/cross-platform-software)
-add_subdirectory(Core/lib/physical_layer/lib/etl)
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c")
 

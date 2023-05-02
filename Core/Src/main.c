@@ -41,12 +41,14 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-extern ADC_HandleTypeDef hadc2;
-extern DMA_HandleTypeDef hdma_adc2;
-extern SPI_HandleTypeDef hspi1;
-extern TIM_HandleTypeDef htim3;
+ADC_HandleTypeDef hadc2;
+DMA_HandleTypeDef hdma_adc2;
 
-extern UART_HandleTypeDef huart3;
+SPI_HandleTypeDef hspi1;
+
+TIM_HandleTypeDef htim3;
+
+UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN PV */
 
