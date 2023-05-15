@@ -8,49 +8,27 @@
 #include "MCUTemperatureTask.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
-#include <etl/string.h>
-extern SPI_HandleTypeDef hspi1;
 
-extern ADC_HandleTypeDef hadc2;
-extern DMA_HandleTypeDef hdma_adc2;
 extern SPI_HandleTypeDef hspi1;
-extern TIM_HandleTypeDef htim3;
 extern UART_HandleTypeDef huart3;
-
-//ADC_HandleTypeDef hadc1;
-//TIM_HandleTypeDef htim2;
-
-void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
-static void MX_ADC2_Init(void);
-static void MX_TIM3_Init(void);
-
-#define ADC_SAMPLES 100
 
 template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
 
-//UART_HandleTypeDef huart3;
-//SPI_HandleTypeDef hspi1;
-
 void uartTask1(void * pvParameters) {
-    char count1 = 0;
     for(;;)
     {
-        etl::string<30> str = "[%d]Task A running\r\n";
-        uartGatekeeperTask->addToQueue(str);
+        LOG_DEBUG << "Task A running";
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
 void uartTask2(void * pvParameters) {
-    char count2 = 0;
     for(;;)
     {
-        etl::string<30> str = "[%d]Task B running\r\n";
-        uartGatekeeperTask->addToQueue(str);
+        LOG_DEBUG << "Task B running";
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -71,27 +49,20 @@ void blinkyTask2(void * pvParameters){
     }
 }
 
-
-
 namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
 }
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-//    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    xTaskCreate(MCUTemperatureLoggingTask, "TemperatureLoggingTask", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    txUHFTask.emplace(48000, 4800, false);
-//    txUHFTask->createTask();
+    txUHFTask.emplace(48000, 4800, false);
     mcuTemperatureTask.emplace();
 
-
     uartGatekeeperTask->createTask();
+    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    txUHFTask->createTask();
     mcuTemperatureTask->createTask();
-
-    auto output = String<ECSSMaxMessageSize>("New ");
-    LOG_DEBUG<<output.c_str();
 
     vTaskStartScheduler();
 
