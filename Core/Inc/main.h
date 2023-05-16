@@ -27,6 +27,8 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
+#include "stm32h7xx_hal.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -45,7 +47,6 @@ extern "C" {
 /* USER CODE BEGIN EM */
 
 /* USER CODE END EM */
-#include "stm32h7xx_hal.h"
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
@@ -89,6 +90,7 @@ void main_cpp();
 #define USB_FS_P_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_1
 #define LD2_GPIO_Port GPIOE
+
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
