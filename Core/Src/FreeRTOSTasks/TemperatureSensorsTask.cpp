@@ -10,7 +10,7 @@ void TemperatureSensorsTask::execute() {
         etl::pair<TMP117::Error, float> temp = tempSensor.getTemperature(true);
         if (temp.first == TMP117::Error::NoErrors){
             etl::to_string(temp.second, temperature, format.precision(2), false);
-            LOG_DEBUG << "Temperature at address " << TMP117::I2CAddress::Address1 << "is " << temperature.c_str();
+            LOG_DEBUG << "Temperature at address " << TMP117::I2CAddress::Address1 << " is " << temperature.c_str();
         } else {
             LOG_ERROR << "Error getting temperature";
         }
