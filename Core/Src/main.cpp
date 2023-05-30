@@ -20,23 +20,6 @@ static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
 
-
-void uartTask1(void * pvParameters) {
-    for(;;)
-    {
-        LOG_DEBUG << "Task A running";
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
-
-void uartTask2(void * pvParameters) {
-    for(;;)
-    {
-        LOG_DEBUG << "Task B running";
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
-
 void blinkyTask1(void * pvParameters){
     for(;;){
         HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
