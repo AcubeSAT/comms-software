@@ -8,6 +8,7 @@ extern I2C_HandleTypeDef hi2c2;
 
 class TemperatureSensorsTask : public Task {
 private:
+    const static inline uint16_t DelayMs = 1000;
     const static inline uint16_t TaskStackDepth = 2000;
 
     StackType_t taskStack[TaskStackDepth];
