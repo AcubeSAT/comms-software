@@ -8,29 +8,16 @@
 #include "MCUTemperatureTask.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
+#include "TemperatureSensorsTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
+extern I2C_HandleTypeDef hi2c2;
+
 
 template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
-}
-
-void uartTask1(void * pvParameters) {
-    for(;;)
-    {
-        LOG_DEBUG << "Task A running";
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
-
-void uartTask2(void * pvParameters) {
-    for(;;)
-    {
-        LOG_DEBUG << "Task B running";
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
 }
 
 void blinkyTask1(void * pvParameters){
@@ -55,13 +42,11 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-    txUHFTask.emplace(48000, 4800, false);
     mcuTemperatureTask.emplace();
+    temperatureSensorsTask.emplace();
 
     uartGatekeeperTask->createTask();
-    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-    txUHFTask->createTask();
+    temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
 
     vTaskStartScheduler();
