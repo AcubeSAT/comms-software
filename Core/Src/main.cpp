@@ -10,6 +10,7 @@
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
 
+
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
 extern I2C_HandleTypeDef hi2c2;
@@ -36,18 +37,62 @@ void blinkyTask2(void * pvParameters){
     }
 }
 
+void i2cTask(void * parameters) {
+    while (true) {
+        if (HAL_I2C_Master_Transmit(&hi2c2, 0x40 << 1, NULL, 0, 1000) != HAL_OK) {
+            LOG_ERROR << "Bro why\r\n";
+        }
+
+        // Check for ACK bit
+        if (HAL_I2C_GetError(&hi2c2) == HAL_I2C_ERROR_NONE) {
+            LOG_DEBUG << "Success\r\n";
+        } else {
+            LOG_ERROR << "Nope\r\n";
+        }
+        vTaskDelay(1000);
+    }
+}
+
+void i2cReadDieID(void * parameters) {
+    uint16_t ina3221Address = 0x40; // INA3221 address
+    uint8_t regAddress = 0xFF; // DIE identity register
+
+    while (true) {
+        uint8_t readData[2];
+
+        HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, nullptr, 0, 1000);
+
+        // ACK
+        while (HAL_I2C_GetState(&hi2c2) != HAL_I2C_STATE_READY);
+
+        HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, &regAddress, 1, 1000);
+
+        // ACK
+        while (HAL_I2C_GetState(&hi2c2) != HAL_I2C_STATE_READY);
+
+        HAL_I2C_Master_Receive(&hi2c2, ina3221Address << 1, readData, 2, 1000);
+
+        // ACK
+        while (HAL_I2C_GetState(&hi2c2) != HAL_I2C_STATE_READY);
+
+        uint16_t received = (readData[0] << 8) | readData[1];
+        LOG_DEBUG << "Receiving " << received << "\b\r";
+        vTaskDelay(1000);
+    }
+}
+
 namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
 }
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
-
+//    mcuTemperatureTask.emplace();
+//    temperatureSensorsTask.emplace();
     uartGatekeeperTask->createTask();
-    temperatureSensorsTask->createTask();
-    mcuTemperatureTask->createTask();
+    xTaskCreate(i2cReadDieID, "i2c verify", 2000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+//    temperatureSensorsTask->createTask();
+//    mcuTemperatureTask->createTask();
 
     vTaskStartScheduler();
 
