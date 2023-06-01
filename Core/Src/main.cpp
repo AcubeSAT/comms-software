@@ -53,30 +53,46 @@ void i2cTask(void * parameters) {
     }
 }
 
-void i2cReadDieID(void * parameters) {
+void i2cRead(void * parameters) {
     uint16_t ina3221Address = 0x40; // INA3221 address
     uint8_t regAddress = 0xFF; // DIE identity register
 
     while (true) {
         uint8_t readData[2];
 
-        HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, nullptr, 0, 1000);
-
-        // ACK
-        while (HAL_I2C_GetState(&hi2c2) != HAL_I2C_STATE_READY);
-
         HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, &regAddress, 1, 1000);
-
-        // ACK
-        while (HAL_I2C_GetState(&hi2c2) != HAL_I2C_STATE_READY);
 
         HAL_I2C_Master_Receive(&hi2c2, ina3221Address << 1, readData, 2, 1000);
 
-        // ACK
-        while (HAL_I2C_GetState(&hi2c2) != HAL_I2C_STATE_READY);
-
         uint16_t received = (readData[0] << 8) | readData[1];
-        LOG_DEBUG << "Receiving " << received << "\b\r";
+        LOG_DEBUG << "Receiving " << received << "\r\n";
+        vTaskDelay(1000);
+    }
+}
+
+void i2cWriteRead(void * parameters) {
+    uint16_t ina3221Address = 0x40; // INA3221 address
+    uint8_t regAddress = 0x11; // power valid lower limit
+
+    while (true) {
+        uint8_t sendData[3] = {regAddress, 0x00, 0x08};
+        uint8_t readData[2];
+
+        // write
+        if (HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, sendData, 3, 1000) != HAL_OK) {
+            LOG_ERROR << "Problem\r\n";
+        }
+
+        // send reg address
+        HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, &regAddress, 1, 1000);
+
+        // read
+        HAL_I2C_Master_Receive(&hi2c2, ina3221Address << 1, readData, 2, 1000);
+
+        uint16_t sent = (sendData[1] << 8) | sendData[2];
+        uint16_t received = (readData[0] << 8) | readData[1];
+
+        LOG_DEBUG << "Sending " << sent << " Receiving " << received << "\r\n";
         vTaskDelay(1000);
     }
 }
@@ -90,7 +106,7 @@ extern "C" void main_cpp(){
 //    mcuTemperatureTask.emplace();
 //    temperatureSensorsTask.emplace();
     uartGatekeeperTask->createTask();
-    xTaskCreate(i2cReadDieID, "i2c verify", 2000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(i2cWriteRead, "i2c verify", 2000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    temperatureSensorsTask->createTask();
 //    mcuTemperatureTask->createTask();
 
