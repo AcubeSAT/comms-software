@@ -13,14 +13,15 @@ Business Logic regarding:
   - ECSS Services used by COMMS
 
 This project also relies on the [Cross Platform Software](https://gitlab.com/acubesat/obc/cross-platform-software)
-repository, created to accomodate the common functionality for all of the satellite's platforms. It's
+repository, created to accomodate the common functionality for all of the satellite's platforms. Its
 full integration with COMMS Software is still a work in progress
 
 ### Build
 
 After cloning the repo, run the command `git submodule update --init --recursive` to clone the submodules.
 
-
+If you're using CLion, you need to add in CMake options (File -> Settings -> Build, Execution, Deployment -> CMake ->
+CMake Options) this `-DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release`.
 ### Conan
 
 To build, you need to follow these steps:
