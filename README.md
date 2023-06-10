@@ -22,6 +22,8 @@ After cloning the repo, run the command `git submodule update --init --recursive
 
 If you're using CLion, you need to add in CMake options (File -> Settings -> Build, Execution, Deployment -> CMake ->
 CMake Options) this `-DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release`.
+
+If you just cmake from cli, just add the same flags in your command.
 ### Conan
 
 To build, you need to follow these steps:
