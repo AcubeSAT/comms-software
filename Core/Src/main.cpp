@@ -9,6 +9,7 @@
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
+#include "CurrentSensorsTask.hpp"
 
 
 extern SPI_HandleTypeDef hspi1;
@@ -55,7 +56,7 @@ void i2cTask(void * parameters) {
 
 void i2cRead(void * parameters) {
     uint16_t ina3221Address = 0x40; // INA3221 address
-    uint8_t regAddress = 0xFF; // DIE identity register
+    uint8_t regAddress = 0x03; // shunt voltage 2
 
     while (true) {
         uint8_t readData[2];
@@ -72,27 +73,42 @@ void i2cRead(void * parameters) {
 
 void i2cWriteRead(void * parameters) {
     uint16_t ina3221Address = 0x40; // INA3221 address
-    uint8_t regAddress = 0x11; // power valid lower limit
+    uint8_t regAddress = 0x00; // config register
+    uint8_t otherAddress = 0x05; // shunt voltage 3
 
+    uint8_t sendData[3] = {regAddress, 0x71, 0x23};
+    uint8_t readData[2];
+
+    HAL_Delay(500);
+    // write
+    auto error = HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, sendData, 3, HAL_MAX_DELAY);
+    if (error != HAL_OK) {
+        LOG_ERROR << error << "\b\r";
+    }
+
+    HAL_Delay(500);
+    // send reg address
+    HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, &regAddress, 1, HAL_MAX_DELAY);
+
+    HAL_Delay(500);
+    // read
+    HAL_I2C_Master_Receive(&hi2c2, ina3221Address << 1, readData, 2, HAL_MAX_DELAY);
+
+    HAL_Delay(500);
+    uint16_t sent = (sendData[1] << 8) | sendData[2];
+    uint16_t received = static_cast<uint16_t>(readData[0] << 8) | static_cast<uint16_t>(readData[1]);
+
+    LOG_DEBUG << "Sending " << sent << " Receiving " << received << "\r\n";
     while (true) {
-        uint8_t sendData[3] = {regAddress, 0x00, 0x08};
-        uint8_t readData[2];
+//        uint8_t readData[2];
 
-        // write
-        if (HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, sendData, 3, 1000) != HAL_OK) {
-            LOG_ERROR << "Problem\r\n";
-        }
+        HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, &otherAddress, 1, 1000);
 
-        // send reg address
-        HAL_I2C_Master_Transmit(&hi2c2, ina3221Address << 1, &regAddress, 1, 1000);
-
-        // read
         HAL_I2C_Master_Receive(&hi2c2, ina3221Address << 1, readData, 2, 1000);
 
-        uint16_t sent = (sendData[1] << 8) | sendData[2];
         uint16_t received = (readData[0] << 8) | readData[1];
-
-        LOG_DEBUG << "Sending " << sent << " Receiving " << received << "\r\n";
+        LOG_DEBUG << "Receiving " << received << "\r\n";
+        vTaskDelay(1000);
         vTaskDelay(1000);
     }
 }
@@ -105,7 +121,9 @@ extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
 //    mcuTemperatureTask.emplace();
 //    temperatureSensorsTask.emplace();
+//    currentSensorsTask.emplace();
     uartGatekeeperTask->createTask();
+//    currentSensorsTask->createTask();
     xTaskCreate(i2cWriteRead, "i2c verify", 2000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    temperatureSensorsTask->createTask();
 //    mcuTemperatureTask->createTask();

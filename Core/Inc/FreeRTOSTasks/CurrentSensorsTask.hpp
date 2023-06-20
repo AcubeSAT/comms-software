@@ -10,7 +10,7 @@ class CurrentSensorsTask : public Task {
 private:
     static constexpr uint16_t DelayMs = 1000;
     static constexpr uint16_t TaskStackDepth = 2000;
-    static constexpr uint8_t Precision = 2;
+    static constexpr uint8_t Precision = 6;
 
     StackType_t taskStack[TaskStackDepth];
 
