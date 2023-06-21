@@ -42,20 +42,37 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
-
     uartGatekeeperTask->createTask();
-    temperatureSensorsTask->createTask();
-    mcuTemperatureTask->createTask();
+//    xTaskCreate(uartTask1, "uartTask 1", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(uartTask2, "uartTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 
-    vTaskStartScheduler();
-
+    volatile AT86RF215::State b = static_cast<volatile AT86RF215::State>(HAL_SPI_GetState(&hspi1));
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */
 //    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+
+    AT86RF215::Error error;
+
+    AT86RF215::transceiver.chip_reset(error);
+    AT86RF215::transceiver.setup(error);
+
+
+    uint8_t irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
+    uint16_t sum = 0;
+    uint8_t packet[] = {0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39};
+//    uint8_t packet[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+    volatile uint32_t a = AT86RF215::transceiver.get_pll_channel_frequency(AT86RF215::RF09, error);
+    while(1){
+        volatile AT86RF215::State state = AT86RF215::transceiver.get_state(AT86RF215::RF09, error);
+        state;
+        AT86RF215::transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet, 12, error);
+        HAL_Delay(1000);
+    }
+
+    vTaskStartScheduler();
     for(;;);
     return;
 }
