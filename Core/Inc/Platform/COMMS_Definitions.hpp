@@ -1,6 +1,5 @@
+#pragma once
 
-#ifndef STM32H7A3ZIQSETUP_COMMS_DEFINITIONS_H
-#define STM32H7A3ZIQSETUP_COMMS_DEFINITIONS_H
 #include <cstdint>
 #include "Logger_Definitions.hpp"
 #include "AcubeSATParameters.hpp"
@@ -26,5 +25,3 @@ inline const uint8_t MaxLogNameSize = 9;
 inline const uint8_t MaxTickCountStringSize = 10;
 
 inline String<LogSource::MaximumLettersInSubsystemName> LogSource::currentSubsystem = "COMMS";
-
-#endif //STM32H7A3ZIQSETUP_COMMS_DEFINITIONS_H
