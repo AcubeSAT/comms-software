@@ -101,7 +101,7 @@ add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DATA_LAYER} ${DRIVERS})
-add_subdirectory(Core/lib/cross-platform-software/lib/ecss-services EXCLUDE_FROM_ALL)
+#add_subdirectory(Core/lib/cross-platform-software/lib/ecss-services EXCLUDE_FROM_ALL)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common)
 target_compile_definitions(common_cross PUBLIC STM32 LOGLEVEL_TRACE)
 link_directories(Drivers/CMSIS/Lib/GCC)
