@@ -1,22 +1,10 @@
 #THIS FILE IS AUTO GENERATED FROM THE TEMPLATE! DO NOT CHANGE!
-#set(CMAKE_SYSTEM_NAME Generic)
-#set(CMAKE_SYSTEM_VERSION 1)
+
 cmake_minimum_required(VERSION 3.24)
 
-# specify cross-compilers and tools
-#set(CMAKE_C_COMPILER arm-none-eabi-gcc)
-#set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
-#set(CMAKE_ASM_COMPILER  arm-none-eabi-gcc)
-#set(CMAKE_AR arm-none-eabi-ar)
-#set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
-#set(CMAKE_OBJDUMP arm-none-eabi-objdump)
-#set(SIZE arm-none-eabi-size)
-#set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # project settings
 project(STM32H7A3ZIQSetup C CXX ASM)
-#set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_C_STANDARD 11)
 
 #Uncomment for hardware floating point
 #add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
@@ -25,9 +13,6 @@ project(STM32H7A3ZIQSetup C CXX ASM)
 
 #Uncomment for software floating point
 #add_compile_options(-mfloat-abi=soft)
-
-#add_compile_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
-#add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
 
 # uncomment to mitigate c++17 absolute addresses warnings
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-register")
@@ -61,9 +46,6 @@ include_directories("Core/lib/FreeRTOS/Source/include")
 include_directories("Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F")
 include_directories("Core/lib/FreeRTOS/Source/portable/MemMang")
 include_directories(Drivers/Src)
-#include_directories(Core/lib/cross-platform-software/lib/ecss-services/inc)
-#include_directories(Core/lib/cross-platform-software/lib/ecss-services/inc/Platform/x86)
-#include_directories(Core/lib/cross-platform-software/lib/ecss-services/lib/logger/inc)
 include_directories(Core/lib/physical_layer/inc)
 #include_directories(Core/lib/ccsds-telemetry-packets/inc)
 include_directories(Core/lib/component-drivers/AT86RF215/inc)
@@ -76,7 +58,6 @@ find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
 
 # TODO (maybe): Find a way to use this symbol insted of our own
 #file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
-add_subdirectory(Core/lib/cross-platform-software)
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c")
 
@@ -96,6 +77,7 @@ add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
 add_link_options(-T ${LINKER_SCRIPT})
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DRIVERS})
+add_subdirectory(Core/lib/cross-platform-software)
 find_package(etl CONFIG REQUIRED)
 find_package(logger CONFIG REQUIRED COMPONENTS log_common)
 find_package(ecss-services CONFIG REQUIRED)
