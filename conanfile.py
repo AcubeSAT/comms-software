@@ -35,6 +35,8 @@ class OBCSoftwareRecipe(ConanFile):
         git = Git(self)
         git.clone(url="git@gitlab.com:acubesat/obc/cross-platform-software.git", target=join(str(self.source_folder), "Core/lib/cross-platform-software"))
         self.run("cd Core/lib/cross-platform-software && git submodule update --init --recursive && git checkout comms-compatibility")
+        git = Git(self)
+        git.clone(url="git@gitlab.com:acubesat/comms/software/component-drivers.git", target=join(str(self.source_folder), "Core/lib/component-drivers"))
 
     def layout(self):
         cmake_layout(self)
