@@ -1,6 +1,1 @@
-[submodule "Core/lib/ccsds-telemetry-packets"]
-	path = Core/lib/ccsds-telemetry-packets
-	url = https://gitlab.com/acubesat/comms/software/ccsds-telemetry-packets.git
-[submodule "Core/lib/physical_layer"]
-	path = Core/lib/physical_layer
-	url = https://gitlab.com/acubesat/comms/software/physical_layer.git
+
