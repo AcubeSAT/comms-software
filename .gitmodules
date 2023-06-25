@@ -4,12 +4,6 @@
 [submodule "Core/lib/physical_layer"]
 	path = Core/lib/physical_layer
 	url = https://gitlab.com/acubesat/comms/software/physical_layer.git
-[submodule "Core/lib/ecss-services"]
-	path = Core/lib/ecss-services
-	url = https://gitlab.com/acubesat/obc/ecss-services.git
 [submodule "Core/lib/component-drivers"]
 	path = Core/lib/component-drivers
 	url = https://gitlab.com/acubesat/comms/software/component-drivers.git
-[submodule "Core/lib/cross-platform-software"]
-	path = Core/lib/cross-platform-software
-	url = https://gitlab.com/acubesat/obc/cross-platform-software.git

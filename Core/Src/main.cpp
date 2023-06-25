@@ -32,8 +32,10 @@ void blinkyTask1(void * pvParameters){
 void blinkyTask2(void * pvParameters){
     for(;;){
         HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+        //TimeGetter::getCurrentTimeDefaultCUC();
         HAL_Delay(300);
     }
+
 }
 
 namespace AT86RF215 {
@@ -50,7 +52,6 @@ extern "C" void main_cpp(){
     mcuTemperatureTask->createTask();
 
     vTaskStartScheduler();
-
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ECSS_SERVICES_ECSS_CONFIGURATION_HPP
+#define ECSS_SERVICES_ECSS_CONFIGURATION_HPP
 
 /**
  * @file
@@ -36,3 +37,4 @@
 #define SERVICE_TIMESCHEDULING            ///<  Compile ST[11] time-based scheduling
 /** @} */
 
+#endif // ECSS_SERVICES_ECSS_CONFIGURATION_HPP
