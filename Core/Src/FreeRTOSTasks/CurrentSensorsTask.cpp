@@ -8,7 +8,7 @@ void CurrentSensorsTask::execute() {
 //    HAL_Delay(1000);
 
     INA3221::INA3221 currentSensor = INA3221::INA3221(hi2c2, config, error);
-
+//
     LOG_ERROR << "error status " << (uint8_t) error << "\b\r";
     if (error != INA3221::Error::NO_ERRORS) {
         LOG_ERROR << "Config problem\b\r";
@@ -17,7 +17,7 @@ void CurrentSensorsTask::execute() {
 
 //    HAL_Delay(1000);
 
-    LOG_DEBUG << currentSensor.getConfigRegister().value() << "\b\r";
+//    LOG_DEBUG << currentSensor.getConfigRegister().value() << "\b\r";
 
 //    HAL_Delay(1000);
 
