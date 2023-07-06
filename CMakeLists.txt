@@ -2,9 +2,12 @@
 
 cmake_minimum_required(VERSION 3.24)
 
-
 # project settings
 project(STM32H7A3ZIQSetup C CXX ASM)
+
+find_package(etl CONFIG REQUIRED)
+find_package(logger CONFIG REQUIRED COMPONENTS log_common)
+find_package(ecss-services CONFIG REQUIRED)
 
 #Uncomment for hardware floating point
 #add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
@@ -20,19 +23,19 @@ project(STM32H7A3ZIQSetup C CXX ASM)
 # Enable assembler files preprocessing
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
 
-if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
-    message(STATUS "Maximum optimization for speed")
-    add_compile_options(-Ofast)
-elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "RelWithDebInfo")
-    message(STATUS "Maximum optimization for speed, debug info included")
-    add_compile_options(-Ofast -g)
-elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "MinSizeRel")
-    message(STATUS "Maximum optimization for size")
-    add_compile_options(-Os)
-else ()
-    message(STATUS "Minimal optimization, debug info included")
-    add_compile_options(-Og -g)
-endif ()
+#if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+#    message(STATUS "Maximum optimization for speed")
+#    add_compile_options(-Ofast)
+#elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "RelWithDebInfo")
+#    message(STATUS "Maximum optimization for speed, debug info included")
+#    add_compile_options(-Ofast -g)
+#elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "MinSizeRel")
+#    message(STATUS "Maximum optimization for size")
+#    add_compile_options(-Os)
+#else ()
+#    message(STATUS "Minimal optimization, debug info included")
+#    add_compile_options(-Og -g)
+#endif ()
 
 include_directories(Core/Inc Drivers/STM32H7xx_HAL_Driver/Inc Drivers/STM32H7xx_HAL_Driver/Inc/Legacy Drivers/CMSIS/Device/ST/STM32H7xx/Include Drivers/CMSIS/Include)
 include_directories(Drivers/STM32H7xx_HAL_Driver/Src)
@@ -51,40 +54,45 @@ include_directories(Core/lib/physical_layer/inc)
 include_directories(Core/lib/component-drivers/AT86RF215/inc)
 include_directories(Core/lib/component-drivers/TMP117/inc)
 include_directories(Drivers/CMSIS/DSP/Include)
-include_directories(lib/cross-platform-software)
+include_directories(Core/lib/cross-platform-software/inc/FreeRTOSTasks)
+include_directories(Core/lib/cross-platform-software/inc/Platform/Parameters/)
 
-add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
+#add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
 find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
+
+#add_subdirectory(Core/lib/cross-platform-software)
 
 # TODO (maybe): Find a way to use this symbol insted of our own
 #file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
 
-file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c")
+file(GLOB_RECURSE SOURCES "Core/Startup/*.s" 
+        "Core/Src/main.cpp" 
+        "Core/Src/FreeRTOSTasks/DummyTask.cpp" 
+        "Core/Src/*.c"
+        "Drivers/STM32H7xx_HAL_Driver/Src/*.c"
+        "Core/lib/FreeRTOS/*.c"
+)
 
-file(GLOB_RECURSE PHYSICAL_LAYER "Core/lib/physical_layer/src/*.cpp")
-list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
+#file(GLOB_RECURSE PHYSICAL_LAYER "Core/lib/physical_layer/src/*.cpp")
+#list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
 
-file(GLOB_RECURSE DATA_LAYER "Core/lib/ccsds-telemetry-packets/src/*.cpp")
-list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/main.cpp")
-list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/Logger.cpp")
-list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/Platform/x86/Logger.cpp")
-file(GLOB_RECURSE DRIVERS "Core/lib/component-drivers/AT86RF215/src/*cpp" "Core/lib/component-drivers/TMP117/src/*cpp")
+#file(GLOB_RECURSE DATA_LAYER "Core/lib/ccsds-telemetry-packets/src/*.cpp")
+#list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/main.cpp")
+#list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/Logger.cpp")
+#list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/Platform/x86/Logger.cpp")
+#file(GLOB_RECURSE DRIVERS "Core/lib/component-drivers/AT86RF215/src/*cpp" "Core/lib/component-drivers/TMP117/src/*cpp")
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H7A3ZITXQ_FLASH.ld)
+#set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H7A3ZITXQ_FLASH.ld)
 
-add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
-add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
-add_link_options(-T ${LINKER_SCRIPT})
+#add_link_options(-Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map)
+#add_link_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
+#add_link_options(-T ${LINKER_SCRIPT})
 
-add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DRIVERS})
-add_subdirectory(Core/lib/cross-platform-software)
-find_package(etl CONFIG REQUIRED)
-find_package(logger CONFIG REQUIRED COMPONENTS log_common)
-find_package(ecss-services CONFIG REQUIRED)
-target_link_libraries(common INTERFACE common_cross)
+add_executable(${PROJECT_NAME}.elf ${SOURCES}) #${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DRIVERS})
+#target_link_libraries(common INTERFACE common_cross)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common etl log_common ${CMSIS_DSP})
-target_compile_definitions(common_cross PUBLIC STM32 LOGLEVEL_TRACE)
-link_directories(Drivers/CMSIS/Lib/GCC)
+#target_compile_definitions(common_cross PUBLIC STM32 LOGLEVEL_TRACE)
+#link_directories(Drivers/CMSIS/Lib/GCC)
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
 

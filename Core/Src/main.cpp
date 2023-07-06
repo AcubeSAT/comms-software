@@ -3,12 +3,12 @@
 #include "list.h"
 #include "task.h"
 #include "DummyTask.h"
-#include "at86rf215.hpp"
-#include "at86rf215config.hpp"
-#include "MCUTemperatureTask.hpp"
-#include "txUHFTask.hpp"
-#include "UARTGatekeeperTask.hpp"
-#include "TemperatureSensorsTask.hpp"
+//#include "at86rf215.hpp"
+//#include "at86rf215config.hpp"
+//#include "MCUTemperatureTask.hpp"
+//#include "txUHFTask.hpp"
+//#include "UARTGatekeeperTask.hpp"
+//#include "TemperatureSensorsTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -36,26 +36,26 @@ void blinkyTask2(void * pvParameters){
     }
 }
 
-namespace AT86RF215 {
+/*namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
-}
+}*/
 
 extern "C" void main_cpp(){
-    uartGatekeeperTask.emplace();
+    dummyTask.emplace();
+    dummyTask->createTask();
+    /*uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
-
     uartGatekeeperTask->createTask();
     temperatureSensorsTask->createTask();
-    mcuTemperatureTask->createTask();
-
-    vTaskStartScheduler();
+    mcuTemperatureTask->createTask();*/
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
      */
 //    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    vTaskStartScheduler();
     for(;;);
     return;
 }
@@ -66,5 +66,5 @@ extern "C" void main_cpp(){
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 
-    AT86RF215::transceiver.handle_irq();
+    //AT86RF215::transceiver.handle_irq();
 }
