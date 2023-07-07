@@ -9,6 +9,7 @@
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
+#include "TransceiverTask.h"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -36,37 +37,39 @@ void blinkyTask2(void * pvParameters){
     }
 }
 
-namespace AT86RF215 {
-    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
-}
+//namespace AT86RF215 {
+//    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
+//}
 
 extern "C" void main_cpp(){
-    //    uartGatekeeperTask.emplace();
+    uartGatekeeperTask.emplace();
 //    mcuTemperatureTask.emplace();
 //    temperatureSensorsTask.emplace();
-    volatile uint16_t a = 0;
-//    uartGatekeeperTask->createTask();
+    transceiverTask.emplace();
+
+    uartGatekeeperTask->createTask();
 //    temperatureSensorsTask->createTask();
 //    mcuTemperatureTask->createTask();
+    transceiverTask->createTask();
 
-//    vTaskStartScheduler();
+    vTaskStartScheduler();
 
-    AT86RF215::Error error;
-
-    AT86RF215::transceiver.chip_reset(error);
-    AT86RF215::transceiver.setup(error);
-    volatile uint16_t  b = AT86RF215::transceiver.get_version_number(error);
-
-    uint8_t irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
-    uint16_t sum = 0;
-    uint8_t packet[] = {0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39};
-
-    while(1){
-        volatile AT86RF215::State state = AT86RF215::transceiver.get_state(AT86RF215::RF09, error);
-        state;
-        AT86RF215::transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet, 12, error);
-        HAL_Delay(500);
-    }
+//    AT86RF215::Error error;
+//
+//    AT86RF215::transceiver.chip_reset(error);
+//    AT86RF215::transceiver.setup(error);
+//    volatile uint16_t  b = AT86RF215::transceiver.get_version_number(error);
+//
+//    uint8_t irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
+//    uint16_t sum = 0;
+//    uint8_t packet[] = {0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39};
+//
+//    while(1){
+//        volatile AT86RF215::State state = AT86RF215::transceiver.get_state(AT86RF215::RF09, error);
+//        state;
+//        AT86RF215::transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet, 12, error);
+//        HAL_Delay(500);
+//    }
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
@@ -84,5 +87,5 @@ extern "C" void main_cpp(){
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 
-    AT86RF215::transceiver.handle_irq();
+//    AT86RF215::transceiver.handle_irq();
 }
