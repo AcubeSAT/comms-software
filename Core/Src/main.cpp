@@ -74,7 +74,7 @@ void i2cRead(void * parameters) {
 void i2cWriteRead(void * parameters) {
     uint16_t ina3221Address = 0x40; // INA3221 address
     uint8_t regAddress = 0x00; // config register
-    uint8_t otherAddress = 0x05; // shunt voltage 2
+    uint8_t otherAddress = 0xFE; // shunt voltage 2
 
     uint8_t reset[3] = {regAddress, 0x80, 0x00};
     uint8_t sendData[3] = {regAddress, 0x76, 0x3F};
@@ -139,10 +139,10 @@ extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
 //    mcuTemperatureTask.emplace();
 //    temperatureSensorsTask.emplace();
-//    currentSensorsTask.emplace();
+    currentSensorsTask.emplace();
     uartGatekeeperTask->createTask();
-//    currentSensorsTask->createTask();
-    xTaskCreate(i2cWriteRead, "i2c verify", 2000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
+    currentSensorsTask->createTask();
+//    xTaskCreate(i2cWriteRead, "i2c verify", 2000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 //    temperatureSensorsTask->createTask();
 //    mcuTemperatureTask->createTask();
 
