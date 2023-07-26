@@ -62,12 +62,12 @@ extern "C" void main_cpp(){
 //
 //    uint8_t irq = AT86RF215::transceiver.get_irq(AT86RF215::RF09, error);
 //    uint16_t sum = 0;
-//    uint8_t packet[] = {0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39};
+//    uint8_t packet[] = {0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39, 0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39, 0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39, 0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39, 0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39, 0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39};
 //
 //    while(1){
 //        volatile AT86RF215::State state = AT86RF215::transceiver.get_state(AT86RF215::RF09, error);
 //        state;
-//        AT86RF215::transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet, 12, error);
+//        AT86RF215::transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet, 72, error);
 //        HAL_Delay(500);
 //    }
 

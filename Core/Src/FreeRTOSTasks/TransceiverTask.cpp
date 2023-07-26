@@ -3,7 +3,7 @@
 /*
  * This function creates random packets until we have full functionality.
  */
-void TransceiverTask::createRandomPacket(etl::array<uint8_t, MaxPacketLength> packet, uint16_t length){
+void TransceiverTask::createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length){
     for (int i=0; i<length; i++){
         packet[i] = i;
     }

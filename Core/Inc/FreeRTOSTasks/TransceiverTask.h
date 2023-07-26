@@ -32,7 +32,7 @@ public:
         xQueueSendToBack(packetQueue, &message, 0);
     }
 
-    void createRandomPacket(etl::array<uint8_t, MaxPacketLength> packet, uint16_t length);
+    void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
 
     AT86RF215::AT86RF215 transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
 
