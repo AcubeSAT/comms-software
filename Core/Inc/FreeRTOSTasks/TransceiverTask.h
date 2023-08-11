@@ -11,7 +11,7 @@ extern SPI_HandleTypeDef hspi1;
 
 class TransceiverTask : public Task {
 private:
-    constexpr static uint16_t DelayMs = 1000;
+    constexpr static uint16_t DelayMs = 10;
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint8_t LoggerPrecision = 2;
     constexpr static uint16_t MaxPacketLength = 64;
