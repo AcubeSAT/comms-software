@@ -9,11 +9,12 @@
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
+#include "TimeKeepingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
 extern I2C_HandleTypeDef hi2c2;
-
+extern RTC_HandleTypeDef hrtc;
 
 template<class T>
 static void vClassTask(void *pvParameters) {
@@ -44,10 +45,12 @@ extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
+    timeKeepingTask.emplace();
 
     uartGatekeeperTask->createTask();
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
+    timeKeepingTask->createTask();
 
     vTaskStartScheduler();
 
