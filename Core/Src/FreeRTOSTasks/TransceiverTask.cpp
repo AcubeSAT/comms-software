@@ -1,20 +1,21 @@
-#include "TransceiverTask.h"
+#include "TransceiverTask.hpp"
+
+AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
+
 
 /*
  * This function creates random packets until we have full functionality.
  */
-void TransceiverTask::createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length){
-    for (int i=0; i<length; i++){
+void TransceiverTask::createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length) {
+    for (int i = 0; i < length; i++) {
         packet[i] = i;
     }
 }
 
 void TransceiverTask::execute() {
-
+    volatile uint16_t b = transceiver.get_version_number(error);
     transceiver.chip_reset(error);
     transceiver.setup(error);
-    volatile uint16_t  b = transceiver.get_version_number(error);
-
     uint16_t currentPacketLength = 24;
     etl::array<uint8_t, MaxPacketLength> packet;
     createRandomPacket(packet, currentPacketLength);
@@ -29,12 +30,9 @@ void TransceiverTask::execute() {
     }
 
     while (true) {
-
         volatile AT86RF215::State state = transceiver.get_state(AT86RF215::RF09, error);
         state;
         transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, receivedPacket, currentPacketLength, error);
-        vTaskDelay(pdMS_TO_TICKS(DelayMs));
+        vTaskDelay(pdMS_TO_TICKS(DelayMs));  // Use FreeRTOS's delay function
     }
-
 }
-

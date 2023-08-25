@@ -9,7 +9,7 @@
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
-#include "TransceiverTask.h"
+#include "TransceiverTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -87,5 +87,5 @@ extern "C" void main_cpp(){
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 
-//    AT86RF215::transceiver.handle_irq();
+    TransceiverTask::transceiver.handle_irq();
 }

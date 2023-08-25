@@ -6,12 +6,13 @@
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "queue.h"
+#include "semphr.h"
 
 extern SPI_HandleTypeDef hspi1;
 
 class TransceiverTask : public Task {
 private:
-    constexpr static uint16_t DelayMs = 10;
+    constexpr static uint16_t DelayMs = 1000;
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint8_t LoggerPrecision = 2;
     constexpr static uint16_t MaxPacketLength = 64;
@@ -24,6 +25,7 @@ private:
 public:
 
     void execute();
+
     TransceiverTask() : Task("External Temperature Sensors") {
         packetQueue = xQueueCreate(MaxPacketLength, sizeof(uint16_t));
     }
@@ -34,14 +36,17 @@ public:
 
     void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
 
-    AT86RF215::AT86RF215 transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
+    volatile AT86RF215::State b = static_cast<volatile AT86RF215::State>(HAL_SPI_GetState(&hspi1));
+    static AT86RF215::AT86RF215 transceiver;
 
-    void createTask(){
-        xTaskCreateStatic(vClassTask<TransceiverTask>, this->TaskName,
+    void createTask() {
+        xTaskCreateStatic(vClassTask < TransceiverTask > , this->TaskName,
                           TransceiverTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
                           this->taskStack, &(this->taskBuffer));
 
     }
+
+
 };
 
 inline std::optional<TransceiverTask> transceiverTask;
