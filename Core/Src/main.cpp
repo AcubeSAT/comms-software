@@ -3,8 +3,6 @@
 #include "list.h"
 #include "task.h"
 #include "DummyTask.h"
-#include "at86rf215.hpp"
-#include "at86rf215config.hpp"
 #include "MCUTemperatureTask.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
