@@ -10,11 +10,14 @@
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
 #include "TimeKeepingTask.hpp"
+#include "WatchdogTask.hpp"
+
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
 extern I2C_HandleTypeDef hi2c2;
 extern RTC_HandleTypeDef hrtc;
+//extern IWDG_HandleTypeDef hiwdg1;
 
 template<class T>
 static void vClassTask(void *pvParameters) {
@@ -42,15 +45,20 @@ namespace AT86RF215 {
 }
 
 extern "C" void main_cpp(){
+
+//    HAL_IWDG_Init(&hiwdg1);
+
     uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
+    watchdogTask.emplace();
 
     uartGatekeeperTask->createTask();
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
+    watchdogTask->createTask();
 
     vTaskStartScheduler();
 
