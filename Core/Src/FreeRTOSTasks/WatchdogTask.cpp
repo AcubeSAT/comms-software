@@ -7,3 +7,4 @@ void WatchdogTask::execute() {
         vTaskDelay(pdMS_TO_TICKS(WindowTime));
     }
 }
+
