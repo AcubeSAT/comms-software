@@ -12,9 +12,11 @@ private:
 
     /**
     * @brief Counter clock prescaler value.
-    * Represents the division factor applied to the IWDG clock.
+    * The `hiwdg1.Instance->PR` holds an index representing the IWDG prescaler value. The actual value is obtained
+    * by raising 2 to the power of (index + 2). Left-shifting 2 by (n-1) gives 2^n so the actual exponential part
+    * is hiwdg1.Instance->PR + 1
     */
-    const uint16_t CounterClockPrescaler = 0;
+    const uint16_t CounterClockPrescaler = 2 << (hiwdg1.Instance->PR + 1);
 
     /**
     * @brief Window value for IWDG.
@@ -44,13 +46,7 @@ private:
 public:
     void execute();
 
-    uint16_t getPrescalerValue() {
-        uint16_t prescalerBits = hiwdg1.Instance->PR & 0x07; // Mask out the lower 3 bits
-        return 4 << prescalerBits;
-    }
-
     WatchdogTask() : Task("Watchdog"),
-                     CounterClockPrescaler(2 << (hiwdg1.Instance->PR + 1)),
                      WindowValue(hiwdg1.Instance->WINR),
                      ClockFrequency{LSI_VALUE} {}
 
