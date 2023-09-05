@@ -13,25 +13,25 @@ private:
     * @brief Counter clock prescaler value.
     * Represents the division factor applied to the IWDG clock.
     */
-    const uint16_t counterClockPrescaler = 0x0080;
+    const uint16_t CounterClockPrescaler = 0x0080;
 
     /**
     * @brief Window value for IWDG.
     * This value defines the window in which the counter can be updated.
     */
-    const uint16_t windowValue = 0x0800;
+    const uint16_t WindowValue = 0x0800;
 
     /**
     * @brief Down-counter reload value.
     * The counter counts down from this value. When it reaches zero, a reset is triggered.
     */
-    const uint16_t downCounterReloadValue = 0x1000;
+    const uint16_t DownCounterReloadValue = 0x1000;
 
     /**
     * @brief Clock frequency for the IWDG.
     * Represents the base frequency before applying any prescaler.
     */
-    const uint16_t clockFrequency = 0x7D00;
+    const uint16_t ClockFrequency = 0x7D00;
 
     /**
      * @brief Calculates and stores the window time in milliseconds.
@@ -40,7 +40,7 @@ private:
      * be refreshed to prevent a reset. It's calculated using the window value, counter
      * clock prescaler, and the clock frequency.
      */
-    const uint16_t windowTime = 1000 * (windowValue * counterClockPrescaler) / clockFrequency;
+    const uint16_t WindowTime = 1000 * (WindowValue * CounterClockPrescaler) / ClockFrequency;
 
     /**
     * The delay in milliseconds between each watchdog reset. It is set to 8000ms, since the
