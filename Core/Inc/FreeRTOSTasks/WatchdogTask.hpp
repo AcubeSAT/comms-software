@@ -1,8 +1,8 @@
 #pragma once
 
-#include <optional>
 #include "Task.hpp"
 #include "main.h"
+#include "etl/optional.h"
 
 extern IWDG_HandleTypeDef hiwdg1;
 
@@ -51,5 +51,5 @@ public:
     }
 };
 
-inline std::optional<WatchdogTask> watchdogTask;
+inline etl::optional<WatchdogTask> watchdogTask;
 
