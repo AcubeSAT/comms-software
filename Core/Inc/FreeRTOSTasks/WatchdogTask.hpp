@@ -8,8 +8,19 @@
 extern IWDG_HandleTypeDef hiwdg1;
 
 class WatchdogTask : public Task {
-private:
+public:
+    void execute();
 
+    WatchdogTask() : Task("Watchdog"),
+                     WindowValue(hiwdg1.Instance->WINR),
+                     ClockFrequency{LSI_VALUE} {}
+
+    void createTask() {
+        xTaskCreateStatic(vClassTask < WatchdogTask > , this->TaskName, WatchdogTask::TaskStackDepth, this,
+                          tskIDLE_PRIORITY, this->taskStack, &(this->taskBuffer));
+    }
+
+private:
     /**
     * @brief Counter clock prescaler value.
     * The `hiwdg1.Instance->PR` holds an index representing the IWDG prescaler value. The actual value is obtained
@@ -42,18 +53,6 @@ private:
     const static inline uint16_t TaskStackDepth = 1000;
 
     StackType_t taskStack[TaskStackDepth];
-
-public:
-    void execute();
-
-    WatchdogTask() : Task("Watchdog"),
-                     WindowValue(hiwdg1.Instance->WINR),
-                     ClockFrequency{LSI_VALUE} {}
-
-    void createTask() {
-        xTaskCreateStatic(vClassTask < WatchdogTask > , this->TaskName, WatchdogTask::TaskStackDepth, this,
-                          tskIDLE_PRIORITY, this->taskStack, &(this->taskBuffer));
-    }
 };
 
 inline etl::optional<WatchdogTask> watchdogTask;
