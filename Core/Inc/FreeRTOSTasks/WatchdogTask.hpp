@@ -12,8 +12,7 @@ public:
     void execute();
 
     WatchdogTask() : Task("Watchdog"),
-                     WindowValue(hiwdg1.Instance->WINR),
-                     ClockFrequency{LSI_VALUE} {}
+                     WindowValue(hiwdg1.Instance->WINR) {}
 
     void createTask() {
         xTaskCreateStatic(vClassTask < WatchdogTask > , this->TaskName, WatchdogTask::TaskStackDepth, this,
@@ -24,7 +23,7 @@ private:
     /**
     * @brief Counter clock prescaler value.
     * The `hiwdg1.Instance->PR` holds an index representing the IWDG prescaler value. The actual value is obtained
-    * by raising 2 to the power of (index + 2). Left-shifting 2 by (n-1) gives 2^n so the actual exponential part
+    * by raising 2 to the power of (index + 2). Left-shifting 2 by (n-1) results in 2^n so the actual exponential part
     * is hiwdg1.Instance->PR + 1
     */
     const uint16_t CounterClockPrescaler = 2 << (hiwdg1.Instance->PR + 1);
@@ -39,7 +38,7 @@ private:
     * @brief Clock frequency for the IWDG.
     * Represents the base frequency before applying any prescaler.
     */
-    const uint16_t ClockFrequency = 0;
+    static constexpr uint16_t ClockFrequency = LSI_VALUE;
 
     /**
      * @brief Calculates and stores the window time in milliseconds.
@@ -50,7 +49,7 @@ private:
      */
     const uint16_t WindowTime = 1000 * (WindowValue * CounterClockPrescaler) / ClockFrequency;
 
-    const static inline uint16_t TaskStackDepth = 1000;
+    static constexpr uint16_t TaskStackDepth = 1000;
 
     StackType_t taskStack[TaskStackDepth];
 };
