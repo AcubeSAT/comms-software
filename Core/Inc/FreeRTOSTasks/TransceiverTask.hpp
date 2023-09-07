@@ -38,7 +38,8 @@ public:
 
     void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
 
-    void calculateConfigurationValues(uint32_t frequency);
+    uint16_t calculatePllChannelFrequency09(uint32_t frequency);
+    uint8_t calculatePllChannelNumber09(uint32_t frequency);
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
     static AT86RF215::AT86RF215 transceiver;
     void createTask() {
