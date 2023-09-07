@@ -17,14 +17,12 @@ void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChann
     configFrequency.pllFrequency09 = pllFrequency09;
     configFrequency.pllChannelNumber09 = pllChannelNumber09;
     configFrequency.pllChannelMode09 = AT86RF215::PLLChannelMode::FineResolution450;
+    transceiver.config = configFrequency;
 }
 
 void TransceiverTask::execute() {
     volatile uint16_t b = transceiver.get_version_number(error);
-    configFrequency.pllFrequency09 = PllFrequency09;
-    configFrequency.pllChannelNumber09 = PllChannelNumber09;
-    configFrequency.pllChannelMode09 = AT86RF215::PLLChannelMode::FineResolution450;
-    transceiver.config = configFrequency;
+    setConfiguration(PllFrequency09, PllChannelNumber09);
     transceiver.chip_reset(error);
     transceiver.setup(error);
 
