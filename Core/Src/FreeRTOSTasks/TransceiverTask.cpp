@@ -20,11 +20,21 @@ void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChann
     transceiver.config = configFrequency;
 }
 
+/*
+ * This function calculates the PllChannelFrequency value using the formula given in the datasheet
+ * for Fine Resolution Channel Scheme CNM.CM=1
+ */
+
 uint16_t TransceiverTask::calculatePllChannelFrequency09(uint32_t frequency)
 {
     uint32_t N = (frequency - 377000) * 65536  / 6500;
     return N >> 8;
 }
+
+/*
+ * This function calculates the PllChannelNumber value using the formula given in the datasheet
+ * for Fine Resolution Channel Scheme CNM.CM=1
+ */
 
 uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency)
 {
@@ -35,6 +45,7 @@ uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency)
 void TransceiverTask::execute() {
     volatile uint16_t b = transceiver.get_version_number(error);
     setConfiguration(PllFrequency09, PllChannelNumber09);
+
     transceiver.chip_reset(error);
     transceiver.setup(error);
 
