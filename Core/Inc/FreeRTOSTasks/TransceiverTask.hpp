@@ -16,8 +16,9 @@ private:
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint8_t LoggerPrecision = 2;
     constexpr static uint16_t MaxPacketLength = 64;
+    constexpr static uint16_t PllFrequency09 = 0x0927;
+    constexpr static uint16_t PllChannelNumber09 = 0x0062;
 
-//    uint8_t packet[PacketLength] = {0, 1, 2, 3, 43, 56, 2, 78, 12, 34, 82, 39};
     QueueHandle_t packetQueue;
     AT86RF215::Error error;
     StackType_t taskStack[TaskStackDepth];
@@ -33,12 +34,10 @@ public:
     void addToQueue(const etl::array<uint8_t, MaxPacketLength> &message) {
         xQueueSendToBack(packetQueue, &message, 0);
     }
+    AT86RF215::AT86RF215Configuration configFrequency;
 
     void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
-
-    volatile AT86RF215::State b = static_cast<volatile AT86RF215::State>(HAL_SPI_GetState(&hspi1));
     static AT86RF215::AT86RF215 transceiver;
-
     void createTask() {
         xTaskCreateStatic(vClassTask < TransceiverTask > , this->TaskName,
                           TransceiverTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
