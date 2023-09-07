@@ -17,7 +17,7 @@ private:
     constexpr static uint8_t LoggerPrecision = 2;
     constexpr static uint16_t MaxPacketLength = 64;
     constexpr static uint16_t PllFrequency09 = 0x0927;
-    constexpr static uint16_t PllChannelNumber09 = 0x0062;
+    constexpr static uint8_t PllChannelNumber09 = 0x0062;
 
     QueueHandle_t packetQueue;
     AT86RF215::Error error;
@@ -37,6 +37,9 @@ public:
     AT86RF215::AT86RF215Configuration configFrequency;
 
     void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
+
+    void calculateConfigurationValues(uint32_t frequency);
+    void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
     static AT86RF215::AT86RF215 transceiver;
     void createTask() {
         xTaskCreateStatic(vClassTask < TransceiverTask > , this->TaskName,

@@ -12,6 +12,13 @@ void TransceiverTask::createRandomPacket(etl::array<uint8_t, MaxPacketLength> &p
     }
 }
 
+void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09)
+{
+    configFrequency.pllFrequency09 = pllFrequency09;
+    configFrequency.pllChannelNumber09 = pllChannelNumber09;
+    configFrequency.pllChannelMode09 = AT86RF215::PLLChannelMode::FineResolution450;
+}
+
 void TransceiverTask::execute() {
     volatile uint16_t b = transceiver.get_version_number(error);
     configFrequency.pllFrequency09 = PllFrequency09;
