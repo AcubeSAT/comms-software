@@ -70,6 +70,7 @@ include_directories(Core/lib/physical_layer/lib/Catch2)
 include_directories(Core/lib/ccsds-telemetry-packets/inc)
 include_directories(Core/lib/component-drivers/AT86RF215/inc)
 include_directories(Core/lib/component-drivers/TMP117/inc)
+include_directories(Core/lib/cobs-c)
 include_directories(Drivers/CMSIS/DSP/Include)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
@@ -79,7 +80,7 @@ find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
 #file(GLOB_RECURSE SOURCES "Core/*.*" "Drivers/*.*")
 add_subdirectory(Core/lib/cross-platform-software)
 
-file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c")
+file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c" "Core/lib/cobs-c/cobs.c")
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c")
 
