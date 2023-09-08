@@ -16,8 +16,7 @@ private:
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint8_t LoggerPrecision = 2;
     constexpr static uint16_t MaxPacketLength = 64;
-    constexpr static uint16_t PllFrequency09 = 0x0927;
-    constexpr static uint8_t PllChannelNumber09 = 0x0062;
+    constexpr static uint32_t frequency = 436500;
 
     QueueHandle_t packetQueue;
     AT86RF215::Error error;

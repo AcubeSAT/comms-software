@@ -43,8 +43,7 @@ uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency)
 }
 
 void TransceiverTask::execute() {
-    volatile uint16_t b = transceiver.get_version_number(error);
-    setConfiguration(PllFrequency09, PllChannelNumber09);
+    setConfiguration(calculatePllChannelFrequency09(frequency), calculatePllChannelNumber09(frequency));
 
     transceiver.chip_reset(error);
     transceiver.setup(error);
