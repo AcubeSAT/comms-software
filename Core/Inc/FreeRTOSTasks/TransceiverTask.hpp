@@ -35,11 +35,19 @@ public:
     }
 
     AT86RF215::AT86RF215Configuration configFrequency;
-
+    /*
+     * This function creates random packets until we have full functionality.
+     */
     void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
-
+    /*
+     * This function calculates the PllChannelFrequency value using the formula given in the datasheet
+     * for Fine Resolution Channel Scheme CNM.CM=1
+     */
     uint16_t calculatePllChannelFrequency09(uint32_t frequency);
-
+    /*
+     * This function calculates the PllChannelNumber value using the formula given in the datasheet
+     * for Fine Resolution Channel Scheme CNM.CM=1
+     */
     uint8_t calculatePllChannelNumber09(uint32_t frequency);
 
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);

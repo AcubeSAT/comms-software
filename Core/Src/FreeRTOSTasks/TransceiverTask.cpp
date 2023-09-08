@@ -3,9 +3,7 @@
 AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
 
 
-/*
- * This function creates random packets until we have full functionality.
- */
+
 void TransceiverTask::createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length) {
     for (int i = 0; i < length; i++) {
         packet[i] = i;
@@ -19,20 +17,10 @@ void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChann
     transceiver.config = configFrequency;
 }
 
-/*
- * This function calculates the PllChannelFrequency value using the formula given in the datasheet
- * for Fine Resolution Channel Scheme CNM.CM=1
- */
-
 uint16_t TransceiverTask::calculatePllChannelFrequency09(uint32_t frequency) {
     uint32_t N = (frequency - 377000) * 65536 / 6500;
     return N >> 8;
 }
-
-/*
- * This function calculates the PllChannelNumber value using the formula given in the datasheet
- * for Fine Resolution Channel Scheme CNM.CM=1
- */
 
 uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency) {
     uint32_t N = (frequency - 377000) * 65536 / 6500;
