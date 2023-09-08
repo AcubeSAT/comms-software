@@ -33,22 +33,25 @@ public:
     void addToQueue(const etl::array<uint8_t, MaxPacketLength> &message) {
         xQueueSendToBack(packetQueue, &message, 0);
     }
+
     AT86RF215::AT86RF215Configuration configFrequency;
 
     void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
 
     uint16_t calculatePllChannelFrequency09(uint32_t frequency);
+
     uint8_t calculatePllChannelNumber09(uint32_t frequency);
+
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
+
     static AT86RF215::AT86RF215 transceiver;
+
     void createTask() {
         xTaskCreateStatic(vClassTask < TransceiverTask > , this->TaskName,
                           TransceiverTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
                           this->taskStack, &(this->taskBuffer));
 
     }
-
-
 };
 
 inline std::optional<TransceiverTask> transceiverTask;
