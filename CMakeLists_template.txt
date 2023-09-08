@@ -80,7 +80,7 @@ find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c" "Core/lib/cobs-c/cobs.c")
 
-file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c")
+file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c" "Core/lib/cobs-c/cobs.c")
 
 file(GLOB_RECURSE PHYSICAL_LAYER "Core/lib/physical_layer/src/*.cpp")
 list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
@@ -98,7 +98,7 @@ add_link_options(-mcpu=${mcpu} -mthumb -mthumb-interwork)
 add_link_options(-T $${LINKER_SCRIPT})
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DATA_LAYER} ${DRIVERS})
-add_subdirectory(Core/lib/cross-platform-software/lib/ecss-services EXCLUDE_FROM_ALL)
+add_subdirectory(Core/lib/ecss-services EXCLUDE_FROM_ALL)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common)
 add_compile_definitions(STM32 LOGLEVEL_TRACE)
 link_directories(Drivers/CMSIS/Lib/GCC)
