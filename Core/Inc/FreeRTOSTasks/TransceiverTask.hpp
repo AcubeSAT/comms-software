@@ -41,12 +41,12 @@ public:
     void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
     /*
      * This function calculates the PllChannelFrequency value using the formula given in the datasheet
-     * for Fine Resolution Channel Scheme CNM.CM=1
+     * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
     uint16_t calculatePllChannelFrequency09(uint32_t frequency);
     /*
      * This function calculates the PllChannelNumber value using the formula given in the datasheet
-     * for Fine Resolution Channel Scheme CNM.CM=1
+     * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
     uint8_t calculatePllChannelNumber09(uint32_t frequency);
 
