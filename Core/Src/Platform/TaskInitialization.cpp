@@ -1,4 +1,4 @@
-#include "TaskInitialization.hpp"
+#include "Platform/TaskInitialization.hpp"
 #ifndef STM32
 void initializeTasks() {
     SEGGER_RTT_Init();
