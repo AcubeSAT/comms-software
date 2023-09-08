@@ -102,7 +102,7 @@ add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER}
 add_subdirectory(Core/lib/ecss-services EXCLUDE_FROM_ALL)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common)
 #target_compile_definitions(common_cross PUBLIC STM32 LOGLEVEL_TRACE)
-ADD_COMPILE_DEFINITIONS(STM32 LOGLEVEL_TRACE)
+add_compile_definitions(STM32 LOGLEVEL_TRACE)
 link_directories(Drivers/CMSIS/Lib/GCC)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE ${CMSIS_DSP})
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
