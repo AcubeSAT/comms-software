@@ -8,11 +8,8 @@ private:
     const static inline uint16_t TaskStackDepth = 1000;
     StackType_t taskStack[TaskStackDepth];
 
-    const static uint8_t tc_command_size = 64;
-    const static uint16_t dma_buffer_size = 2*tc_command_size;
-    uint8_t rx_dma_buffer [dma_buffer_size];
-    uint8_t tc_command[tc_command_size];
-
+    etl::vector<uint8_t, DmaBufferSize> RxDmaBuffer;
+    etl::vector<uint8_t, TcCommandSize> TcCommand;
 
 public:
 

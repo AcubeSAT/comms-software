@@ -26,4 +26,17 @@ inline const uint8_t MaxTickCountStringSize = 10;
 
 inline String<LogSource::MaximumLettersInSubsystemName> LogSource::currentSubsystem = "COMMS";
 
+/**
+ * TC Command max size
+ */
+inline const uint8_t TcCommandSize = 64;
+
+/**
+ * The size of the allocated buffer for UART DMA
+ */
+
+inline const uint16_t DmaBufferSize = 2*TcCommandSize;
+
+
+
 #endif //STM32H7A3ZIQSETUP_COMMS_DEFINITIONS_H
