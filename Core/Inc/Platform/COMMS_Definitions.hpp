@@ -34,7 +34,7 @@ inline const uint8_t TcCommandSize = 64;
 /**
  * The size of the allocated buffer for UART DMA
  */
-inline const uint16_t DmaBufferSize = 2*TcCommandSize;
+inline const uint16_t DmaBufferSize = TcCommandSize;
 
 
 
