@@ -37,5 +37,12 @@ inline const uint8_t TcCommandSize = 64;
 inline const uint16_t DmaBufferSize = TcCommandSize;
 
 
+/**
+ * CAN Definitions
+ */
+
+inline const uint8_t CANMessageSize = 64;
+
+
 
 #endif //STM32H7A3ZIQSETUP_COMMS_DEFINITIONS_H
