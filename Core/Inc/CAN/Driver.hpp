@@ -33,24 +33,24 @@ namespace CAN {
      * Buffer that stores a message that is ready to be sent
      */
 
-    static inline FDCAN_TxHeaderTypeDef txHeader;
-    static inline CANBuffer_t           txFifo;
+    inline FDCAN_TxHeaderTypeDef txHeader;
+    inline CANBuffer_t           txFifo;
 
     /**
      * Buffer that stores a received message that is to be processed.
      * In this setup, rxFifo0 is used to store TP Messages that usually span across multiple CAN::Frames
      */
 
-    static inline FDCAN_RxHeaderTypeDef   rxHeader0;
-    static inline CANBuffer_t             rxFifo0;
+    inline FDCAN_RxHeaderTypeDef   rxHeader0;
+    inline CANBuffer_t             rxFifo0;
 
     /**
      * Buffer that stores a received message that is to be processed.
      * In this setup, rxFifo1 is used to store normal messages that are contained in a single CAN::Frame
      */
 
-    static inline FDCAN_RxHeaderTypeDef    rxHeader1;
-    static inline CANBuffer_t              rxFifo1;
+    inline FDCAN_RxHeaderTypeDef    rxHeader1;
+    inline CANBuffer_t              rxFifo1;
 
 
     /**
@@ -76,14 +76,14 @@ namespace CAN {
      * Sets the appropriate interrupt handlers, configures the storage area for incoming/outgoing buffers and
      * keeps only a single peripheral's interrupts active.
      */
-    static void initialize();
+    void initialize();
 
 
     /**
      * Logs messages that are in the Rx buffer
      * @param rxBuf The RX Buffer that the messages are stored
      */
-    static void logMessage(const CANBuffer_t &rxBuf, FDCAN_RxHeaderTypeDef RxHeader, ActiveBus incomingBus);
+    void logMessage(const CANBuffer_t &rxBuf, FDCAN_RxHeaderTypeDef RxHeader, ActiveBus incomingBus);
 
     /**
      * Decodes the data length code to get the largest expected size of the message.
@@ -91,7 +91,7 @@ namespace CAN {
      * @param dlc The data length code
      * @return The length of the message in bytes
      */
-    static uint8_t convertDlcToLength(uint8_t dlc);
+    uint8_t convertDlcToLength(uint8_t dlc);
 
     /**
      * Encodes the length of the message body to the smallest data length code that it fits in.
@@ -99,7 +99,7 @@ namespace CAN {
      * @param length The length of the message in bytes
      * @return The data length code
      */
-    static uint8_t convertLengthToDLC(uint8_t length);
+    uint8_t convertLengthToDLC(uint8_t length);
 
     /**
      * Transforms a frame ID to conform to the CAN Standard.
@@ -110,7 +110,7 @@ namespace CAN {
      * @note All IDs should be at most 11 bits long as the non-extended ID scheme is used. The function gets/returns
      * a 32-bit ID to accomodate the shift.
      */
-    static inline uint32_t writeId(uint32_t id) {
+    inline uint32_t writeId(uint32_t id) {
         return id << 18;
     }
 
@@ -122,7 +122,7 @@ namespace CAN {
      * @note All IDs should be at most 11 bits long as the non-extended ID scheme is used. The function gets/returns
      * a 32-bit ID to accomodate the shift.
      */
-    static inline uint32_t readId(uint32_t id) {
+    inline uint32_t readId(uint32_t id) {
         return id >> 18;
     }
 
@@ -130,7 +130,7 @@ namespace CAN {
      * Immediately ends a CAN Message
      * @param message The message to be sent.
      */
-    static void send(const CAN::Frame &message);
+    void send(const CAN::Frame &message);
 
     /**
      * Converts an CANBuffer_t & FDCAN_Header objects into a CAN::Frame.
@@ -138,6 +138,6 @@ namespace CAN {
      * @param RxHeader The incoming header.
      * @return A CAN::Frame.
      */
-    static CAN::Frame getFrame(const CANBuffer_t &txBuffer, FDCAN_TxHeaderTypeDef TxHeader);
+    CAN::Frame getFrame(const CANBuffer_t &txBuffer, FDCAN_TxHeaderTypeDef TxHeader);
 }
 

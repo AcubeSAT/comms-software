@@ -11,7 +11,7 @@
 #include "TemperatureSensorsTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "TCHandlingTask.hpp"
-#include "CAN/Driver.hpp"
+#include "CAN.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -50,12 +50,15 @@ extern "C" void main_cpp(){
     timeKeepingTask.emplace();
     tcHandlingTask.emplace();
 
+    canTestTask.emplace();
+
 
     uartGatekeeperTask->createTask();
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
     tcHandlingTask->createTask();
+    canTestTask->createTask();
 
     vTaskStartScheduler();
 

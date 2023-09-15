@@ -13,7 +13,10 @@ public:
 
     void execute();
 
-    CANTestTask() : Task("CAN Test") {}
+    CANTestTask() : Task("CAN Test") {
+        CAN::initialize();
+    }
+
 
     /**
      * Create freeRTOS Task
