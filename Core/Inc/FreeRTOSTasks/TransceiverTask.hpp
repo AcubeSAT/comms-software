@@ -22,14 +22,13 @@ private:
     StackType_t taskStack[TaskStackDepth];
 
 public:
-
     void execute();
-
+    using Packet = etl::array<uint8_t, MaxPacketLength>;
     TransceiverTask() : Task("External Temperature Sensors") {
         packetQueue = xQueueCreate(MaxPacketLength, sizeof(uint16_t));
     }
 
-    void addToQueue(const etl::array<uint8_t, MaxPacketLength> &message) {
+    void addToQueue(const Packet &message) {
         xQueueSendToBack(packetQueue, &message, 0);
     }
 
@@ -37,7 +36,7 @@ public:
     /*
      * This function creates random packets until we have full functionality.
      */
-    void createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length);
+    Packet createRandomPacket(uint16_t length);
     /*
      * This function calculates the PllChannelFrequency value using the formula given in the datasheet
      * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)

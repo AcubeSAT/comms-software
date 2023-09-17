@@ -4,10 +4,12 @@ AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1,
 
 
 
-void TransceiverTask::createRandomPacket(etl::array<uint8_t, MaxPacketLength> &packet, uint16_t length) {
+TransceiverTask::Packet TransceiverTask::createRandomPacket(uint16_t length) {
+    Packet packet;
     for (int i = 0; i < length; i++) {
         packet[i] = i;
     }
+    return packet;
 }
 
 void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09) {
@@ -34,8 +36,8 @@ void TransceiverTask::execute() {
     transceiver.setup(error);
 
     uint16_t currentPacketLength = 44;
-    etl::array<uint8_t, MaxPacketLength> packet;
-    createRandomPacket(packet, currentPacketLength);
+    Packet packet;
+    packet = createRandomPacket(currentPacketLength);
 
 
     for (int i = 0; i < MaxPacketLength; i++) {
