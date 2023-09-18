@@ -11,8 +11,8 @@ void CAN::configCANFilter(){
     sFilterConfig.FilterIndex   = 0;                          // In case of configuring multiple filters adapt accordingly
     sFilterConfig.FilterType    = FDCAN_FILTER_RANGE;         // Filter type
     sFilterConfig.FilterConfig  = FDCAN_FILTER_TO_RXFIFO0;    // Where the messages that pass from the filter will go
-    sFilterConfig.FilterID1     = 0x380;
-    sFilterConfig.FilterID2     = 0x3FF;
+    sFilterConfig.FilterID1     = 0x11; // 0x380;
+    sFilterConfig.FilterID2     = 0x11; // 0x3FF;
     sFilterConfig.RxBufferIndex = 0;
     if (HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig) != HAL_OK)
     {
@@ -28,6 +28,7 @@ void CAN::initialize() {
     configCANFilter();
     // Activate the notification for new data in FIFO0 for FDCAN1
     if (HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK){
+        LOG_DEBUG << "CAN Notifications NOT Activated";
         Error_Handler();
     }
 
@@ -50,11 +51,14 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
             Error_Handler();
         }
 
-        logMessage(rxFifo0, rxHeader0, ActiveBus::Main);
+        // logMessage(rxFifo0, rxHeader0, ActiveBus::Main);
+        LOG_DEBUG << "Got CAN Message";
 
-        if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
+
+        if (HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
         {
             /* Notification Error */
+            LOG_DEBUG << "CAN Notifications NOT Re-Activated";
             Error_Handler();
         }
     }
@@ -114,28 +118,35 @@ uint8_t CAN::convertLengthToDLC(uint8_t length){
 void CAN::send(const CAN::Frame &message) {
     memset(CAN::txFifo.data(), 0, CANMessageSize);
 
-    CAN::txHeader.BitRateSwitch = 1;
-    CAN::txHeader.FDFormat      = 1;
-    CAN::txHeader.IdType        = 0;
-    CAN::txHeader.Identifier    = writeId(message.id);
-    CAN::txHeader.DataLength    = message.data.size();
-
     std::copy(message.data.begin(), message.data.end(), txFifo.data());
 
     if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &CAN::txHeader, CAN::txFifo.data())!= HAL_OK)
     {
+        LOG_DEBUG << "Error sending CAN message";
         Error_Handler();
     }
 
+    LOG_DEBUG << "CAN Message Sent";
+
 }
 
-Frame CAN::getFrame(const CAN::CANBuffer_t &txFifo, FDCAN_TxHeaderTypeDef txHeader) {
-    CAN::Frame frame;
-    const uint8_t messageLength = txHeader.DataLength;
+Frame CAN::getFrame(const CAN::CANBuffer_t *TxFifo) {
+    CAN::txHeader.Identifier            = 0x11;
+    CAN::txHeader.IdType                = FDCAN_STANDARD_ID;
+    CAN::txHeader.TxFrameType           = FDCAN_DATA_FRAME;
+    CAN::txHeader.DataLength            =TxFifo->size();
+    CAN::txHeader.ErrorStateIndicator   = FDCAN_ESI_ACTIVE;
+    CAN::txHeader.BitRateSwitch         = FDCAN_BRS_OFF;
+    CAN::txHeader.FDFormat              = FDCAN_FD_CAN;
+    CAN::txHeader.TxEventFifoControl    = FDCAN_NO_TX_EVENTS;
+    CAN::txHeader.MessageMarker         = 0;
 
-    frame.id = readId(txHeader.Identifier);
+    CAN::Frame frame;
+    const uint8_t messageLength = CAN::txHeader.DataLength;
+
+    frame.id = readId(CAN::txHeader.Identifier);
     for (uint8_t idx = 0; idx < messageLength; idx++) {
-        frame.data.at(idx) = *(txFifo.data()+idx);
+        frame.data.at(idx) = *(TxFifo->data()+idx);
     }
 
     return frame;

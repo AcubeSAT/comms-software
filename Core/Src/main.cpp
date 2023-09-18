@@ -49,7 +49,6 @@ extern "C" void main_cpp(){
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
     tcHandlingTask.emplace();
-
     canTestTask.emplace();
 
 

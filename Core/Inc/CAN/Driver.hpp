@@ -138,6 +138,6 @@ namespace CAN {
      * @param RxHeader The incoming header.
      * @return A CAN::Frame.
      */
-    CAN::Frame getFrame(const CANBuffer_t &txBuffer, FDCAN_TxHeaderTypeDef TxHeader);
+    CAN::Frame getFrame(const CANBuffer_t *txBuffer);
 }
 
