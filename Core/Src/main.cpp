@@ -12,6 +12,7 @@
 #include "TimeKeepingTask.hpp"
 #include "TCHandlingTask.hpp"
 #include "CAN.hpp"
+#include "stm32h7xx_hal_fdcan.h"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -48,7 +49,7 @@ extern "C" void main_cpp(){
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
-    tcHandlingTask.emplace();
+//    tcHandlingTask.emplace();
     canTestTask.emplace();
 
 
@@ -56,7 +57,7 @@ extern "C" void main_cpp(){
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
-    tcHandlingTask->createTask();
+//    tcHandlingTask->createTask();
     canTestTask->createTask();
 
     vTaskStartScheduler();
@@ -69,6 +70,25 @@ extern "C" void main_cpp(){
     for(;;);
     return;
 }
+
+extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
+    if ((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET) {
+        /* Retreive Rx messages from RX FIFO0 */
+        if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CAN::rxHeader0, CAN::rxFifo0.data()) != HAL_OK) {
+            /* Reception Error */
+            Error_Handler();
+        }
+
+        // logMessage(rxFifo0, rxHeader0, ActiveBus::Main);
+
+
+        if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK) {
+            /* Notification Error */
+            Error_Handler();
+        }
+    }
+}
+
 
 /**
  * @brief This function handles EXTI line[15:10] interrupts.

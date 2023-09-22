@@ -23,7 +23,7 @@ public:
      */
     void createTask() {
         xTaskCreateStatic(vClassTask < CANTestTask > , this->TaskName, CANTestTask::TaskStackDepth, this,
-                          configMAX_PRIORITIES - 1, this->taskStack, &(this->taskBuffer));
+                          tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
     }
 };
 

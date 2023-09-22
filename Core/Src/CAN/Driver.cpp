@@ -9,7 +9,7 @@ void CAN::configCANFilter(){
 
     sFilterConfig.IdType        = FDCAN_STANDARD_ID;          // Standard or extended id
     sFilterConfig.FilterIndex   = 0;                          // In case of configuring multiple filters adapt accordingly
-    sFilterConfig.FilterType    = FDCAN_FILTER_RANGE;         // Filter type
+    sFilterConfig.FilterType    = FDCAN_FILTER_MASK;         // Filter type
     sFilterConfig.FilterConfig  = FDCAN_FILTER_TO_RXFIFO0;    // Where the messages that pass from the filter will go
     sFilterConfig.FilterID1     = 0x11; // 0x380;
     sFilterConfig.FilterID2     = 0x11; // 0x3FF;
@@ -22,13 +22,14 @@ void CAN::configCANFilter(){
 }
 
 void CAN::initialize() {
+    configCANFilter();
+
     if(HAL_FDCAN_Start(&hfdcan1)!= HAL_OK){
         Error_Handler();
     }
-    configCANFilter();
+
     // Activate the notification for new data in FIFO0 for FDCAN1
     if (HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK){
-        LOG_DEBUG << "CAN Notifications NOT Activated";
         Error_Handler();
     }
 
@@ -41,29 +42,26 @@ void CAN::initialize() {
 
 }
 
-void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs){
-    if((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET)
-    {
-        /* Retreive Rx messages from RX FIFO0 */
-        if (HAL_FDCAN_GetRxMessage(&hfdcan1, FDCAN_RX_FIFO0, &rxHeader0, rxFifo0.data()) != HAL_OK)
-        {
-            /* Reception Error */
-            Error_Handler();
-        }
-
-        // logMessage(rxFifo0, rxHeader0, ActiveBus::Main);
-        LOG_DEBUG << "Got CAN Message";
-
-
-        if (HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
-        {
-            /* Notification Error */
-            LOG_DEBUG << "CAN Notifications NOT Re-Activated";
-            Error_Handler();
-        }
-    }
-
-}
+//void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs){
+//    if((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET)
+//    {
+//        /* Retreive Rx messages from RX FIFO0 */
+//        if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &rxHeader0, rxFifo0.data()) != HAL_OK)
+//        {
+//            /* Reception Error */
+//            Error_Handler();
+//        }
+//
+//        // logMessage(rxFifo0, rxHeader0, ActiveBus::Main);
+//
+//
+//        if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
+//        {
+//            /* Notification Error */
+//            Error_Handler();
+//        }
+//    }
+//}
 
 void CAN::logMessage(const CAN::CANBuffer_t &rxBuf, FDCAN_RxHeaderTypeDef RxHeader, CAN::ActiveBus incomingBus) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
@@ -120,21 +118,18 @@ void CAN::send(const CAN::Frame &message) {
 
     std::copy(message.data.begin(), message.data.end(), txFifo.data());
 
-    if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &CAN::txHeader, CAN::txFifo.data())!= HAL_OK)
+    if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &CAN::txHeader, txFifo.data())!= HAL_OK)
     {
-        LOG_DEBUG << "Error sending CAN message";
         Error_Handler();
     }
-
-    LOG_DEBUG << "CAN Message Sent";
 
 }
 
 Frame CAN::getFrame(const CAN::CANBuffer_t *TxFifo) {
-    CAN::txHeader.Identifier            = 0x11;
+    CAN::txHeader.Identifier            = CANIdentifier;
     CAN::txHeader.IdType                = FDCAN_STANDARD_ID;
     CAN::txHeader.TxFrameType           = FDCAN_DATA_FRAME;
-    CAN::txHeader.DataLength            =TxFifo->size();
+    CAN::txHeader.DataLength            = FDCAN_DLC_BYTES_64;
     CAN::txHeader.ErrorStateIndicator   = FDCAN_ESI_ACTIVE;
     CAN::txHeader.BitRateSwitch         = FDCAN_BRS_OFF;
     CAN::txHeader.FDFormat              = FDCAN_FD_CAN;
@@ -142,14 +137,13 @@ Frame CAN::getFrame(const CAN::CANBuffer_t *TxFifo) {
     CAN::txHeader.MessageMarker         = 0;
 
     CAN::Frame frame;
-    const uint8_t messageLength = CAN::txHeader.DataLength;
 
     frame.id = readId(CAN::txHeader.Identifier);
-    for (uint8_t idx = 0; idx < messageLength; idx++) {
-        frame.data.at(idx) = *(TxFifo->data()+idx);
+
+    for (uint8_t idx = 0; idx < TxFifo->size(); idx++) {
+        frame.data.insert_at(idx, *(TxFifo->data()+idx));
     }
 
     return frame;
-
 
 }

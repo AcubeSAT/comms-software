@@ -8,8 +8,6 @@ void CANTestTask::execute() {
      * Simple 64 byte message sending
      */
 
-//    CAN::txHeader.Identifier = 0x45A;
-
     for (uint8_t idx = 0; idx < CAN::Frame::MaxDataLength; idx++) {
         message.push_back(idx);
     }
