@@ -17,9 +17,7 @@ public:
     constexpr static uint16_t MaxPacketLength = 64;
     using Packet = etl::array<uint8_t, MaxPacketLength>;
 
-    TransceiverTask() : Task("Transceiver signal transmission") {
-        packetQueue = xQueueCreate(MaxPacketLength, sizeof(uint16_t));
-    }
+    TransceiverTask() : Task("Transceiver signal transmission") {}
 
     AT86RF215::AT86RF215Configuration configFrequency;
 

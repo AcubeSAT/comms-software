@@ -35,13 +35,7 @@ void TransceiverTask::execute() {
     transceiver.setup(error);
 
     uint16_t currentPacketLength = 44;
-    Packet packet;
-    packet = createRandomPacket(currentPacketLength);
-
-
-    for (int i = 0; i < MaxPacketLength; i++) {
-        xQueueSendToBack(packetQueue, &packet[i], portMAX_DELAY);
-    }
+    Packet packet = createRandomPacket(currentPacketLength);
 
     while (true) {
         transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
