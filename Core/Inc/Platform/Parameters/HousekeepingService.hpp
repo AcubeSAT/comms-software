@@ -1,11 +1,11 @@
 #ifndef ECSS_SERVICES_HOUSEKEEPINGPARAMETERS_HPP
 #define ECSS_SERVICES_HOUSEKEEPINGPARAMETERS_HPP
 
-#include "PlatformParameters.hpp"
+#include "PeakSatParameters.hpp"
 #include "Services/HousekeepingService.hpp"
 
 namespace HousekeepingStructures {
-    using namespace PlatformParameters;
+    using namespace PeakSatParameters;
 
     static etl::array<HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {
             {

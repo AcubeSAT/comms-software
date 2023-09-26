@@ -1,5 +1,5 @@
 #include "CAN.hpp"
-
+#include "CAN/ApplicationLayer.hpp"
 void CANTestTask::execute() {
 
     CAN::CANBuffer_t message = {};
@@ -13,7 +13,7 @@ void CANTestTask::execute() {
     }
 
     while (true) {
-        CAN::send(CAN::getFrame(&message));
+        CAN::Application::sendPingMessage(static_cast<CAN::NodeIDs>(0x11), false);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 

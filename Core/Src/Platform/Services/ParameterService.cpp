@@ -1,48 +1,48 @@
 #include "ECSS_Configuration.hpp"
-#include "Platform//Parameters/PlatformParameters.hpp"
+#include "Platform//Parameters/PeakSatParameters.hpp"
 #include "Services/ParameterService.hpp"
 
 #ifdef SERVICE_PARAMETER
 
 void ParameterService::initializeParameterMap() {
-    parameters = {{PlatformParameters::ReportParametersUnusedStack,     PlatformParameters::reportParametersUnusedStack},
-                  {PlatformParameters::AvailableHeap,                   PlatformParameters::availableHeap},
+    parameters = {{PeakSatParameters::ReportParametersUnusedStack,     PeakSatParameters::reportParametersUnusedStack},
+                  {PeakSatParameters::AvailableHeap,                   PeakSatParameters::availableHeap},
 
-                  {PlatformParameters::AntennaDeploymentStatus,         PlatformParameters::antennaDeploymentStatus},
-                  {PlatformParameters::SampleRateUHFTX,                 PlatformParameters::sampleRateUHFTX},
-                  {PlatformParameters::SymbolRateSBandTX,               PlatformParameters::symbolRateSBandTX},
-                  {PlatformParameters::SampleRateSBandTX,               PlatformParameters::sampleRateSBandTX},
-                  {PlatformParameters::SymbolRateUHFTX,                 PlatformParameters::symbolRateUHFBandTX},
-                  {PlatformParameters::CWInterval,                      PlatformParameters::cwInterval},
+                  {PeakSatParameters::AntennaDeploymentStatus,         PeakSatParameters::antennaDeploymentStatus},
+                  {PeakSatParameters::SampleRateUHFTX,                 PeakSatParameters::sampleRateUHFTX},
+                  {PeakSatParameters::SymbolRateSBandTX,               PeakSatParameters::symbolRateSBandTX},
+                  {PeakSatParameters::SampleRateSBandTX,               PeakSatParameters::sampleRateSBandTX},
+                  {PeakSatParameters::SymbolRateUHFTX,                 PeakSatParameters::symbolRateUHFBandTX},
+                  {PeakSatParameters::CWInterval,                      PeakSatParameters::cwInterval},
 
-                  {PlatformParameters::GMSKBeaconInterval,              PlatformParameters::gmskBeaconInterval},
-                  {PlatformParameters::ChannelNumberUHF,                PlatformParameters::channelNumberUHF},
-                  {PlatformParameters::ChannelNumberSBand,              PlatformParameters::channelNumberSBand},
-                  {PlatformParameters::PowerAmplifierUHF,               PlatformParameters::powerAmplifierUHF},
-                  {PlatformParameters::PowerAmplifierS,                 PlatformParameters::powerAmplifierS},
-                  {PlatformParameters::VariableGainAmplifier,           PlatformParameters::variableGainAmplifier},
-                  {PlatformParameters::ReceivedSignalStrengthIndicator, PlatformParameters::receivedSignalStrengthIndicator},
-                  {PlatformParameters::UHFBandTX,                       PlatformParameters::uhfBandTX},
+                  {PeakSatParameters::GMSKBeaconInterval,              PeakSatParameters::gmskBeaconInterval},
+                  {PeakSatParameters::ChannelNumberUHF,                PeakSatParameters::channelNumberUHF},
+                  {PeakSatParameters::ChannelNumberSBand,              PeakSatParameters::channelNumberSBand},
+                  {PeakSatParameters::PowerAmplifierUHF,               PeakSatParameters::powerAmplifierUHF},
+                  {PeakSatParameters::PowerAmplifierS,                 PeakSatParameters::powerAmplifierS},
+                  {PeakSatParameters::VariableGainAmplifier,           PeakSatParameters::variableGainAmplifier},
+                  {PeakSatParameters::ReceivedSignalStrengthIndicator, PeakSatParameters::receivedSignalStrengthIndicator},
+                  {PeakSatParameters::UHFBandTX,                       PeakSatParameters::uhfBandTX},
 
-                  {PlatformParameters::SBandTX,                         PlatformParameters::sBandTX},
-                  {PlatformParameters::NumberOfPackagesRejected,        PlatformParameters::numberOfPackagesRejected},
-                  {PlatformParameters::InvalidHMAC,                     PlatformParameters::invalidHMAC},
+                  {PeakSatParameters::SBandTX,                         PeakSatParameters::sBandTX},
+                  {PeakSatParameters::NumberOfPackagesRejected,        PeakSatParameters::numberOfPackagesRejected},
+                  {PeakSatParameters::InvalidHMAC,                     PeakSatParameters::invalidHMAC},
 
-                  {PlatformParameters::InvalidPacketStructure,          PlatformParameters::invalidPacketStructure},
-                  {PlatformParameters::InvalidSpacecraftID,             PlatformParameters::invalidSpacecraftID},
-                  {PlatformParameters::TCFrameSequenceCounter,          PlatformParameters::tcFrameSequenceCounter},
-                  {PlatformParameters::COMMSPCBTemperature1,            PlatformParameters::commsPCBTemperature1},
-                  {PlatformParameters::COMMSPCBTemperature2,            PlatformParameters::commsPCBTemperature2},
-                  {PlatformParameters::COMMSMCUTemperature,             PlatformParameters::commsMCUTemperature},
-                  {PlatformParameters::COMMSMCUInputVoltage,            PlatformParameters::commsMCUInputVoltage},
-                  {PlatformParameters::COMMSMCUBootCounter,             PlatformParameters::commsMCUBootCounter},
+                  {PeakSatParameters::InvalidPacketStructure,          PeakSatParameters::invalidPacketStructure},
+                  {PeakSatParameters::InvalidSpacecraftID,             PeakSatParameters::invalidSpacecraftID},
+                  {PeakSatParameters::TCFrameSequenceCounter,          PeakSatParameters::tcFrameSequenceCounter},
+                  {PeakSatParameters::COMMSPCBTemperature1,            PeakSatParameters::commsPCBTemperature1},
+                  {PeakSatParameters::COMMSPCBTemperature2,            PeakSatParameters::commsPCBTemperature2},
+                  {PeakSatParameters::COMMSMCUTemperature,             PeakSatParameters::commsMCUTemperature},
+                  {PeakSatParameters::COMMSMCUInputVoltage,            PeakSatParameters::commsMCUInputVoltage},
+                  {PeakSatParameters::COMMSMCUBootCounter,             PeakSatParameters::commsMCUBootCounter},
 
-                  {PlatformParameters::OnBoardTime,                     PlatformParameters::onBoardTime},
-                  {PlatformParameters::NANDUsedMemoryPartition,         PlatformParameters::nandUsedMemoryPartition},
-                  {PlatformParameters::LastFailedEvent,                 PlatformParameters::lastFailedEvent},
-                  {PlatformParameters::COMMSMCUSystick,                 PlatformParameters::commsMCUSystick},
-                  {PlatformParameters::COMMSFLASHInt,                   PlatformParameters::commsFlashInt},
-                  {PlatformParameters::COMMSSRAMInt,                    PlatformParameters::commsSRAMInt},
+                  {PeakSatParameters::OnBoardTime,                     PeakSatParameters::onBoardTime},
+                  {PeakSatParameters::NANDUsedMemoryPartition,         PeakSatParameters::nandUsedMemoryPartition},
+                  {PeakSatParameters::LastFailedEvent,                 PeakSatParameters::lastFailedEvent},
+                  {PeakSatParameters::COMMSMCUSystick,                 PeakSatParameters::commsMCUSystick},
+                  {PeakSatParameters::COMMSFLASHInt,                   PeakSatParameters::commsFlashInt},
+                  {PeakSatParameters::COMMSSRAMInt,                    PeakSatParameters::commsSRAMInt},
     };
 }
 #endif

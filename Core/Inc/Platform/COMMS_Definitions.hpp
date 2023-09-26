@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "Logger_Definitions.hpp"
 #include "Parameters.hpp"
+#include "Definitions.hpp"
 /**
  * Maximum size for a string representation of a service or message type identifier
  */

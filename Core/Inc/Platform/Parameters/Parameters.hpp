@@ -52,14 +52,3 @@ inline constexpr uint8_t CUCFractionalBytes = 0;
  */
 inline const tm EpochTime = {.tm_sec = 0, .tm_min = 0, .tm_hour = 0, .tm_mday = 1, .tm_mon = 0, .tm_year = 2022};
 
-namespace LogSource {
-    /**
-    * The maximum number of letters in a string representation of a subsystem's name.
-    */
-    inline constexpr uint8_t MaximumLettersInSubsystemName = 5;
-
-    /**
-     * The subsystem to be used, if no other source is defined using the stream operator.
-     */
-    extern String<MaximumLettersInSubsystemName> currentSubsystem;
-}
