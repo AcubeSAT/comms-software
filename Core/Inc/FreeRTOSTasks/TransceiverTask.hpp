@@ -6,7 +6,6 @@
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "queue.h"
-#include "semphr.h"
 
 extern SPI_HandleTypeDef hspi1;
 
