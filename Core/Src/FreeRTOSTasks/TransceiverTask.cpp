@@ -19,18 +19,18 @@ void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChann
 }
 
 /*
-    * The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
-    * to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
-    */
+* The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
+* to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
+*/
 uint16_t TransceiverTask::calculatePllChannelFrequency09(uint32_t frequency) {
     uint32_t N = (frequency - 377000) * 65536 / 6500;
     return N >> 8;
 }
 
 /*
-    * The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
-    * to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
-    */
+* The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
+* to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
+*/
 uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency) {
     uint32_t N = (frequency - 377000) * 65536 / 6500;
     return N & 0xFF;
