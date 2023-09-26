@@ -3,7 +3,6 @@
 AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
 
 
-
 TransceiverTask::Packet TransceiverTask::createRandomPacket(uint16_t length) {
     Packet packet;
     for (int i = 0; i < length; i++) {
