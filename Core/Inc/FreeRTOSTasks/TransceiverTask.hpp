@@ -1,6 +1,5 @@
 #pragma once
 
-#include <optional>
 #include "Task.hpp"
 #include "main.h"
 #include "at86rf215.hpp"
@@ -14,14 +13,14 @@ public:
     void execute();
 
     constexpr static uint16_t MaxPacketLength = 64;
-    using Packet = etl::array<uint8_t, MaxPacketLength>;
+    using PacketType = etl::array<uint8_t, MaxPacketLength>;
 
     TransceiverTask() : Task("Transceiver signal transmission") {}
 
     /*
      * This function creates random packets until we have full functionality.
      */
-    Packet createRandomPacket(uint16_t length);
+    PacketType createRandomPacket(uint16_t length);
 
     /*
      * This function calculates the PllChannelFrequency value using the formula given in the datasheet
