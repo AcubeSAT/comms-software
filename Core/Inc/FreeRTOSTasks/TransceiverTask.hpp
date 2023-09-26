@@ -15,7 +15,7 @@ private:
     constexpr static uint16_t DelayMs = 10;
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint16_t MaxPacketLength = 64;
-    constexpr static uint32_t frequency = 436500;
+    constexpr static uint32_t FrequencyUHF = 436500;
 
     QueueHandle_t packetQueue;
     AT86RF215::Error error;
@@ -24,12 +24,8 @@ private:
 public:
     void execute();
     using Packet = etl::array<uint8_t, MaxPacketLength>;
-    TransceiverTask() : Task("External Temperature Sensors") {
+    TransceiverTask() : Task("Transceiver signal transmission") {
         packetQueue = xQueueCreate(MaxPacketLength, sizeof(uint16_t));
-    }
-
-    void addToQueue(const Packet &message) {
-        xQueueSendToBack(packetQueue, &message, 0);
     }
 
     AT86RF215::AT86RF215Configuration configFrequency;

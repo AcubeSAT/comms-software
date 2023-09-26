@@ -56,7 +56,6 @@ extern "C" void main_cpp(){
 //    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
     for(;;);
     return;
-
 }
 
 /**
