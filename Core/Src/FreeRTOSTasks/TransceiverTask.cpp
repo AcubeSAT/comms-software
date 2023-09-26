@@ -44,13 +44,8 @@ void TransceiverTask::execute() {
         xQueueSendToBack(packetQueue, &packet[i], portMAX_DELAY);
     }
 
-    uint8_t receivedPacket[MaxPacketLength];
-    for (int i = 0; i < currentPacketLength; i++) {
-        xQueueReceive(packetQueue, &receivedPacket[i], portMAX_DELAY);
-    }
-
     while (true) {
-        transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, receivedPacket, currentPacketLength, error);
+        transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }
