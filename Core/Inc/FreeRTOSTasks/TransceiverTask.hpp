@@ -19,8 +19,6 @@ public:
 
     TransceiverTask() : Task("Transceiver signal transmission") {}
 
-    AT86RF215::AT86RF215Configuration configFrequency;
-
     /*
      * This function creates random packets until we have full functionality.
      */
@@ -49,6 +47,8 @@ public:
     }
 
 private:
+    AT86RF215::AT86RF215Configuration configFrequency;
+
     constexpr static uint16_t DelayMs = 10;
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint32_t FrequencyUHF = 436500;
