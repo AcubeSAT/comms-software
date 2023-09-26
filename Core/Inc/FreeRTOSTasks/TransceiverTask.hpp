@@ -5,6 +5,7 @@
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "queue.h"
+#include <etl/optional.h>
 
 extern SPI_HandleTypeDef hspi1;
 
@@ -57,4 +58,4 @@ private:
 
 };
 
-inline std::optional<TransceiverTask> transceiverTask;
+inline etl::optional<TransceiverTask> transceiverTask;
