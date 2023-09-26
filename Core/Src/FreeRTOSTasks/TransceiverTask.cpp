@@ -3,7 +3,7 @@
 AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
 
 
-TransceiverTask::Packet TransceiverTask::createRandomPacket(uint16_t length) {
+TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length) {
     PacketType packet;
     for (std::size_t i = 0; i < length; i++) {
         packet[i] = i;
@@ -43,7 +43,7 @@ void TransceiverTask::execute() {
     transceiver.setup(error);
 
     uint16_t currentPacketLength = 44;
-    Packet packet = createRandomPacket(currentPacketLength);
+    PacketType packet = createRandomPacket(currentPacketLength);
 
     while (true) {
         transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
