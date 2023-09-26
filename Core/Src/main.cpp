@@ -13,6 +13,7 @@
 #include "TCHandlingTask.hpp"
 #include "CAN.hpp"
 #include "stm32h7xx_hal_fdcan.h"
+#include "CANGatekeeperTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -46,20 +47,20 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
-    timeKeepingTask.emplace();
+//    mcuTemperatureTask.emplace();
+//    temperatureSensorsTask.emplace();
+//    timeKeepingTask.emplace();
 //    tcHandlingTask.emplace();
     canTestTask.emplace();
-
+    canGatekeeperTask.emplace();
 
     uartGatekeeperTask->createTask();
-    temperatureSensorsTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
+//    temperatureSensorsTask->createTask();
+//    mcuTemperatureTask->createTask();
+//    timeKeepingTask->createTask();
 //    tcHandlingTask->createTask();
     canTestTask->createTask();
-
+    canGatekeeperTask->createTask();
     vTaskStartScheduler();
 
     /**
@@ -79,7 +80,7 @@ extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
             Error_Handler();
         }
 
-        // logMessage(rxFifo0, rxHeader0, ActiveBus::Main);
+         logMessage(CAN::rxFifo0, CAN::rxHeader0, CAN::Main);
 
 
         if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK) {

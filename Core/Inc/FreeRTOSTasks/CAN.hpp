@@ -14,7 +14,6 @@ public:
     void execute();
 
     CANTestTask() : Task("CAN Test") {
-        CAN::initialize();
     }
 
 

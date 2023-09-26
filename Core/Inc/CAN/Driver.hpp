@@ -91,7 +91,7 @@ namespace CAN {
      * @param dlc The data length code
      * @return The length of the message in bytes
      */
-    uint8_t convertDlcToLength(uint8_t dlc);
+    uint8_t convertDlcToLength(uint32_t dlc);
 
     /**
      * Encodes the length of the message body to the smallest data length code that it fits in.
@@ -99,7 +99,7 @@ namespace CAN {
      * @param length The length of the message in bytes
      * @return The data length code
      */
-    uint8_t convertLengthToDLC(uint8_t length);
+    void convertLengthToDLC(uint8_t length);
 
     /**
      * Transforms a frame ID to conform to the CAN Standard.
@@ -123,7 +123,7 @@ namespace CAN {
      * a 32-bit ID to accomodate the shift.
      */
     inline uint32_t readId(uint32_t id) {
-        return id >> 18;
+        return id;
     }
 
     /**
@@ -131,6 +131,8 @@ namespace CAN {
      * @param message The message to be sent.
      */
     void send(const CAN::Frame &message);
+
+    void configureTxHeader();
 
     /**
      * Converts an CANBuffer_t & FDCAN_Header objects into a CAN::Frame.
