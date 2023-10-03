@@ -11,7 +11,7 @@ void CAN::configCANFilter() {
     sFilterConfig.FilterIndex = 0;                          // In case of configuring multiple filters adapt accordingly
     sFilterConfig.FilterType = FDCAN_FILTER_RANGE;         // Filter type
     sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;    // Where the messages that pass from the filter will go
-    sFilterConfig.FilterID1 = 0x380;
+    sFilterConfig.FilterID1 = 0x382;
     sFilterConfig.FilterID2 = 0x3FF;
     sFilterConfig.RxBufferIndex = 0;
     if (HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig) != HAL_OK) {
@@ -114,7 +114,7 @@ void CAN::convertLengthToDLC(uint8_t length) {
 }
 
 void CAN::send(const CAN::Frame &message) {
-
+    CAN::txHeader.Identifier = message.id;
     memset(CAN::txFifo.data(), 0, CANMessageSize);
 
     std::copy(message.data.begin(), message.data.end(), txFifo.data());
@@ -126,7 +126,6 @@ void CAN::send(const CAN::Frame &message) {
 }
 
 void CAN::configureTxHeader() {
-    CAN::txHeader.Identifier = CANIdentifier;
     CAN::txHeader.IdType = FDCAN_STANDARD_ID;
     CAN::txHeader.TxFrameType = FDCAN_DATA_FRAME;
     CAN::txHeader.DataLength = FDCAN_DLC_BYTES_64;
