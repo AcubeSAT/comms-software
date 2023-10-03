@@ -11,9 +11,9 @@ void CANTestTask::execute() {
     for (uint8_t idx = 0; idx < CAN::Frame::MaxDataLength; idx++) {
         message.push_back(idx);
     }
-    String<ECSSMaxMessageSize> PEOS("Hello World! 1");
+    String<ECSSMaxMessageSize> testPayload("Hello World! 1");
     while (true) {
-        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, PEOS.data(), false);
+        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload.data(), false);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 
