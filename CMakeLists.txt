@@ -1,7 +1,7 @@
 #THIS FILE IS AUTO GENERATED FROM THE TEMPLATE! DO NOT CHANGE!
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION 1)
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.26)
 
 # specify cross-compilers and tools
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
@@ -101,7 +101,6 @@ add_link_options(-T ${LINKER_SCRIPT})
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${PHYSICAL_LAYER} ${DATA_LAYER} ${DRIVERS})
 add_subdirectory(Core/lib/ecss-services EXCLUDE_FROM_ALL)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common)
-#target_compile_definitions(common_cross PUBLIC STM32 LOGLEVEL_TRACE)
 add_compile_definitions(STM32 LOGLEVEL_TRACE)
 link_directories(Drivers/CMSIS/Lib/GCC)
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE ${CMSIS_DSP})

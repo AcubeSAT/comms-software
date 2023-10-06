@@ -2,12 +2,12 @@
 
 #include "Helpers/Parameter.hpp"
 #include "Platform/COMMS_Definitions.hpp"
-#include "PlatformParameters.hpp"
+#include "PeakSatParameters.hpp"
 
 namespace CommonParameters {
 
-    inline auto &time = PlatformParameters::commsMCUTime;
-    inline auto &useUART = PlatformParameters::commsUseUART;
+    inline auto &time = PeakSatParameters::commsMCUTime;
+    inline auto &useUART = PeakSatParameters::commsUseUART;
 
 
 }

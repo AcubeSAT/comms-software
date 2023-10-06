@@ -1,9 +1,8 @@
-#ifndef ECSS_SERVICES_PLATFORMPARAMETERS_HPP
-#define ECSS_SERVICES_PLATFORMPARAMETERS_HPP
+#pragma once
 
 #include "Helpers/Parameter.hpp"
 
-namespace PlatformParameters {
+namespace PeakSatParameters {
     /**
      * Definition of enumeration class that will be used to describe the status of the Antenna Deployment
      */
@@ -154,5 +153,3 @@ namespace PlatformParameters {
 
 
 }
-
-#endif

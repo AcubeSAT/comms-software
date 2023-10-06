@@ -10,7 +10,7 @@ void TemperatureSensorsTask::execute() {
         if (temperature.first == TMP117::Error::NoErrors){
             Logger::format.precision(LoggerPrecision);
             LOG_DEBUG << "Temperature at address " << TMP117::I2CAddress::Address1 << " is " << temperature.second;
-            PlatformParameters::commsPCBTemperature1.setValue(temperature.second);
+            PeakSatParameters::commsPCBTemperature1.setValue(temperature.second);
         } else {
             LOG_ERROR << "Error getting temperature";
         }

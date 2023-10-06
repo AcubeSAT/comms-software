@@ -1,6 +1,10 @@
 #pragma once
+
 #include "Task.hpp"
 #include "COBS.hpp"
+
+extern DMA_HandleTypeDef hdma_usart3_rx;
+extern UART_HandleTypeDef huart3;
 
 class TCHandlingTask : public Task {
 private:
@@ -8,16 +12,22 @@ private:
     const static inline uint16_t TaskStackDepth = 1000;
     StackType_t taskStack[TaskStackDepth];
 
-    etl::vector<uint8_t, DmaBufferSize> RxDmaBuffer;
+    uint8_t RxDmaBuffer[TcCommandSize];
     etl::vector<uint8_t, TcCommandSize> TcCommand;
 
 public:
 
     void execute();
 
-    TCHandlingTask() : Task("TCHandlingTask"){}
+    TCHandlingTask() : Task("TCHandlingTask") {
+        HAL_UART_Receive_DMA(&huart3, RxDmaBuffer, DmaBufferSize);
+    }
 
-    void createTask();
+    void createTask() {
+        xTaskCreateStatic(vClassTask < TCHandlingTask > , this->TaskName,
+                          TCHandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
+                          this->taskStack, &(this->taskBuffer));
+    }
 
 };
 

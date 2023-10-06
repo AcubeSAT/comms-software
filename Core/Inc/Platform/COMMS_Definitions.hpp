@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "Logger_Definitions.hpp"
 #include "Parameters.hpp"
+#include "Definitions.hpp"
 /**
  * Maximum size for a string representation of a service or message type identifier
  */
@@ -34,7 +35,16 @@ inline const uint8_t TcCommandSize = 64;
 /**
  * The size of the allocated buffer for UART DMA
  */
-inline const uint16_t DmaBufferSize = 2*TcCommandSize;
+inline const uint16_t DmaBufferSize = TcCommandSize;
+
+
+/**
+ * CAN Definitions
+ */
+
+inline const uint8_t CANMessageSize = 64;
+
+inline const uint32_t CANIdentifier = CAN::NodeIDs::COMMS;
 
 
 
