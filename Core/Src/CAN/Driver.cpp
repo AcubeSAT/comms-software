@@ -9,7 +9,7 @@ void CAN::configCANFilter() {
 
     sFilterConfig.IdType = FDCAN_STANDARD_ID;          // Standard or extended id
     sFilterConfig.FilterIndex = 0;                          // In case of configuring multiple filters adapt accordingly
-    sFilterConfig.FilterType = FDCAN_FILTER_RANGE;         // Filter type
+    sFilterConfig.FilterType = FDCAN_FILTER_RANGE_NO_EIDM;         // Filter type
     sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;    // Where the messages that pass from the filter will go
     sFilterConfig.FilterID1 = 0x382;
     sFilterConfig.FilterID2 = 0x3FF;
@@ -82,7 +82,18 @@ void CAN::logMessage(const CAN::CANBuffer_t &rxBuf, FDCAN_RxHeaderTypeDef RxHead
         message.append(" ");
     }
     LOG_INFO << message.c_str();
+}
 
+void CAN::logMessage(const CAN::Frame frame) {
+    auto message = String<ECSSMaxStringSize>("CAN Message: ");
+    message.append("ID : ");
+    etl::to_string(frame.id, message, etl::format_spec().hex(), true);
+    message.append(" Data : ");
+    for (uint8_t idx = 0; idx < frame.MaxDataLength; idx++) {
+        etl::to_string(*(frame.data.data() + idx), message, true);
+        message.append(" ");
+    }
+    LOG_INFO << message.c_str();
 }
 
 uint8_t CAN::convertDlcToLength(uint32_t dlc) {
@@ -137,15 +148,15 @@ void CAN::configureTxHeader() {
 }
 
 
-Frame CAN::getFrame(const CAN::CANBuffer_t *TxFifo) {
+Frame CAN::getFrame(const CAN::CANBuffer_t *data, uint32_t id) {
 
 
-    CAN::Frame frame;
+    CAN::Frame frame=Frame();
 
-    frame.id = readId(CAN::txHeader.Identifier);
+    frame.id = id;
 
-    for (uint8_t idx = 0; idx < TxFifo->size(); idx++) {
-        frame.data.insert_at(idx, *(TxFifo->data() + idx));
+    for (uint8_t idx = 0; idx < CANMessageSize; idx++) {
+        frame.data.insert_at(idx, *(data->data() + idx));
     }
 
     return frame;

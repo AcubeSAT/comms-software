@@ -83,7 +83,9 @@ namespace CAN {
      * Logs messages that are in the Rx buffer
      * @param rxBuf The RX Buffer that the messages are stored
      */
-    void logMessage(const CANBuffer_t &rxBuf, FDCAN_RxHeaderTypeDef RxHeader, ActiveBus incomingBus);
+    void logMessage(const CAN::CANBuffer_t &rxBuf, FDCAN_RxHeaderTypeDef RxHeader, ActiveBus incomingBus);
+
+    void logMessage(const CAN::Frame frame);
 
     /**
      * Decodes the data length code to get the largest expected size of the message.
@@ -140,6 +142,7 @@ namespace CAN {
      * @param RxHeader The incoming header.
      * @return A CAN::Frame.
      */
-    CAN::Frame getFrame(const CANBuffer_t *txBuffer);
+    CAN::Frame getFrame(const CAN::CANBuffer_t *data, uint32_t id);
+
 }
 

@@ -44,7 +44,7 @@ inline const uint16_t DmaBufferSize = TcCommandSize;
 
 inline const uint8_t CANMessageSize = 64;
 
-inline const uint32_t CANIdentifier = CAN::NodeIDs::OBC;
+inline const uint32_t CANIdentifier = CAN::NodeIDs::COMMS;
 
 
 

@@ -47,17 +47,17 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-//    mcuTemperatureTask.emplace();
-//    temperatureSensorsTask.emplace();
-//    timeKeepingTask.emplace();
+    mcuTemperatureTask.emplace();
+    temperatureSensorsTask.emplace();
+    timeKeepingTask.emplace();
 //    tcHandlingTask.emplace();
     canTestTask.emplace();
     canGatekeeperTask.emplace();
 
     uartGatekeeperTask->createTask();
-//    temperatureSensorsTask->createTask();
-//    mcuTemperatureTask->createTask();
-//    timeKeepingTask->createTask();
+    temperatureSensorsTask->createTask();
+    mcuTemperatureTask->createTask();
+    timeKeepingTask->createTask();
 //    tcHandlingTask->createTask();
     canTestTask->createTask();
     canGatekeeperTask->createTask();
@@ -80,8 +80,9 @@ extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
             Error_Handler();
         }
 
-         logMessage(CAN::rxFifo0, CAN::rxHeader0, CAN::Main);
-
+        CAN::rxFifo0.repair();
+        CAN::Frame newFrame = CAN::getFrame(&CAN::rxFifo0, CAN::rxHeader0.Identifier);
+        canGatekeeperTask->addToIncoming(newFrame);
 
         if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK) {
             /* Notification Error */

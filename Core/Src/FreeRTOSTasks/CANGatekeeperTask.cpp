@@ -2,6 +2,7 @@
 #include "CAN/Frame.hpp"
 #include "CANGatekeeperTask.hpp"
 
+
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     CAN::initialize();
 
@@ -15,11 +16,14 @@ CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
 }
 
 void CANGatekeeperTask::execute() {
-    CAN::Frame message = {};
+    CAN::Frame out_message = {};
+    CAN::Frame in_message = {};
 
     while (true) {
-        xQueueReceive(outgoingQueue, &message, portMAX_DELAY);
-
-        CAN::send(message);
+        xQueueReceive(outgoingQueue, &out_message, portMAX_DELAY);
+        CAN::send(out_message);
+        if(xQueueReceive(incomingQueue, &in_message, portMAX_DELAY) == pdTRUE){
+            CAN::TPProtocol::processSingleFrame(in_message);
+        }
     }
 }
