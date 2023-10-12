@@ -26,55 +26,65 @@ namespace AT86RF215 {
 }
 
 extern "C" void main_cpp(){
-    //
     uartGatekeeperTask.emplace();
-    //mcuTemperatureTask.emplace();
-    //temperatureSensorsTask.emplace();
-    //timeKeepingTask.emplace();
+    // mcuTemperatureTask.emplace();
+    // temperatureSensorsTask.emplace();
+    // timeKeepingTask.emplace();
     tcHandlingTask.emplace();
-    //canTestTask.emplace();
-    //canGatekeeperTask.emplace();
+    // canTestTask.emplace();
+    // canGatekeeperTask.emplace();
     uartGatekeeperTask->createTask();
-    //temperatureSensorsTask->createTask();
-    //mcuTemperatureTask->createTask();
-    //timeKeepingTask->createTask();
+    // temperatureSensorsTask->createTask();
+    // mcuTemperatureTask->createTask();
+    // timeKeepingTask->createTask();
     tcHandlingTask->createTask();
-    //canTestTask->createTask();
-    //canGatekeeperTask->createTask();
+    // canTestTask->createTask();
+    // canGatekeeperTask->createTask();
     vTaskStartScheduler();
-
     for(;;);
     return;
 }
 
+// when this is called the UART is on idle mode, so the rxDmaPointer have some data //
 extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
-    // when this is called the UART is on idle mode, so the rxDmaPointer have some data //
     BaseType_t xHigherPriorityTaskWoken;
-    xHigherPriorityTaskWoken = pdFALSE;
-    const TickType_t xTicksToWait = pdMS_TO_TICKS(100);
-    // declare xStatus to see if the xQueueSendToBack works correctly //
-    BaseType_t xStatus;
-    // transfer the data of the DMA to the freeRTOS queue in order to the TcCommand buffer to have access //
-    xStatus = xQueueSendToBackFromISR(tcHandlingTask->xQueue, tcHandlingTask->getRxDmaPointer(), &xHigherPriorityTaskWoken);
-    if(xStatus == pdPASS){
-        LOG_DEBUG << "send data to the queue was successful";
-    }
-    else
-        LOG_DEBUG << "error with sending data to the queue";
-    // start the DMA again //
-    HAL_UARTEx_ReceiveToIdle_DMA(&huart3, tcHandlingTask->getRxDmaPointer(), TcCommandSize);
-
-
+    /* As always, xHigherPriorityTaskWoken is initialized to pdFALSE to be able to
+    detect it getting set to pdTRUE inside an interrupt function */
+   xHigherPriorityTaskWoken = pdFALSE;
+   // declare xStatus to see if the xQueueSendToBack works correctly //
+   BaseType_t xStatus;
+   // transfer the data of the DMA to the freeRTOS queue in order to the TcCommand buffer to have access //
+   xStatus = xQueueSendToBackFromISR(tcHandlingTask->xQueue, tcHandlingTask->RxDmaBuffer.data(), &xHigherPriorityTaskWoken);
+   if(xStatus == pdPASS){
+       LOG_DEBUG << "send data to the queue was successful";
+   }
+   else
+       LOG_DEBUG << "error with sending data to the queue";
+   // clear the buffer //
+   tcHandlingTask->RxDmaBuffer.clear();
+   // start the DMA again //
+   HAL_UARTEx_ReceiveToIdle_DMA(&huart3, tcHandlingTask->RxDmaBuffer.data(), TcCommandSize);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
 extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
-    if ((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET) {
-        /* Retreive Rx messages from RX FIFO0 */
+   if ((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET) {
+       /* Retrieve Rx messages from RX FIFO0 */
         if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CAN::rxHeader0, CAN::rxFifo0.data()) != HAL_OK) {
             /* Reception Error */
             Error_Handler();
         }
-
         CAN::rxFifo0.repair();
         CAN::Frame newFrame = CAN::getFrame(&CAN::rxFifo0, CAN::rxHeader0.Identifier);
         canGatekeeperTask->addToIncoming(newFrame);
@@ -85,7 +95,6 @@ extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
         }
     }
 }
-
 
 /**
  * @brief This function handles EXTI line[15:10] interrupts.
