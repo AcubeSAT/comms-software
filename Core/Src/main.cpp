@@ -16,60 +16,55 @@
 #include "CANGatekeeperTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
-extern UART_HandleTypeDef huart3;
-extern I2C_HandleTypeDef hi2c2;
-extern RTC_HandleTypeDef hrtc;
+// extern UART_HandleTypeDef huart3;
+// extern I2C_HandleTypeDef hi2c2;
+// extern RTC_HandleTypeDef hrtc;
 
-template<class T>
-static void vClassTask(void *pvParameters) {
-    (static_cast<T *>(pvParameters))->execute();
-}
-
-void blinkyTask1(void * pvParameters){
-    for(;;){
-        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-        HAL_Delay(50);
-        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
-        HAL_Delay(50);
-    }
-}
-
-void blinkyTask2(void * pvParameters){
-    for(;;){
-        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-        HAL_Delay(300);
-    }
-}
 
 namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
 }
 
 extern "C" void main_cpp(){
+    //
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
-    timeKeepingTask.emplace();
-//    tcHandlingTask.emplace();
-    canTestTask.emplace();
-    canGatekeeperTask.emplace();
-
+    //mcuTemperatureTask.emplace();
+    //temperatureSensorsTask.emplace();
+    //timeKeepingTask.emplace();
+    tcHandlingTask.emplace();
+    //canTestTask.emplace();
+    //canGatekeeperTask.emplace();
     uartGatekeeperTask->createTask();
-    temperatureSensorsTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
-//    tcHandlingTask->createTask();
-    canTestTask->createTask();
-    canGatekeeperTask->createTask();
+    //temperatureSensorsTask->createTask();
+    //mcuTemperatureTask->createTask();
+    //timeKeepingTask->createTask();
+    tcHandlingTask->createTask();
+    //canTestTask->createTask();
+    //canGatekeeperTask->createTask();
     vTaskStartScheduler();
 
-    /**
-     * Uncomment below and comment above for Led task visualization (for STM32H743)
-     */
-//    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
     for(;;);
     return;
+}
+
+extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
+    // when this is called the UART is on idle mode, so the rxDmaPointer have some data //
+    BaseType_t xHigherPriorityTaskWoken;
+    xHigherPriorityTaskWoken = pdFALSE;
+    const TickType_t xTicksToWait = pdMS_TO_TICKS(100);
+    // declare xStatus to see if the xQueueSendToBack works correctly //
+    BaseType_t xStatus;
+    // transfer the data of the DMA to the freeRTOS queue in order to the TcCommand buffer to have access //
+    xStatus = xQueueSendToBackFromISR(tcHandlingTask->xQueue, tcHandlingTask->getRxDmaPointer(), &xHigherPriorityTaskWoken);
+    if(xStatus == pdPASS){
+        LOG_DEBUG << "send data to the queue was successful";
+    }
+    else
+        LOG_DEBUG << "error with sending data to the queue";
+    // start the DMA again //
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart3, tcHandlingTask->getRxDmaPointer(), TcCommandSize);
+
+
 }
 
 extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
@@ -95,8 +90,7 @@ extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
 /**
  * @brief This function handles EXTI line[15:10] interrupts.
  */
-extern "C" void EXTI15_10_IRQHandler(void) {
+extern "C" void EXTI15_10_IRQHandler(void){
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-
     AT86RF215::transceiver.handle_irq();
 }
