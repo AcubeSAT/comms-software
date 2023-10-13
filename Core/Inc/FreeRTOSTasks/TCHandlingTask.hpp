@@ -17,7 +17,7 @@ This callback will be executed when any of following events occurs :
 for 1 frame time, after last received byte.
 */
 
-#define queue_size 10
+#define queue_length 10
 
 
 extern DMA_HandleTypeDef hdma_usart3_rx;
@@ -32,7 +32,7 @@ private:
     /**
     * Storage area given to freeRTOS to manage the queue items.
     */
-    static inline uint8_t outgoingQueueStorageArea[queue_size  * sizeof(etl::vector<uint8_t, TcCommandSize>)];
+    static inline uint8_t outgoingQueueStorageArea[queue_length  * sizeof(etl::vector<uint8_t, TcCommandSize>)];
     /**
      * stack depth for the freeRTOS
      */
@@ -45,14 +45,17 @@ public:
     * A freeRTOS queue to handle outgoing messages, to keep order in case tasks interrupt each other.
     */
     QueueHandle_t xQueue;
-
     // buffer that holds the data of the DMA //
     // needs to be public in order the callback to have access to that //
     etl::vector<uint8_t, TcCommandSize> RxDmaBuffer;
+    // constructor //
+    TCHandlingTask() : Task("TCHandlingTask") {
+        xQueue = xQueueCreateStatic(queue_length, sizeof(etl::vector<uint8_t, TcCommandSize>),
+                                    outgoingQueueStorageArea,
+                                    &outgoingQueueBuffer);
+    }
     // execute - the while loop //
     void execute();
-    // constructor //
-    TCHandlingTask();
     // task creation //
     void createTask() {
         xTaskCreateStatic(vClassTask < TCHandlingTask > , this->TaskName,
