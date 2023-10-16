@@ -29,17 +29,17 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-     //mcuTemperatureTask.emplace();
-     //temperatureSensorsTask.emplace();
-     //timeKeepingTask.emplace();
+    // mcuTemperatureTask.emplace();
+    // temperatureSensorsTask.emplace();
+    // timeKeepingTask.emplace();
     tcHandlingTask.emplace();
     watchdogTask.emplace();
     // canTestTask.emplace();
     // canGatekeeperTask.emplace();
     uartGatekeeperTask->createTask();
-     //temperatureSensorsTask->createTask();
-     //mcuTemperatureTask->createTask();
-     //timeKeepingTask->createTask();
+    // temperatureSensorsTask->createTask();
+    // mcuTemperatureTask->createTask();
+    // timeKeepingTask->createTask();
     tcHandlingTask->createTask();
     watchdogTask->createTask();
     // canTestTask->createTask();
@@ -51,33 +51,20 @@ extern "C" void main_cpp(){
 
 // when this is called the UART is on idle mode, so the rxDmaPointer have some data //
 extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
+    // Size is used for copying the right size to the TcCommand buffer,
+    // which belongs to the execute() of the tcHandlingTask
+    tcHandlingTask -> Size = Size;
     BaseType_t xHigherPriorityTaskWoken;
-    /* As always, xHigherPriorityTaskWoken is initialized to pdFALSE to be able to
-    detect it getting set to pdTRUE inside an interrupt function */
-   xHigherPriorityTaskWoken = pdFALSE;
 
-   // transfer the data of the DMA to the freeRTOS queue in order to the TcCommand buffer to have access //
-   xQueueSendToBackFromISR(tcHandlingTask->xQueue, &tcHandlingTask->RxDmaBuffer, &xHigherPriorityTaskWoken);
+    // As always, xHigherPriorityTaskWoken is initialized to pdFALSE to be able to
+    // detect it getting set to pdTRUE inside an interrupt function
+    xHigherPriorityTaskWoken = pdFALSE;
+    xTaskNotifyFromISR(tcHandlingTask->taskHandle, 0, eNoAction,  &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 
-    if (xHigherPriorityTaskWoken) {
-        portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-    }
-   // clear the buffer //
-   tcHandlingTask->RxDmaBuffer.clear();
-   // start the DMA again //
-   HAL_UARTEx_ReceiveToIdle_DMA(huart, tcHandlingTask->RxDmaBuffer.data(), TcCommandSize);
+    // start the DMA again to receive the next packet of data //
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart3, tcHandlingTask->RxDmaBuffer.data(), TcCommandSize);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {

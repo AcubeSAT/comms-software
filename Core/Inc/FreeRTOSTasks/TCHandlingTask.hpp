@@ -28,11 +28,11 @@ private:
     /**
     * The variable used to hold the queue's data structure.
     */
-    static inline StaticQueue_t outgoingQueueBuffer; //
+    static inline StaticQueue_t QueueBuffer; //
     /**
     * Storage area given to freeRTOS to manage the queue items.
     */
-    static inline uint8_t outgoingQueueStorageArea[queue_length  * sizeof(etl::vector<uint8_t, TcCommandSize>)];
+    static inline uint8_t QueueStorageArea[queue_length  * sizeof(etl::vector<uint8_t, TcCommandSize>)];
     /**
      * stack depth for the freeRTOS
      */
@@ -48,11 +48,14 @@ public:
     // buffer that holds the data of the DMA //
     // needs to be public in order the callback to have access to that //
     etl::vector<uint8_t, TcCommandSize> RxDmaBuffer;
+    // size of the incoming bytes from the UART //
+    uint16_t Size ;
     // constructor //
     TCHandlingTask() : Task("TCHandlingTask") {
         xQueue = xQueueCreateStatic(queue_length, sizeof(etl::vector<uint8_t, TcCommandSize>),
-                                    outgoingQueueStorageArea,
-                                    &outgoingQueueBuffer);
+                                    &QueueStorageArea[0],
+                                    &QueueBuffer);
+        configASSERT(xQueue);
     }
     // execute - the while loop //
     void execute();
@@ -61,6 +64,8 @@ public:
         xTaskCreateStatic(vClassTask < TCHandlingTask > , this->TaskName,
                           TCHandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
                           this->taskStack, &(this->taskBuffer));
+
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart3, RxDmaBuffer.data(), TcCommandSize);
     }
 };
 
