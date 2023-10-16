@@ -7,6 +7,12 @@ void TCHandlingTask::execute() {
     // Handle of the calling task //
     taskHandle = xTaskGetCurrentTaskHandle();
 
+    // disabling the half buffer interrupt
+    __HAL_DMA_DISABLE_IT(&hdma_usart3_rx, DMA_IT_HT);
+    // disabling the full buffer interrupt
+    __HAL_DMA_DISABLE_IT(&hdma_usart3_rx, DMA_IT_TC);
+
+
     for(;;){
         // Awaiting a notification indicating the arrival of data from the UART //
         xTaskNotifyWait(0, 0, nullptr, portMAX_DELAY);

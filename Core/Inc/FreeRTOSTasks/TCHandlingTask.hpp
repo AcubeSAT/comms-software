@@ -57,7 +57,7 @@ public:
                                     &QueueBuffer);
         configASSERT(xQueue);
     }
-    // execute - the while loop //
+
     void execute();
     // task creation //
     void createTask() {
