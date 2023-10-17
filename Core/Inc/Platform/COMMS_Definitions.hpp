@@ -38,6 +38,7 @@ inline const uint8_t TcCommandSize = 64;
 inline const uint16_t DmaBufferSize = TcCommandSize;
 
 
+
 /**
  * CAN Definitions
  */

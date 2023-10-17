@@ -17,7 +17,6 @@ This callback will be executed when any of following events occurs :
 for 1 frame time, after last received byte.
 */
 
-#define queue_length 10
 
 
 extern DMA_HandleTypeDef hdma_usart3_rx;
@@ -25,14 +24,7 @@ extern UART_HandleTypeDef huart3;
 
 class TCHandlingTask : public Task {
 private:
-    /**
-    * The variable used to hold the queue's data structure.
-    */
-    static inline StaticQueue_t QueueBuffer; //
-    /**
-    * Storage area given to freeRTOS to manage the queue items.
-    */
-    static inline uint8_t QueueStorageArea[queue_length  * sizeof(etl::vector<uint8_t, TcCommandSize>)];
+
     /**
      * stack depth for the freeRTOS
      */
@@ -52,10 +44,7 @@ public:
     uint16_t Size ;
     // constructor //
     TCHandlingTask() : Task("TCHandlingTask") {
-        xQueue = xQueueCreateStatic(queue_length, sizeof(etl::vector<uint8_t, TcCommandSize>),
-                                    &QueueStorageArea[0],
-                                    &QueueBuffer);
-        configASSERT(xQueue);
+
     }
 
     void execute();
