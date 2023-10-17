@@ -1,7 +1,7 @@
 #pragma once
 #include "Task.hpp"
 #include "COBS.hpp"
-#include "queue.h"
+
 /*
 The HAL_UARTEx_ReceiveToIdle_DMA() function allows to handle reception of Data from Hyperterminal
 using DMA and notify application of already received data while the reception is still ongoing.
@@ -33,10 +33,6 @@ private:
     StackType_t taskStack[TaskStackDepth];
 
 public:
-    /**
-    * A freeRTOS queue to handle outgoing messages, to keep order in case tasks interrupt each other.
-    */
-    QueueHandle_t xQueue;
     // buffer that holds the data of the DMA //
     // needs to be public in order the callback to have access to that //
     etl::vector<uint8_t, TcCommandSize> RxDmaBuffer;
