@@ -2,7 +2,7 @@
 #include "Task.hpp"
 #include "COBS.hpp"
 
-/*
+/**
 The HAL_UARTEx_ReceiveToIdle_DMA() function allows to handle reception of Data from Hyperterminal
 using DMA and notify application of already received data while the reception is still ongoing.
 Received characters are handled by DMA and are stored in the user aRXBufferUser buffer.
@@ -17,8 +17,6 @@ This callback will be executed when any of following events occurs :
 for 1 frame time, after last received byte.
 */
 
-
-
 extern DMA_HandleTypeDef hdma_usart3_rx;
 extern UART_HandleTypeDef huart3;
 
@@ -31,26 +29,36 @@ private:
     const static inline uint16_t TaskStackDepth = 1000;
 
     StackType_t taskStack[TaskStackDepth];
+    /**
+    * TcCommand : buffer in which we copy the data from the RxDmaBuffer
+    */
+    etl::vector<uint8_t, TcCommandSize> TcCommand;
 
 public:
-    // buffer that holds the data of the DMA //
-    // needs to be public in order the callback to have access to that //
+    /**
+     *  RxDmaBuffer : buffer that holds the data of the DMA,  needs to be public in order the callback to have access to that
+     */
     etl::vector<uint8_t, TcCommandSize> RxDmaBuffer;
-    // size of the incoming bytes from the UART //
-    uint16_t Size ;
-    // constructor //
-    TCHandlingTask() : Task("TCHandlingTask") {
+    /**
+     * size of the incoming bytes from the UART
+     */
+    uint16_t incomingMessageSize ;
 
+    TCHandlingTask() : Task("TCHandlingTask") {
+        taskHandle = xTaskGetCurrentTaskHandle();
+        // disabling the half buffer interrupt //
+        __HAL_DMA_DISABLE_IT(&hdma_usart3_rx, DMA_IT_HT);
+        // disabling the full buffer interrupt //
+        __HAL_DMA_DISABLE_IT(&hdma_usart3_rx, DMA_IT_TC);
+        HAL_UARTEx_ReceiveToIdle_DMA(&huart3, RxDmaBuffer.data(), TcCommandSize);
     }
 
     void execute();
-    // task creation //
+
     void createTask() {
         xTaskCreateStatic(vClassTask < TCHandlingTask > , this->TaskName,
                           TCHandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
                           this->taskStack, &(this->taskBuffer));
-
-        HAL_UARTEx_ReceiveToIdle_DMA(&huart3, RxDmaBuffer.data(), TcCommandSize);
     }
 };
 

@@ -18,7 +18,9 @@
 
 extern SPI_HandleTypeDef hspi1;
 // extern UART_HandleTypeDef huart3;
+
 // extern I2C_HandleTypeDef hi2c2;
+
 // extern RTC_HandleTypeDef hrtc;
 
 namespace AT86RF215 {
@@ -27,31 +29,54 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
+
     // mcuTemperatureTask.emplace();
+
     // temperatureSensorsTask.emplace();
+
     // timeKeepingTask.emplace();
+
     tcHandlingTask.emplace();
+
     watchdogTask.emplace();
+
     // canTestTask.emplace();
+
     // canGatekeeperTask.emplace();
+
     uartGatekeeperTask->createTask();
+
     // temperatureSensorsTask->createTask();
+
     // mcuTemperatureTask->createTask();
+
     // timeKeepingTask->createTask();
+
     tcHandlingTask->createTask();
+
     watchdogTask->createTask();
+
     // canTestTask->createTask();
+
     // canGatekeeperTask->createTask();
+
     vTaskStartScheduler();
+
     for(;;);
     return;
 }
 
-// when this is called the UART is on idle mode, so the rxDmaPointer have some data //
+/**
+ * HAL_UARTEx_RxEventCallback is a callback function for UART receiving which is enable by the
+ * the call of the function HAL_UARTEx_ReceiveToIdle_DMA().
+ * It is triggered whenever the UART line is IDLE.
+ * @param huart : pointer of type UART_HandleTypeDef
+ * @param Size : incoming size of data in bytes
+ */
 extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
-    // Size is used for copying the right size to the TcCommand buffer,
+    // Size is used for copying the right size of data to the TcCommand buffer,
     // which belongs to the execute() of the tcHandlingTask
-    tcHandlingTask -> Size = Size;
+    tcHandlingTask -> incomingMessageSize = Size;
     BaseType_t xHigherPriorityTaskWoken;
 
     // As always, xHigherPriorityTaskWoken is initialized to pdFALSE to be able to
