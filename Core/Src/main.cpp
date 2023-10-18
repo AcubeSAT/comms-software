@@ -14,6 +14,8 @@
 #include "CAN.hpp"
 #include "stm32h7xx_hal_fdcan.h"
 #include "CANGatekeeperTask.hpp"
+#include "StatisticsReportingTask.hpp"
+#include "HouseKeepingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -53,6 +55,8 @@ extern "C" void main_cpp(){
 //    tcHandlingTask.emplace();
     canTestTask.emplace();
     canGatekeeperTask.emplace();
+    statisticsReportingTask.emplace();
+    housekeepingTask.emplace();
 
     uartGatekeeperTask->createTask();
     temperatureSensorsTask->createTask();
@@ -61,7 +65,11 @@ extern "C" void main_cpp(){
 //    tcHandlingTask->createTask();
     canTestTask->createTask();
     canGatekeeperTask->createTask();
+    statisticsReportingTask->createTask();
+    housekeepingTask->createTask();
+
     vTaskStartScheduler();
+
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)

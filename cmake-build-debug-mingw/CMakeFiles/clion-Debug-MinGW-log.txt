@@ -1,0 +1,5 @@
+"C:\Program Files\JetBrains\CLion 2023.2.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\tats\Documents\GitHub\comms-software -B C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw
+-- Minimal optimization, debug info included
+-- Configuring done (0.2s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/tats/Documents/GitHub/comms-software/cmake-build-debug-mingw
