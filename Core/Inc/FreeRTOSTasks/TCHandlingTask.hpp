@@ -24,23 +24,23 @@ class TCHandlingTask : public Task {
 private:
 
     /**
-     * stack depth for the freeRTOS
+     *  Stack depth for the freeRTOS
      */
     const static inline uint16_t TaskStackDepth = 1000;
 
     StackType_t taskStack[TaskStackDepth];
     /**
-    * TcCommand : buffer in which we copy the data from the RxDmaBuffer
+    *  Buffer in which we copy the data from the RxDmaBuffer
     */
     etl::vector<uint8_t, TcCommandSize> TcCommand;
 
 public:
     /**
-     *  RxDmaBuffer : buffer that holds the data of the DMA,  needs to be public in order the callback to have access to that
+     *  Buffer that holds the data of the DMA,  needs to be public in order the callback to have access to that
      */
     etl::vector<uint8_t, TcCommandSize> RxDmaBuffer;
     /**
-     * size of the incoming bytes from the UART
+     *  Size of the incoming bytes from the UART
      */
     uint16_t incomingMessageSize ;
 

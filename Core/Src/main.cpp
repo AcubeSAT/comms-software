@@ -29,36 +29,22 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-
-    // mcuTemperatureTask.emplace();
-
-    // temperatureSensorsTask.emplace();
-
-    // timeKeepingTask.emplace();
-
+    mcuTemperatureTask.emplace();
+    temperatureSensorsTask.emplace();
+    timeKeepingTask.emplace();
     tcHandlingTask.emplace();
-
     watchdogTask.emplace();
-
-    // canTestTask.emplace();
-
-    // canGatekeeperTask.emplace();
+    canTestTask.emplace();
+    canGatekeeperTask.emplace();
 
     uartGatekeeperTask->createTask();
-
-    // temperatureSensorsTask->createTask();
-
-    // mcuTemperatureTask->createTask();
-
-    // timeKeepingTask->createTask();
-
+    temperatureSensorsTask->createTask();
+    mcuTemperatureTask->createTask();
+    timeKeepingTask->createTask();
     tcHandlingTask->createTask();
-
     watchdogTask->createTask();
-
-    // canTestTask->createTask();
-
-    // canGatekeeperTask->createTask();
+    canTestTask->createTask();
+    canGatekeeperTask->createTask();
 
     vTaskStartScheduler();
 
