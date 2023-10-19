@@ -140,7 +140,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/all: Core/lib/ecss-services/CMakeFiles/comm
 
 # Build rule for subdir invocation for target.
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 50
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 51
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 0
 .PHONY : CMakeFiles/STM32H7A3ZIQSetup.elf.dir/rule
@@ -187,12 +187,12 @@ Core/lib/ecss-services/CMakeFiles/check.dir/clean:
 Core/lib/ecss-services/CMakeFiles/common.dir/all:
 	$(MAKE) $(MAKESILENT) -f Core\lib\ecss-services\CMakeFiles\common.dir\build.make Core/lib/ecss-services/CMakeFiles/common.dir/depend
 	$(MAKE) $(MAKESILENT) -f Core\lib\ecss-services\CMakeFiles\common.dir\build.make Core/lib/ecss-services/CMakeFiles/common.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=73,74,75,76,77,78,79,80,81,82 "Built target common"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=73,74,75,76,77,78,79,80,81,82,83 "Built target common"
 .PHONY : Core/lib/ecss-services/CMakeFiles/common.dir/all
 
 # Build rule for subdir invocation for target.
 Core/lib/ecss-services/CMakeFiles/common.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Core/lib/ecss-services/CMakeFiles/common.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 0
 .PHONY : Core/lib/ecss-services/CMakeFiles/common.dir/rule
@@ -213,7 +213,7 @@ Core/lib/ecss-services/CMakeFiles/common.dir/clean:
 Core/lib/ecss-services/CMakeFiles/ecss_services.dir/all: Core/lib/ecss-services/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f Core\lib\ecss-services\CMakeFiles\ecss_services.dir\build.make Core/lib/ecss-services/CMakeFiles/ecss_services.dir/depend
 	$(MAKE) $(MAKESILENT) -f Core\lib\ecss-services\CMakeFiles\ecss_services.dir\build.make Core/lib/ecss-services/CMakeFiles/ecss_services.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=83,84,85,86,87 "Built target ecss_services"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=84,85,86,87 "Built target ecss_services"
 .PHONY : Core/lib/ecss-services/CMakeFiles/ecss_services.dir/all
 
 # Build rule for subdir invocation for target.
@@ -236,9 +236,9 @@ Core/lib/ecss-services/CMakeFiles/ecss_services.dir/clean:
 # Target rules for target Core/lib/ecss-services/CMakeFiles/tests.dir
 
 # All Build rule for target.
-Core/lib/ecss-services/CMakeFiles/tests.dir/all: Core/lib/ecss-services/CMakeFiles/common.dir/all
 Core/lib/ecss-services/CMakeFiles/tests.dir/all: Core/lib/ecss-services/lib/Catch2/src/CMakeFiles/Catch2.dir/all
 Core/lib/ecss-services/CMakeFiles/tests.dir/all: Core/lib/ecss-services/lib/Catch2/src/CMakeFiles/Catch2WithMain.dir/all
+Core/lib/ecss-services/CMakeFiles/tests.dir/all: Core/lib/ecss-services/CMakeFiles/common.dir/all
 	$(MAKE) $(MAKESILENT) -f Core\lib\ecss-services\CMakeFiles\tests.dir\build.make Core/lib/ecss-services/CMakeFiles/tests.dir/depend
 	$(MAKE) $(MAKESILENT) -f Core\lib\ecss-services\CMakeFiles\tests.dir\build.make Core/lib/ecss-services/CMakeFiles/tests.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=88,89,90,91,92,93,94,95,96,97,98,99,100 "Built target tests"
@@ -246,7 +246,7 @@ Core/lib/ecss-services/CMakeFiles/tests.dir/all: Core/lib/ecss-services/lib/Catc
 
 # Build rule for subdir invocation for target.
 Core/lib/ecss-services/CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 55
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 56
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 Core/lib/ecss-services/CMakeFiles/tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles 0
 .PHONY : Core/lib/ecss-services/CMakeFiles/tests.dir/rule

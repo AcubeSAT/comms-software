@@ -750,6 +750,9 @@
 		<Unit filename="C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp">
 			<Option target="STM32H7A3ZIQSetup.elf"/>
 		</Unit>
+		<Unit filename="C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp">
+			<Option target="STM32H7A3ZIQSetup.elf"/>
+		</Unit>
 		<Unit filename="C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp">
 			<Option target="STM32H7A3ZIQSetup.elf"/>
 		</Unit>

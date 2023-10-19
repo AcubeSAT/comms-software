@@ -236,10 +236,24 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TemperatureSensorsTa
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.s"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\TemperatureSensorsTask.cpp -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\TemperatureSensorsTask.cpp.s
 
+CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
+CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp
+CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj"
+	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\TimeBasedScheduling.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\TimeBasedScheduling.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\TimeBasedScheduling.cpp
+
+CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.i"
+	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\TimeBasedScheduling.cpp > CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\TimeBasedScheduling.cpp.i
+
+CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.s"
+	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\TimeBasedScheduling.cpp -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\TimeBasedScheduling.cpp.s
+
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\TimeKeepingTask.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\TimeKeepingTask.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\TimeKeepingTask.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.i: cmake_force
@@ -253,7 +267,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\UARTGatekeeperTask.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\UARTGatekeeperTask.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\UARTGatekeeperTask.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.i: cmake_force
@@ -267,7 +281,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/WatchdogTask.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\WatchdogTask.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\WatchdogTask.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\WatchdogTask.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.i: cmake_force
@@ -281,7 +295,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.s: 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/FreeRTOSTasks/txUHFTask.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\txUHFTask.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\FreeRTOSTasks\txUHFTask.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\FreeRTOSTasks\txUHFTask.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.i: cmake_force
@@ -295,7 +309,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/txUHFTask.cpp.s: cma
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/ErrorHandler.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\ErrorHandler.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\ErrorHandler.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\ErrorHandler.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.i: cmake_force
@@ -309,7 +323,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/ErrorHandler.cpp.s: cmake
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/Logger.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Logger.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Logger.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\Logger.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.i: cmake_force
@@ -323,7 +337,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Logger.cpp.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/Parameters/BootCounter.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Parameters\BootCounter.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Parameters\BootCounter.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\Parameters\BootCounter.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cpp.i: cmake_force
@@ -337,7 +351,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Parameters/BootCounter.cp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/Service.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Service.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Service.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\Service.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.i: cmake_force
@@ -351,7 +365,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Service.cpp.s: cmake_forc
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingService.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/Services/HousekeepingService.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingService.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingService.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingService.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\HousekeepingService.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\HousekeepingService.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\Services\HousekeepingService.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingService.cpp.i: cmake_force
@@ -365,7 +379,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/HousekeepingServ
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/Services/ParameterService.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\ParameterService.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\ParameterService.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\Services\ParameterService.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService.cpp.i: cmake_force
@@ -379,7 +393,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterService
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatisticsService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatisticsService.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/Services/ParameterStatisticsService.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatisticsService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatisticsService.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatisticsService.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatisticsService.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\ParameterStatisticsService.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\ParameterStatisticsService.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\Services\ParameterStatisticsService.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatisticsService.cpp.i: cmake_force
@@ -393,7 +407,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/ParameterStatist
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\TimeBasedSchedulingService.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\Services\TimeBasedSchedulingService.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\Services\TimeBasedSchedulingService.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedulingService.cpp.i: cmake_force
@@ -407,7 +421,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/Services/TimeBasedSchedul
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/TaskInitialization.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\TaskInitialization.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\TaskInitialization.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\TaskInitialization.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.i: cmake_force
@@ -421,7 +435,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TaskInitialization.cpp.s:
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/Platform/TimeGetter.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\TimeGetter.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\Platform\TimeGetter.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\Platform\TimeGetter.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.i: cmake_force
@@ -435,7 +449,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/Platform/TimeGetter.cpp.s: cmake_f
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/main.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\main.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\main.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\main.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.i: cmake_force
@@ -449,7 +463,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.c.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/main.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\main.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\main.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\main.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.i: cmake_force
@@ -463,7 +477,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/main.cpp.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/stm32h7xx_hal_msp.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\stm32h7xx_hal_msp.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\stm32h7xx_hal_msp.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\stm32h7xx_hal_msp.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.i: cmake_force
@@ -477,7 +491,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_msp.c.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/stm32h7xx_hal_timebase_tim.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\stm32h7xx_hal_timebase_tim.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\stm32h7xx_hal_timebase_tim.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\stm32h7xx_hal_timebase_tim.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.i: cmake_force
@@ -491,7 +505,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_hal_timebase_tim.c.s: cm
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/stm32h7xx_it.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\stm32h7xx_it.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\stm32h7xx_it.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\stm32h7xx_it.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.i: cmake_force
@@ -505,7 +519,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/stm32h7xx_it.c.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/syscalls.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\syscalls.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\syscalls.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\syscalls.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.i: cmake_force
@@ -519,7 +533,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/syscalls.c.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/sysmem.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\sysmem.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\sysmem.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\sysmem.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.i: cmake_force
@@ -533,7 +547,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/sysmem.c.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Src/system_stm32h7xx.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\system_stm32h7xx.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Src\system_stm32h7xx.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Src\system_stm32h7xx.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.i: cmake_force
@@ -546,7 +560,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/system_stm32h7xx.c.s: cmake_force
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Startup/startup_stm32h7a3zitxq.s.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Startup/startup_stm32h7a3zitxq.s.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/Startup/startup_stm32h7a3zitxq.s
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building ASM object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Startup/startup_stm32h7a3zitxq.s.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building ASM object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Startup/startup_stm32h7a3zitxq.s.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\Startup\startup_stm32h7a3zitxq.s.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\Startup\startup_stm32h7a3zitxq.s
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Startup/startup_stm32h7a3zitxq.s.i: cmake_force
@@ -560,7 +574,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Startup/startup_stm32h7a3zitxq.s.s: cm
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\CMSIS_RTOS_V2\cmsis_os2.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c.i: cmake_force
@@ -574,7 +588,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2/cmsi
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/croutine.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\croutine.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\croutine.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\croutine.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.i: cmake_force
@@ -588,7 +602,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/croutine.c.s: cmak
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/event_groups.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\event_groups.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\event_groups.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\event_groups.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.i: cmake_force
@@ -602,7 +616,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/event_groups.c.s: 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/list.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\list.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\list.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\list.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.i: cmake_force
@@ -616,7 +630,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/list.c.s: cmake_fo
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.i: cmake_force
@@ -630,7 +644,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/GCC/ARM_C
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\portable\MemMang\heap_4.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\portable\MemMang\heap_4.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\portable\MemMang\heap_4.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/heap_4.c.i: cmake_force
@@ -644,7 +658,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/portable/MemMang/h
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/queue.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\queue.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\queue.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\queue.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.i: cmake_force
@@ -658,7 +672,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/queue.c.s: cmake_f
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/stream_buffer.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\stream_buffer.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\stream_buffer.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\stream_buffer.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.i: cmake_force
@@ -672,7 +686,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/stream_buffer.c.s:
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/tasks.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\tasks.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\tasks.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\tasks.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.i: cmake_force
@@ -686,7 +700,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/tasks.c.s: cmake_f
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/FreeRTOS/Source/timers.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\timers.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\FreeRTOS\Source\timers.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\FreeRTOS\Source\timers.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.i: cmake_force
@@ -700,7 +714,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/FreeRTOS/Source/timers.c.s: cmake_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/cobs-c/cobs.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\cobs-c\cobs.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\cobs-c\cobs.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\cobs-c\cobs.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.i: cmake_force
@@ -714,7 +728,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/cobs-c/cobs.c.s: cmake_force
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal.c.i: cmake_force
@@ -728,7 +742,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc.c.i: cmake_force
@@ -742,7 +756,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_adc_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_adc_ex.c.i: cmake_force
@@ -756,7 +770,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_cortex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_cortex.c.i: cmake_force
@@ -770,7 +784,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma.c.i: cmake_force
@@ -784,7 +798,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dma_ex.c.i: cmake_force
@@ -798,7 +812,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_exti.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_exti.c.i: cmake_force
@@ -812,7 +826,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_fdcan.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_fdcan.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_fdcan.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c.i: cmake_force
@@ -826,7 +840,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash.c.i: cmake_force
@@ -840,7 +854,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_flash_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_flash_ex.c.i: cmake_force
@@ -854,7 +868,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_gpio.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_gpio.c.i: cmake_force
@@ -868,7 +882,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_hsem.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hsem.c.i: cmake_force
@@ -882,7 +896,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c.c.i: cmake_force
@@ -896,7 +910,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_i2c_ex.c.i: cmake_force
@@ -910,7 +924,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_iwdg.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_iwdg.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_iwdg.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_iwdg.c.i: cmake_force
@@ -924,7 +938,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_mdma.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c.i: cmake_force
@@ -938,7 +952,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c.i: cmake_force
@@ -952,7 +966,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c.i: cmake_force
@@ -966,7 +980,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c.i: cmake_force
@@ -980,7 +994,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rcc_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c.i: cmake_force
@@ -994,7 +1008,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc.c.i: cmake_force
@@ -1008,7 +1022,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_rtc_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rtc_ex.c.i: cmake_force
@@ -1022,7 +1036,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c.i: cmake_force
@@ -1036,7 +1050,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_spi_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c.i: cmake_force
@@ -1050,7 +1064,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c.i: cmake_force
@@ -1064,7 +1078,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_tim_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c.i: cmake_force
@@ -1078,7 +1092,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c.i: cmake_force
@@ -1092,7 +1106,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.obj: C:/Users/tats/Documents/GitHub/comms-software/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building C object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR19DD~1.EXE $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c.obj -c C:\Users\tats\Documents\GitHub\comms-software\Drivers\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_uart_ex.c
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c.i: cmake_force
@@ -1106,7 +1120,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/BCHDecoder.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\BCHDecoder.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\BCHDecoder.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\BCHDecoder.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.i: cmake_force
@@ -1120,7 +1134,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/BCHDecoder.cpp.
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\ConvolutionalEncoder.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\ConvolutionalEncoder.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\ConvolutionalEncoder.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEncoder.cpp.i: cmake_force
@@ -1134,7 +1148,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/ConvolutionalEn
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/FMTranscoder.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\FMTranscoder.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\FMTranscoder.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\FMTranscoder.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cpp.i: cmake_force
@@ -1148,7 +1162,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/FMTranscoder.cp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/GMSKTranscoder.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\GMSKTranscoder.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\GMSKTranscoder.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\GMSKTranscoder.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.cpp.i: cmake_force
@@ -1162,7 +1176,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/GMSKTranscoder.
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/LDPCEncoder.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\LDPCEncoder.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\LDPCEncoder.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\LDPCEncoder.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp.i: cmake_force
@@ -1176,7 +1190,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/LDPCEncoder.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/OQPSKTranscoder.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\OQPSKTranscoder.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\OQPSKTranscoder.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\OQPSKTranscoder.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder.cpp.i: cmake_force
@@ -1190,7 +1204,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/OQPSKTranscoder
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/fft.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/fft.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/Platform/x86/fft.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/fft.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/fft.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/fft.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/fft.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\Platform\x86\fft.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\Platform\x86\fft.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\Platform\x86\fft.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/fft.cpp.i: cmake_force
@@ -1204,7 +1218,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Platform/x86/ff
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/Synchronizer.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\Synchronizer.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\Synchronizer.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\Synchronizer.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cpp.i: cmake_force
@@ -1218,7 +1232,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/Synchronizer.cp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/physical_layer/src/filter.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\filter.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\physical_layer\src\filter.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\physical_layer\src\filter.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.i: cmake_force
@@ -1232,7 +1246,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/physical_layer/src/filter.cpp.s: c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\CCSDSChannel.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\CCSDSChannel.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\CCSDSChannel.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSChannel.cpp.i: cmake_force
@@ -1246,7 +1260,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSC
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\CCSDSServiceChannel.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\CCSDSServiceChannel.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\CCSDSServiceChannel.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSServiceChannel.cpp.i: cmake_force
@@ -1260,7 +1274,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CCSDSS
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\CLCW.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\CLCW.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\CLCW.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.cpp.i: cmake_force
@@ -1274,7 +1288,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/CLCW.c
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\FrameAcceptanceReporting.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\FrameAcceptanceReporting.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\FrameAcceptanceReporting.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameAcceptanceReporting.cpp.i: cmake_force
@@ -1288,7 +1302,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameA
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\FrameOperationProcedure.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\FrameOperationProcedure.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\FrameOperationProcedure.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameOperationProcedure.cpp.i: cmake_force
@@ -1302,7 +1316,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/FrameO
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\MemoryPool.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\MemoryPool.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\MemoryPool.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/MemoryPool.cpp.i: cmake_force
@@ -1316,7 +1330,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Memory
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/Packet.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\Packet.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\Packet.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\Packet.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet.cpp.i: cmake_force
@@ -1330,7 +1344,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Packet
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\TransferFrameTC.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\TransferFrameTC.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\TransferFrameTC.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/TransferFrameTC.cpp.i: cmake_force
@@ -1344,7 +1358,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/Transf
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\logOperators.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\ccsds-telemetry-packets\src\logOperators.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\ccsds-telemetry-packets\src\logOperators.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOperators.cpp.i: cmake_force
@@ -1358,7 +1372,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/ccsds-telemetry-packets/src/logOpe
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\component-drivers\AT86RF215\src\at86rf215.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\component-drivers\AT86RF215\src\at86rf215.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\component-drivers\AT86RF215\src\at86rf215.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at86rf215.cpp.i: cmake_force
@@ -1372,7 +1386,7 @@ CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/AT86RF215/src/at
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/TMP117/src/TMP117.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/flags.make
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/TMP117/src/TMP117.cpp.obj: C:/Users/tats/Documents/GitHub/comms-software/Core/lib/component-drivers/TMP117/src/TMP117.cpp
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/TMP117/src/TMP117.cpp.obj: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/TMP117/src/TMP117.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/TMP117/src/TMP117.cpp.obj"
 	C:\PROGRA~2\ARMGNU~1\12DBAB~1.2RE\bin\AR10B2~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/TMP117/src/TMP117.cpp.obj -MF CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\component-drivers\TMP117\src\TMP117.cpp.obj.d -o CMakeFiles\STM32H7A3ZIQSetup.elf.dir\Core\lib\component-drivers\TMP117\src\TMP117.cpp.obj -c C:\Users\tats\Documents\GitHub\comms-software\Core\lib\component-drivers\TMP117\src\TMP117.cpp
 
 CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/lib/component-drivers/TMP117/src/TMP117.cpp.i: cmake_force
@@ -1397,6 +1411,7 @@ STM32H7A3ZIQSetup_elf_OBJECTS = \
 "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/StatisticsReportingTask.cpp.obj" \
 "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TCHandlingTask.cpp.obj" \
 "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.obj" \
+"CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj" \
 "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj" \
 "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj" \
 "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj" \
@@ -1521,6 +1536,7 @@ STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTas
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/StatisticsReportingTask.cpp.obj
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TCHandlingTask.cpp.obj
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.obj
+STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/WatchdogTask.cpp.obj
@@ -1633,7 +1649,7 @@ STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/build.make
 STM32H7A3ZIQSetup.elf: C:/Users/tats/Documents/GitHub/comms-software/Drivers/CMSIS/Lib/GCC/libarm_cortexM7lfdp_math.a
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/objects1.rsp
 STM32H7A3ZIQSetup.elf: CMakeFiles/STM32H7A3ZIQSetup.elf.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Linking CXX executable STM32H7A3ZIQSetup.elf"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\tats\Documents\GitHub\comms-software\cmake-build-debug-mingw\CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Linking CXX executable STM32H7A3ZIQSetup.elf"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\STM32H7A3ZIQSetup.elf.dir\link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Building C:/Users/tats/Documents/GitHub/comms-software/cmake-build-debug-mingw/STM32H7A3ZIQSetup.hex"
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Building C:/Users/tats/Documents/GitHub/comms-software/cmake-build-debug-mingw/STM32H7A3ZIQSetup.bin"

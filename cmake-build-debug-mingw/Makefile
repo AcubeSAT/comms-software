@@ -494,6 +494,30 @@ Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32H7A3ZIQSetup.elf.dir\build.make CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.s
 .PHONY : Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.s
 
+Core/Src/FreeRTOSTasks/TimeBasedScheduling.obj: Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj
+.PHONY : Core/Src/FreeRTOSTasks/TimeBasedScheduling.obj
+
+# target to build an object file
+Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32H7A3ZIQSetup.elf.dir\build.make CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj
+.PHONY : Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj
+
+Core/Src/FreeRTOSTasks/TimeBasedScheduling.i: Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.i
+.PHONY : Core/Src/FreeRTOSTasks/TimeBasedScheduling.i
+
+# target to preprocess a source file
+Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32H7A3ZIQSetup.elf.dir\build.make CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.i
+.PHONY : Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.i
+
+Core/Src/FreeRTOSTasks/TimeBasedScheduling.s: Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.s
+.PHONY : Core/Src/FreeRTOSTasks/TimeBasedScheduling.s
+
+# target to generate assembly for a file
+Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\STM32H7A3ZIQSetup.elf.dir\build.make CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.s
+.PHONY : Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.s
+
 Core/Src/FreeRTOSTasks/TimeKeepingTask.obj: Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj
 .PHONY : Core/Src/FreeRTOSTasks/TimeKeepingTask.obj
 
@@ -2497,6 +2521,9 @@ help:
 	@echo ... Core/Src/FreeRTOSTasks/TemperatureSensorsTask.obj
 	@echo ... Core/Src/FreeRTOSTasks/TemperatureSensorsTask.i
 	@echo ... Core/Src/FreeRTOSTasks/TemperatureSensorsTask.s
+	@echo ... Core/Src/FreeRTOSTasks/TimeBasedScheduling.obj
+	@echo ... Core/Src/FreeRTOSTasks/TimeBasedScheduling.i
+	@echo ... Core/Src/FreeRTOSTasks/TimeBasedScheduling.s
 	@echo ... Core/Src/FreeRTOSTasks/TimeKeepingTask.obj
 	@echo ... Core/Src/FreeRTOSTasks/TimeKeepingTask.i
 	@echo ... Core/Src/FreeRTOSTasks/TimeKeepingTask.s

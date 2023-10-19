@@ -14,8 +14,10 @@
 #include "CAN.hpp"
 #include "stm32h7xx_hal_fdcan.h"
 #include "CANGatekeeperTask.hpp"
+#include "WatchdogTask.hpp"
 #include "StatisticsReportingTask.hpp"
 #include "HouseKeepingTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -53,20 +55,24 @@ extern "C" void main_cpp(){
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
 //    tcHandlingTask.emplace();
-    canTestTask.emplace();
-    canGatekeeperTask.emplace();
+//    canTestTask.emplace();
+//    canGatekeeperTask.emplace();
+    watchdogTask.emplace();
     statisticsReportingTask.emplace();
     housekeepingTask.emplace();
+    timeBasedSchedulingTask.emplace();
 
     uartGatekeeperTask->createTask();
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
 //    tcHandlingTask->createTask();
-    canTestTask->createTask();
-    canGatekeeperTask->createTask();
+//    canTestTask->createTask();
+//    canGatekeeperTask->createTask();
+    watchdogTask->createTask();
     statisticsReportingTask->createTask();
     housekeepingTask->createTask();
+    timeBasedSchedulingTask->createTask();
 
     vTaskStartScheduler();
 

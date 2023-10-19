@@ -23,6 +23,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TCHandlingTask.cpp.obj.d"
   "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.obj"
   "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TemperatureSensorsTask.cpp.obj.d"
+  "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj"
+  "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeBasedScheduling.cpp.obj.d"
   "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj"
   "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/TimeKeepingTask.cpp.obj.d"
   "CMakeFiles/STM32H7A3ZIQSetup.elf.dir/Core/Src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj"
