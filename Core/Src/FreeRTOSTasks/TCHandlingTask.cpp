@@ -7,7 +7,6 @@ void TCHandlingTask::execute() {
 
         for(uint8_t i = 0 ; i < tcHandlingTask->incomingMessageSize; i++)
             TcCommand.push_back(tcHandlingTask->RxDmaBuffer[i]);
-        // Clear the RxDmaBuffer to receive the new data //
         tcHandlingTask->RxDmaBuffer.clear();
 
         // TC Parsing and Execution
