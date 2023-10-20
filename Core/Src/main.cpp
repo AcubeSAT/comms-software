@@ -14,32 +14,11 @@
 #include "CAN.hpp"
 #include "stm32h7xx_hal_fdcan.h"
 #include "CANGatekeeperTask.hpp"
+#include "WatchdogTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
-extern UART_HandleTypeDef huart3;
-extern I2C_HandleTypeDef hi2c2;
-extern RTC_HandleTypeDef hrtc;
 
-template<class T>
-static void vClassTask(void *pvParameters) {
-    (static_cast<T *>(pvParameters))->execute();
-}
 
-void blinkyTask1(void * pvParameters){
-    for(;;){
-        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-        HAL_Delay(50);
-        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_14);
-        HAL_Delay(50);
-    }
-}
-
-void blinkyTask2(void * pvParameters){
-    for(;;){
-        HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-        HAL_Delay(300);
-    }
-}
 
 namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
@@ -50,7 +29,8 @@ extern "C" void main_cpp(){
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
-//    tcHandlingTask.emplace();
+    tcHandlingTask.emplace();
+    watchdogTask.emplace();
     canTestTask.emplace();
     canGatekeeperTask.emplace();
 
@@ -58,28 +38,45 @@ extern "C" void main_cpp(){
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
-//    tcHandlingTask->createTask();
+    tcHandlingTask->createTask();
+    watchdogTask->createTask();
     canTestTask->createTask();
     canGatekeeperTask->createTask();
+
     vTaskStartScheduler();
 
-    /**
-     * Uncomment below and comment above for Led task visualization (for STM32H743)
-     */
-//    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
     for(;;);
     return;
 }
 
+/**
+ * HAL_UARTEx_RxEventCallback is a callback function for UART receiving which is enable by the
+ * the call of the function HAL_UARTEx_ReceiveToIdle_DMA().
+ * It is triggered whenever the UART line is IDLE.
+ * @param huart : pointer of type UART_HandleTypeDef
+ * @param Size : incoming size of data in bytes
+ */
+extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
+    // Size is used for copying the correct size of data to the TcCommand buffer,
+    // of the TC Handling Task
+    tcHandlingTask -> incomingMessageSize = Size;
+    BaseType_t xHigherPriorityTaskWoken;
+
+    xHigherPriorityTaskWoken = pdFALSE;
+    xTaskNotifyFromISR(tcHandlingTask->taskHandle, 0, eNoAction,  &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+
+    // Reset the DMA to receive the next chunk of data
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart3, tcHandlingTask->RxDmaBuffer.data(), TcCommandSize);
+}
+
 extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
-    if ((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET) {
-        /* Retreive Rx messages from RX FIFO0 */
+   if ((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET) {
+       /* Retrieve Rx messages from RX FIFO0 */
         if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CAN::rxHeader0, CAN::rxFifo0.data()) != HAL_OK) {
             /* Reception Error */
             Error_Handler();
         }
-
         CAN::rxFifo0.repair();
         CAN::Frame newFrame = CAN::getFrame(&CAN::rxFifo0, CAN::rxHeader0.Identifier);
         canGatekeeperTask->addToIncoming(newFrame);
@@ -95,8 +92,7 @@ extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
 /**
  * @brief This function handles EXTI line[15:10] interrupts.
  */
-extern "C" void EXTI15_10_IRQHandler(void) {
+extern "C" void EXTI15_10_IRQHandler(void){
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-
     AT86RF215::transceiver.handle_irq();
 }
