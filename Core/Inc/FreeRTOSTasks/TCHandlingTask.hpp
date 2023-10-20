@@ -39,6 +39,7 @@ public:
      *  Buffer that holds the data of the DMA,  needs to be public in order the callback to have access to that
      */
     etl::vector<uint8_t, TcCommandSize> RxDmaBuffer;
+
     /**
      *  Size of the incoming bytes from the UART
      */
