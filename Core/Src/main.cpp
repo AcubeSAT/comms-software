@@ -18,14 +18,6 @@
 #include "HouseKeepingTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 
-extern SPI_HandleTypeDef hspi1;
-
-
-
-namespace AT86RF215 {
-    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
-}
-
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
@@ -52,12 +44,6 @@ extern "C" void main_cpp(){
     timeBasedSchedulingTask->createTask();
 
     vTaskStartScheduler();
-  
-      /**
-     * Uncomment below and comment above for Led task visualization (for STM32H743)
-     */
-//    xTaskCreate(blinkyTask1, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
-//    xTaskCreate(blinkyTask2, "blinkyTask 2", 1000, nullptr, tskIDLE_PRIORITY + 1, nullptr);
 
     for(;;);
     return;
@@ -100,13 +86,4 @@ extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
             Error_Handler();
         }
     }
-}
-
-
-/**
- * @brief This function handles EXTI line[15:10] interrupts.
- */
-extern "C" void EXTI15_10_IRQHandler(void){
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-    AT86RF215::transceiver.handle_irq();
 }
