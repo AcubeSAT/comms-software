@@ -1,8 +1,8 @@
 #include "TCHandlingTask.hpp"
 
 void TCHandlingTask::execute() {
-
-    for(;;){
+    taskHandle = xTaskGetCurrentTaskHandle();
+    while(1){
         // Awaiting a notification indicating the arrival of data from the UART //
         xTaskNotifyWait(0, 0, nullptr, portMAX_DELAY);
 

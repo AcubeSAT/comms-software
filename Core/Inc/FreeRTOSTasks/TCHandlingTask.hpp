@@ -15,6 +15,7 @@ This callback will be executed when any of following events occurs :
     in index 0 of reception buffer by DMA).
 - Idle Event on Rx line : Triggered when RX line has been in idle state (normally high state)
 for 1 frame time, after last received byte.
+
 */
 
 extern DMA_HandleTypeDef hdma_usart3_rx;
@@ -45,7 +46,6 @@ public:
     uint16_t incomingMessageSize ;
 
     TCHandlingTask() : Task("TCHandlingTask") {
-        taskHandle = xTaskGetCurrentTaskHandle();
         // disabling the half buffer interrupt //
         __HAL_DMA_DISABLE_IT(&hdma_usart3_rx, DMA_IT_HT);
         // disabling the full buffer interrupt //
