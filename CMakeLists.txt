@@ -1,8 +1,7 @@
 #THIS FILE IS AUTO GENERATED FROM THE TEMPLATE! DO NOT CHANGE!
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION 1)
-cmake_minimum_required(VERSION 3.26)
-
+cmake_minimum_required(VERSION 3.20)
 
 # specify cross-compilers and tools
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
@@ -65,9 +64,6 @@ include_directories(Core/lib/ecss-services/inc)
 include_directories(Core/lib/ecss-services/inc/Platform/x86)
 include_directories(Core/lib/ecss-services/lib/etl/include)
 include_directories(Core/lib/ecss-services/lib/logger/inc)
-#include_directories(Core/lib/physical_layer/inc)
-#include_directories(Core/lib/physical_layer/lib/etl/include)
-#include_directories(Core/lib/physical_layer/lib/Catch2)
 include_directories(Core/lib/ccsds-telemetry-packets/inc)
 include_directories(Core/lib/component-drivers/AT86RF215/inc)
 include_directories(Core/lib/component-drivers/TMP117/inc)
@@ -83,9 +79,6 @@ find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/*.c" "Core/lib/cobs-c/cobs.c")
 
 file(GLOB_RECURSE SOURCES "Core/Startup/*.s" "Core/Src/*.cpp" "Core/Src/*.c" "Common/*.*" "Drivers/STM32H7xx_HAL_Driver/Src/*.c" "Core/lib/FreeRTOS/Source/*.c" "Core/lib/cobs-c/cobs.c")
-
-#file(GLOB_RECURSE PHYSICAL_LAYER "Core/lib/physical_layer/src/*.cpp")
-#list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
 
 file(GLOB_RECURSE DATA_LAYER "Core/lib/ccsds-telemetry-packets/src/*.cpp")
 list(FILTER DATA_LAYER EXCLUDE REGEX "Core/lib/ccsds-telemetry-packets/src/main.cpp")

@@ -70,18 +70,32 @@ extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t S
     HAL_UARTEx_ReceiveToIdle_DMA(&huart3, tcHandlingTask->RxDmaBuffer.data(), TcCommandSize);
 }
 
-extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs) {
-   if ((RxFifo0ITs & FDCAN_IT_RX_FIFO0_NEW_MESSAGE) != RESET) {
-       /* Retrieve Rx messages from RX FIFO0 */
+extern "C" void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo1ITs) {
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
+    if ((RxFifo1ITs & FDCAN_IT_RX_FIFO1_NEW_MESSAGE) != RESET) {
+        /* Retreive Rx messages from RX FIFO0 */
+
         if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &CAN::rxHeader0, CAN::rxFifo0.data()) != HAL_OK) {
             /* Reception Error */
             Error_Handler();
         }
+        canGatekeeperTask->switchActiveBus(CAN::Redundant);
         CAN::rxFifo0.repair();
         CAN::Frame newFrame = CAN::getFrame(&CAN::rxFifo0, CAN::rxHeader0.Identifier);
-        canGatekeeperTask->addToIncoming(newFrame);
+        if(CAN::rxFifo0[0] >> 6 == CAN::TPProtocol::Frame::Single){
+            canGatekeeperTask->addSFToIncoming(newFrame);
+            xTaskNotifyFromISR(canGatekeeperTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+            portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+        }else{
+            canGatekeeperTask->addMFToIncoming(newFrame);
+            if(CAN::rxFifo0[0] >> 6 == CAN::TPProtocol::Frame::Final){
+                xTaskNotifyFromISR(canGatekeeperTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+                portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+            }
+        }
 
-        if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK) {
+        if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO1_NEW_MESSAGE, 0) != HAL_OK) {
             /* Notification Error */
             Error_Handler();
         }
