@@ -20,7 +20,6 @@ extern SPI_HandleTypeDef hspi1;
 
 // extern I2C_HandleTypeDef hi2c2;
 
-// extern RTC_HandleTypeDef hrtc;
 
 namespace AT86RF215 {
     AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
