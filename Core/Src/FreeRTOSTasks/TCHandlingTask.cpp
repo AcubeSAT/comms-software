@@ -13,7 +13,6 @@ void TCHandlingTask::execute() {
 
         // TC Parsing and Execution
         etl::string<TcCommandSize> cobsDecodedMsg = COBSdecode<TcCommandSize>(TcCommand.data(), tcHandlingTask->incomingMessageSize);
-        // decoded_size = incomingMessageSize - 1 //
         uint8_t messageLength = cobsDecodedMsg.size();
         uint8_t *ecssTCBytes = reinterpret_cast<uint8_t *>(cobsDecodedMsg.data());
         auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
