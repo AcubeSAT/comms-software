@@ -11,7 +11,7 @@ void TCHandlingTask::execute() {
         // Clear the RxDmaBuffer to receive the new data //
         tcHandlingTask->RxDmaBuffer.clear();
 
-        // Tc Parsing and Execution //
+        // TC Parsing and Execution
         etl::string<TcCommandSize> cobsDecodedMsg = COBSdecode<TcCommandSize>(TcCommand.data(), tcHandlingTask->incomingMessageSize);
         // decoded_size = incomingMessageSize - 1 //
         uint8_t messageLength = cobsDecodedMsg.size();
