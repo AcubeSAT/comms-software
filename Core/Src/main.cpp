@@ -65,8 +65,6 @@ extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t S
     tcHandlingTask -> incomingMessageSize = Size;
     BaseType_t xHigherPriorityTaskWoken;
 
-    // As always, xHigherPriorityTaskWoken is initialized to pdFALSE to be able to
-    // detect it getting set to pdTRUE inside an interrupt function
     xHigherPriorityTaskWoken = pdFALSE;
     xTaskNotifyFromISR(tcHandlingTask->taskHandle, 0, eNoAction,  &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
