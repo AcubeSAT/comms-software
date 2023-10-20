@@ -6,7 +6,6 @@
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "MCUTemperatureTask.hpp"
-#include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
 #include "TimeKeepingTask.hpp"
@@ -15,14 +14,9 @@
 #include "stm32h7xx_hal_fdcan.h"
 #include "CANGatekeeperTask.hpp"
 #include "WatchdogTask.hpp"
-
-extern SPI_HandleTypeDef hspi1;
-
-
-
-namespace AT86RF215 {
-    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
-}
+#include "StatisticsReportingTask.hpp"
+#include "HouseKeepingTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
@@ -33,6 +27,9 @@ extern "C" void main_cpp(){
     watchdogTask.emplace();
     canTestTask.emplace();
     canGatekeeperTask.emplace();
+    statisticsReportingTask.emplace();
+    housekeepingTask.emplace();
+    timeBasedSchedulingTask.emplace();
 
     uartGatekeeperTask->createTask();
     temperatureSensorsTask->createTask();
@@ -42,6 +39,9 @@ extern "C" void main_cpp(){
     watchdogTask->createTask();
     canTestTask->createTask();
     canGatekeeperTask->createTask();
+    statisticsReportingTask->createTask();
+    housekeepingTask->createTask();
+    timeBasedSchedulingTask->createTask();
 
     vTaskStartScheduler();
 
@@ -86,13 +86,4 @@ extern "C" void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
             Error_Handler();
         }
     }
-}
-
-
-/**
- * @brief This function handles EXTI line[15:10] interrupts.
- */
-extern "C" void EXTI15_10_IRQHandler(void){
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-    AT86RF215::transceiver.handle_irq();
 }
