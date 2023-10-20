@@ -18,7 +18,6 @@
 
 extern SPI_HandleTypeDef hspi1;
 
-// extern I2C_HandleTypeDef hi2c2;
 
 
 namespace AT86RF215 {
