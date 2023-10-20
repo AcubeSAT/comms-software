@@ -2,7 +2,7 @@
 
 void TCHandlingTask::execute() {
     taskHandle = xTaskGetCurrentTaskHandle();
-    while(1){
+    while(true){
         xTaskNotifyWait(0, 0, nullptr, portMAX_DELAY);
 
         for(uint8_t i = 0 ; i < tcHandlingTask->incomingMessageSize; i++)

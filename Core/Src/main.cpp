@@ -6,7 +6,6 @@
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "MCUTemperatureTask.hpp"
-#include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
 #include "TimeKeepingTask.hpp"
