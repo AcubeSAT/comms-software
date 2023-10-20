@@ -3,7 +3,6 @@
 void TCHandlingTask::execute() {
     taskHandle = xTaskGetCurrentTaskHandle();
     while(1){
-        // Awaiting a notification indicating the arrival of data from the UART //
         xTaskNotifyWait(0, 0, nullptr, portMAX_DELAY);
 
         for(uint8_t i = 0 ; i < tcHandlingTask->incomingMessageSize; i++)
