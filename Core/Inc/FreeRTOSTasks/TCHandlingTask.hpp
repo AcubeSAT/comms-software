@@ -23,7 +23,6 @@ extern UART_HandleTypeDef huart3;
 
 class TCHandlingTask : public Task {
 private:
-
     /**
      *  Stack depth for the freeRTOS
      */
