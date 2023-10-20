@@ -17,7 +17,6 @@
 #include "WatchdogTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
-// extern UART_HandleTypeDef huart3;
 
 // extern I2C_HandleTypeDef hi2c2;
 
