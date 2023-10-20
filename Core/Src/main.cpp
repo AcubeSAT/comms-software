@@ -59,8 +59,8 @@ extern "C" void main_cpp(){
  * @param Size : incoming size of data in bytes
  */
 extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
-    // Size is used for copying the right size of data to the TcCommand buffer,
-    // which belongs to the execute() of the tcHandlingTask
+    // Size is used for copying the correct size of data to the TcCommand buffer,
+    // of the TC Handling Task
     tcHandlingTask -> incomingMessageSize = Size;
     BaseType_t xHigherPriorityTaskWoken;
 
