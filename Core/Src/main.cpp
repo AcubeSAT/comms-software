@@ -3,7 +3,6 @@
 #include "list.h"
 #include "task.h"
 #include "DummyTask.h"
-#include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "MCUTemperatureTask.hpp"
 #include "UARTGatekeeperTask.hpp"
@@ -17,31 +16,34 @@
 #include "StatisticsReportingTask.hpp"
 #include "HouseKeepingTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
+#include "TransceiverTask.hpp"
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
-    timeKeepingTask.emplace();
-    tcHandlingTask.emplace();
-    watchdogTask.emplace();
-    canTestTask.emplace();
-    canGatekeeperTask.emplace();
-    statisticsReportingTask.emplace();
-    housekeepingTask.emplace();
-    timeBasedSchedulingTask.emplace();
+    transceiverTask.emplace();
+    //mcuTemperatureTask.emplace();
+    //temperatureSensorsTask.emplace();
+    //timeKeepingTask.emplace();
+    //tcHandlingTask.emplace();
+    //watchdogTask.emplace();
+    //canTestTask.emplace();
+    //canGatekeeperTask.emplace();
+    //statisticsReportingTask.emplace();
+    //housekeepingTask.emplace();
+    //timeBasedSchedulingTask.emplace();
 
     uartGatekeeperTask->createTask();
-    temperatureSensorsTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
-    tcHandlingTask->createTask();
-    watchdogTask->createTask();
-    canTestTask->createTask();
-    canGatekeeperTask->createTask();
-    statisticsReportingTask->createTask();
-    housekeepingTask->createTask();
-    timeBasedSchedulingTask->createTask();
+    transceiverTask->createTask();
+    //temperatureSensorsTask->createTask();
+    //mcuTemperatureTask->createTask();
+    //timeKeepingTask->createTask();
+    //tcHandlingTask->createTask();
+    //watchdogTask->createTask();
+    //canTestTask->createTask();
+    //canGatekeeperTask->createTask();
+    //statisticsReportingTask->createTask();
+    //housekeepingTask->createTask();
+    //timeBasedSchedulingTask->createTask();
 
     vTaskStartScheduler();
 

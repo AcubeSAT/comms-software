@@ -28,18 +28,21 @@ public:
 
     TransceiverTask() : Task("Transceiver signal transmission") {}
 
-    /*
+    /**
+     * Simple function to check if the SPI communication works correctly
+     */
+    void checkTheSPI();
+    /**
      * This function creates random packets until we have full functionality.
      */
     PacketType createRandomPacket(uint16_t length);
-
-    /*
+    /**
      * This function calculates the PllChannelFrequency value using the formula given in the datasheet
      * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
     uint16_t calculatePllChannelFrequency09(uint32_t frequency);
 
-    /*
+    /**
      * This function calculates the PllChannelNumber value using the formula given in the datasheet
      * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
@@ -67,5 +70,6 @@ private:
     StackType_t taskStack[TaskStackDepth];
 
 };
+
 
 inline etl::optional<TransceiverTask> transceiverTask;

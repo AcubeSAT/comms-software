@@ -2,6 +2,43 @@
 #include "TransceiverTask.hpp"
 
 AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
+using namespace AT86RF215;
+
+void TransceiverTask::checkTheSPI() {
+    Error err ;
+    DevicePartNumber dpn = transceiver.get_part_number(err);
+    switch (dpn) {
+        case DevicePartNumber::AT86RF215:
+            LOG_DEBUG << "part number : AT86RF215";
+            break;
+        case DevicePartNumber::AT86RF215IQ:
+            LOG_DEBUG << "part number : AT86RF215IQ";
+            break;
+        case DevicePartNumber::AT86RF215M:
+            LOG_DEBUG << "part number : AT86RF215M";
+            break;
+        case DevicePartNumber::AT86RF215_INVALID:
+            LOG_DEBUG << "INVALID";
+            break;
+    }
+    /*
+    if (err != NO_ERRORS) {
+        // Handle the error
+        switch (err) {
+            case FAILED_READING_FROM_REGISTER:
+                LOG_DEBUG << "FAILED READING FROM REGISTER" ;
+                break;
+                // Handle other error cases as needed
+            default:
+                LOG_DEBUG << "SOME OTHER ERROR" ;
+
+        }
+    } else {
+        // No error occurred, use the 'version' value
+        LOG_DEBUG << "AT86RF215 Version : " ;
+    }
+     */
+}
 
 
 TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length) {
@@ -47,7 +84,11 @@ void TransceiverTask::execute() {
     PacketType packet = createRandomPacket(currentPacketLength);
 
     while (true) {
-        transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
-        vTaskDelay(pdMS_TO_TICKS(DelayMs));
+        //
+        // transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
+        // vTaskDelay(pdMS_TO_TICKS(DelayMs));
+        checkTheSPI();
+        vTaskDelay(pdMS_TO_TICKS(3000));
+
     }
 }
