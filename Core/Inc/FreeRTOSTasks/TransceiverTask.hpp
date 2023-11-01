@@ -1,11 +1,8 @@
-//
-// Created by andro on 10/31/2023.
-//
 
 #ifndef PROJECT_TRANSCEIVERTASK_HPP
 #define PROJECT_TRANSCEIVERTASK_HPP
 
-#endif //PROJECT_TRANSCEIVERTASK_HPP
+#endif // PROJECT_TRANSCEIVERTASK_HPP
 
 
 #pragma once
@@ -21,12 +18,9 @@ extern SPI_HandleTypeDef hspi1;
 
 class TransceiverTask : public Task {
 public:
-    void execute();
-
     constexpr static uint16_t MaxPacketLength = 64;
     using PacketType = etl::array<uint8_t, MaxPacketLength>;
-
-    TransceiverTask() : Task("Transceiver signal transmission") {}
+    static AT86RF215::At86rf215 transceiver;
 
     /**
      * Simple function to check if the SPI communication works correctly
@@ -38,19 +32,25 @@ public:
     PacketType createRandomPacket(uint16_t length);
     /**
      * This function calculates the PllChannelFrequency value using the formula given in the datasheet
-     * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
+     * for Fine Resolution Channel Scheme CNM.CM = 1 (section 6.3.2)
      */
     uint16_t calculatePllChannelFrequency09(uint32_t frequency);
-
     /**
      * This function calculates the PllChannelNumber value using the formula given in the datasheet
-     * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
+     * for Fine Resolution Channel Scheme CNM.CM = 1 (section 6.3.2)
      */
     uint8_t calculatePllChannelNumber09(uint32_t frequency);
-
+    /**
+     *
+     * @param pllFrequency09
+     * @param pllChannelNumber09
+     */
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
 
-    static AT86RF215::AT86RF215 transceiver;
+
+    TransceiverTask() : Task("Transceiver signal transmission") {}
+
+    void execute();
 
     void createTask() {
         xTaskCreateStatic(vClassTask < TransceiverTask > , this->TaskName,
@@ -64,8 +64,7 @@ private:
     constexpr static uint16_t DelayMs = 10;
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint32_t FrequencyUHF = 436500;
-
-    QueueHandle_t packetQueue;
+    //QueueHandle_t packetQueue;
     AT86RF215::Error error;
     StackType_t taskStack[TaskStackDepth];
 

@@ -1,15 +1,16 @@
-
 #include "TransceiverTask.hpp"
-
-AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
 using namespace AT86RF215;
+
+AT86RF215::At86rf215 TransceiverTask::transceiver = AT86RF215::At86rf215(&hspi1, AT86RF215::AT86RF215Configuration());
+
 
 void TransceiverTask::checkTheSPI() {
     Error err ;
+
     DevicePartNumber dpn = transceiver.get_part_number(err);
     switch (dpn) {
         case DevicePartNumber::AT86RF215:
-            LOG_DEBUG << "part number : AT86RF215";
+            LOG_DEBUG << "part number : At86rf215";
             break;
         case DevicePartNumber::AT86RF215IQ:
             LOG_DEBUG << "part number : AT86RF215IQ";
@@ -35,7 +36,7 @@ void TransceiverTask::checkTheSPI() {
         }
     } else {
         // No error occurred, use the 'version' value
-        LOG_DEBUG << "AT86RF215 Version : " ;
+        LOG_DEBUG << "At86rf215 Version : " ;
     }
      */
 }
@@ -85,7 +86,7 @@ void TransceiverTask::execute() {
 
     while (true) {
         //
-        // transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
+        // transceiver.transmitBasebandPacketsTx(At86rf215::RF09, packet.data(), currentPacketLength, error);
         // vTaskDelay(pdMS_TO_TICKS(DelayMs));
         checkTheSPI();
         vTaskDelay(pdMS_TO_TICKS(3000));
