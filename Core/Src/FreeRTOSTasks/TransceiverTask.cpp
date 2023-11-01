@@ -7,16 +7,16 @@ uint8_t TransceiverTask::checkTheSPI() {
     uint8_t error_t = 0;
     Error err;
     DevicePartNumber dpn = transceiver.get_part_number(err);
-    uint8_t vn = transceiver.get_version_number(err);
+
     switch (dpn) {
         case DevicePartNumber::AT86RF215:
-            LOG_DEBUG << "Part Number : At86rf215" << " and version : " << vn ;
+            LOG_DEBUG << "Part Number : At86rf215" ;
             break;
         case DevicePartNumber::AT86RF215IQ:
-            LOG_DEBUG << "Part Number : AT86RF215IQ" << " and version : " << vn ;
+            LOG_DEBUG << "Part Number : AT86RF215IQ" ;
             break;
         case DevicePartNumber::AT86RF215M:
-            LOG_DEBUG << "Part Number : AT86RF215M" << " and version : " << vn ;
+            LOG_DEBUG << "Part Number : AT86RF215M" ;
             break;
         case DevicePartNumber::AT86RF215_INVALID:
             LOG_DEBUG << "Invalid";
