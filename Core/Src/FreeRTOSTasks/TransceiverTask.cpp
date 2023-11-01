@@ -3,44 +3,40 @@ using namespace AT86RF215;
 
 AT86RF215::At86rf215 TransceiverTask::transceiver = AT86RF215::At86rf215(&hspi1, AT86RF215::AT86RF215Configuration());
 
-
-void TransceiverTask::checkTheSPI() {
-    Error err ;
-
+uint8_t TransceiverTask::checkTheSPI() {
+    uint8_t error_t = 0;
+    Error err;
     DevicePartNumber dpn = transceiver.get_part_number(err);
+    uint8_t vn = transceiver.get_version_number(err);
     switch (dpn) {
         case DevicePartNumber::AT86RF215:
-            LOG_DEBUG << "part number : At86rf215";
+            LOG_DEBUG << "Part Number : At86rf215" << " and version : " << vn ;
             break;
         case DevicePartNumber::AT86RF215IQ:
-            LOG_DEBUG << "part number : AT86RF215IQ";
+            LOG_DEBUG << "Part Number : AT86RF215IQ" << " and version : " << vn ;
             break;
         case DevicePartNumber::AT86RF215M:
-            LOG_DEBUG << "part number : AT86RF215M";
+            LOG_DEBUG << "Part Number : AT86RF215M" << " and version : " << vn ;
             break;
         case DevicePartNumber::AT86RF215_INVALID:
-            LOG_DEBUG << "INVALID";
+            LOG_DEBUG << "Invalid";
+            error_t = 1;
             break;
     }
-    /*
-    if (err != NO_ERRORS) {
-        // Handle the error
+    if(err != NO_ERRORS){
+        error_t = 1;
         switch (err) {
             case FAILED_READING_FROM_REGISTER:
-                LOG_DEBUG << "FAILED READING FROM REGISTER" ;
+                LOG_DEBUG << "Failed reading from register" ;
                 break;
-                // Handle other error cases as needed
             default:
-                LOG_DEBUG << "SOME OTHER ERROR" ;
-
+                LOG_DEBUG << "some other error";
         }
-    } else {
-        // No error occurred, use the 'version' value
-        LOG_DEBUG << "At86rf215 Version : " ;
     }
-     */
+    if(error_t == 1)
+        transceiver.chip_reset(err);
+    return error_t;
 }
-
 
 TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length) {
     PacketType packet;
@@ -59,7 +55,7 @@ void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChann
 
 /*
 * The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
-* to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
+* to Fine Resolution Channel Scheme CNM.CM = 1 is from 389.5MHz to 510MHz
 */
 uint16_t TransceiverTask::calculatePllChannelFrequency09(uint32_t frequency) {
     uint32_t N = (frequency - 377000) * 65536 / 6500;
@@ -68,7 +64,7 @@ uint16_t TransceiverTask::calculatePllChannelFrequency09(uint32_t frequency) {
 
 /*
 * The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
-* to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
+* to Fine Resolution Channel Scheme CNM.CM = 1 is from 389.5MHz to 510MHz
 */
 uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency) {
     uint32_t N = (frequency - 377000) * 65536 / 6500;
@@ -84,11 +80,10 @@ void TransceiverTask::execute() {
     uint16_t currentPacketLength = 44;
     PacketType packet = createRandomPacket(currentPacketLength);
 
+    while(checkTheSPI() != 0);
     while (true) {
-        //
         // transceiver.transmitBasebandPacketsTx(At86rf215::RF09, packet.data(), currentPacketLength, error);
         // vTaskDelay(pdMS_TO_TICKS(DelayMs));
-        checkTheSPI();
         vTaskDelay(pdMS_TO_TICKS(3000));
 
     }

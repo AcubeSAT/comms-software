@@ -1,10 +1,7 @@
 
 #ifndef PROJECT_TRANSCEIVERTASK_HPP
 #define PROJECT_TRANSCEIVERTASK_HPP
-
 #endif // PROJECT_TRANSCEIVERTASK_HPP
-
-
 #pragma once
 
 #include "Task.hpp"
@@ -23,9 +20,11 @@ public:
     static AT86RF215::At86rf215 transceiver;
 
     /**
-     * Simple function to check if the SPI communication works correctly
+     * Function to check the SPI functionality.
+     * In fine working functionality, we get Part Number At86rf21 and v3.
+     * @return 0 if it works fine, 1 otherwise.
      */
-    void checkTheSPI();
+    uint8_t checkTheSPI();
     /**
      * This function creates random packets until we have full functionality.
      */
@@ -42,8 +41,6 @@ public:
     uint8_t calculatePllChannelNumber09(uint32_t frequency);
     /**
      *
-     * @param pllFrequency09
-     * @param pllChannelNumber09
      */
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
 
@@ -60,15 +57,12 @@ public:
 
 private:
     AT86RF215::AT86RF215Configuration configFrequency;
-
     constexpr static uint16_t DelayMs = 10;
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint32_t FrequencyUHF = 436500;
-    //QueueHandle_t packetQueue;
+    // QueueHandle_t packetQueue;
     AT86RF215::Error error;
     StackType_t taskStack[TaskStackDepth];
-
 };
-
 
 inline etl::optional<TransceiverTask> transceiverTask;
