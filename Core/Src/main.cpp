@@ -3,16 +3,20 @@
 #include "list.h"
 #include "task.h"
 #include "DummyTask.h"
+#include "at86rf215.hpp"
+#include "at86rf215config.hpp"
 #include "MCUTemperatureTask.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
 #include "TransceiverTask.hpp"
+#include "TimeKeepingTask.hpp"
+#include "WatchdogTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
 extern I2C_HandleTypeDef hi2c2;
-
+extern RTC_HandleTypeDef hrtc;
 
 template<class T>
 static void vClassTask(void *pvParameters) {
@@ -35,17 +39,24 @@ void blinkyTask2(void * pvParameters){
     }
 }
 
+namespace AT86RF215 {
+    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
+}
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-//    mcuTemperatureTask.emplace();
-//    temperatureSensorsTask.emplace();
+    mcuTemperatureTask.emplace();
+    temperatureSensorsTask.emplace();
+    timeKeepingTask.emplace();
+    watchdogTask.emplace();
     transceiverTask.emplace();
 
     uartGatekeeperTask->createTask();
-//    temperatureSensorsTask->createTask();
-//    mcuTemperatureTask->createTask();
     transceiverTask->createTask();
+    temperatureSensorsTask->createTask();
+    mcuTemperatureTask->createTask();
+    timeKeepingTask->createTask();
+    watchdogTask->createTask();
 
     vTaskStartScheduler();
 
