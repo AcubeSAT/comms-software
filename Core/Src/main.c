@@ -76,6 +76,7 @@ static void MX_RTC_Init(void);
 static void MX_FDCAN1_Init(void);
 static void MX_IWDG1_Init(void);
 static void MX_FDCAN2_Init(void);
+static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 void vTask1(void * pvParameters);
 void vTask2(void * pvParameters);
@@ -127,6 +128,9 @@ int main(void)
   MX_FDCAN1_Init();
   MX_IWDG1_Init();
   MX_FDCAN2_Init();
+
+  /* Initialize interrupts */
+  MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
     main_cpp();
   /* USER CODE END 2 */
@@ -224,6 +228,17 @@ void PeriphCommonClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief NVIC Configuration.
+  * @retval None
+  */
+static void MX_NVIC_Init(void)
+{
+  /* EXTI15_10_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
 
 /**
@@ -776,10 +791,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
-
-  /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
-  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

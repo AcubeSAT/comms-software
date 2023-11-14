@@ -25,7 +25,7 @@ extern "C" void main_cpp(){
     //temperatureSensorsTask.emplace();
     //timeKeepingTask.emplace();
     //tcHandlingTask.emplace();
-    //watchdogTask.emplace();
+    watchdogTask.emplace();
     //canTestTask.emplace();
     //canGatekeeperTask.emplace();
     //statisticsReportingTask.emplace();
@@ -38,7 +38,7 @@ extern "C" void main_cpp(){
     //mcuTemperatureTask->createTask();
     //timeKeepingTask->createTask();
     //tcHandlingTask->createTask();
-    //watchdogTask->createTask();
+    watchdogTask->createTask();
     //canTestTask->createTask();
     //canGatekeeperTask->createTask();
     //statisticsReportingTask->createTask();
@@ -96,10 +96,34 @@ extern "C" void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t 
                 portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
             }
         }
-
         if (HAL_FDCAN_ActivateNotification(hfdcan, FDCAN_IT_RX_FIFO1_NEW_MESSAGE, 0) != HAL_OK) {
             /* Notification Error */
             Error_Handler();
         }
     }
 }
+
+
+/**
+ * @brief This function handles EXTI line[15:10] interrupts.
+ */
+
+extern "C" void EXTI15_10_IRQHandler(void) {
+    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
+    TransceiverTask::transceiver.handle_irq();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
