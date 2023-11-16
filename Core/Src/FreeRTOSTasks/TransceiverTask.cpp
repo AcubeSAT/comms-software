@@ -82,14 +82,27 @@ void TransceiverTask::execute() {
     PacketType packet = createRandomPacket(currentPacketLength);
 
     while(checkTheSPI() != 0);
+    RegisterAddress regphy;
+    regphy = AT86RF215::BBC0_FSKC0;
+
+    // BBC0_FSKC0 REGISTER
+    //transceiver.spi_write_8(BBC0_FSKC0,210,error); // BT = 2, MINDEX = 0.5, 2-FSK
+    //transceiver.spi_write_8(BBC0_FSKC0,208,error); // BT = 2, MINDEX = 0.375, 2-FSK
+    transceiver.spi_write_8(BBC0_FSKC0,82,error);  // BT = 1, MINDEX = 0.5, MINDEX = 0.5, 2-FSK
+
+
+    // set direct mod ON
+
+    transceiver.set_direct_modulation(RF09, 1, error);
+    uint8_t temp = (transceiver.spi_read_8(BBC0_FSKDM, error)) & 0b11111110;
+    // set the EN to 1
+    transceiver.spi_write_8(BBC0_FSKDM, temp |  0b00000001, error);
+    //uint8_t reg = transceiver.spi_read_8(regphy, error);
+
+
     while (true){
         transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
         LOG_DEBUG << "signal transmitted";
-
-        uint8_t pll_freq_HIGH;
-        pll_freq_HIGH = transceiver.get_pll_frequency(AT86RF215::RF09, error);
-        LOG_DEBUG << pll_freq_HIGH ;
         vTaskDelay(pdMS_TO_TICKS(10));
-
     }
 }

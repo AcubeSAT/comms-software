@@ -54,9 +54,9 @@ public:
 
 private:
     AT86RF215::AT86RF215Configuration configFrequency;
-    constexpr static uint16_t DelayMs = 10;
+    constexpr static uint16_t DelayMs = 1;
     constexpr static uint16_t TaskStackDepth = 2000;
-    constexpr static uint32_t FrequencyUHF = 436500;
+    constexpr static uint32_t FrequencyUHF = 401000;
     // QueueHandle_t packetQueue;
     AT86RF215::Error error;
     StackType_t taskStack[TaskStackDepth];
