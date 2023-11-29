@@ -29,18 +29,32 @@ public:
      */
     PacketType createRandomPacket(uint16_t length);
 
-    /*
+    /**
     * This function calculates the PllChannelFrequency value using the formula given in the datasheet
-    * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
+    * for Fine Resolution Channel Scheme CNM.CM = 1 (section 6.3.2)
     */
     uint16_t calculatePllChannelFrequency09(uint32_t frequency);
-    /*
+    /**
      * This function calculates the PllChannelNumber value using the formula given in the datasheet
-     * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
+     * for Fine Resolution Channel Scheme CNM.CM = 1 (section 6.3.2)
      */
     uint8_t calculatePllChannelNumber09(uint32_t frequency);
-
+    /**
+     * This function sets the correct parameters for the PLL, PA ramp time and TX cut off frequency
+     * @param pllFrequency09 first two bytes of the N (formula at section 6.3.2)
+     * @param pllChannelNumber09 last byte of the N
+     */
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
+    /**
+     *
+     * @param enable true for turning ON the direct modulation which filters the harmonics in the frequency domain
+     */
+    void directModConfig(bool enable);
+    /**
+     * Sets the modulation parameters (index, order and B*T) and sets the direct modulation ON
+     */
+    void modulationConfig();
+
 
     TransceiverTask() : Task("Transceiver signal transmission") {}
 
@@ -53,7 +67,7 @@ public:
     }
 
 private:
-    AT86RF215::AT86RF215Configuration configFrequency;
+    AT86RF215::AT86RF215Configuration CustomConfig;
     constexpr static uint16_t DelayMs = 1;
     constexpr static uint16_t TaskStackDepth = 2000;
     constexpr static uint32_t FrequencyUHF = 401000;
