@@ -1,0 +1,118 @@
+cmake_minimum_required(VERSION 3.19.2)
+
+project(STM32H7A3ZIQSetup C CXX ASM)
+
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H7A3ZITXQ_FLASH.ld)
+
+add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
+
+set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
+set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
+
+find_package(etl CONFIG REQUIRED)
+find_package(logger CONFIG REQUIRED COMPONENTS log_common)
+find_package(ecss-services CONFIG REQUIRED COMPONENTS common)
+
+include_directories(.)
+include_directories(
+        Core
+        Core/Inc
+        Core/Inc/Platform
+        Core/Inc/Platform/ECSS_Configuration.hpp
+        Core/Inc/Platform/Parameters
+        Core/Inc/FreeRTOSTasks
+        Core/lib/cross-platform-software
+        Core/lib/physical_layer
+        Core/lib/ccsds-telemetry-packets
+        Core/lib/component-drivers
+        Core/lib/FreeRTOS/Source
+        Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2
+        Core/lib/FreeRTOS/Source/include
+        Core/lib/FreeRTOS/Source/portable/GCC
+        Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F
+        Core/lib/FreeRTOS/Source/portable/MemMang
+        Core/Src
+        Core/Src/FreeRTOSTasks
+        Core/Src/FreeRTOSTasks/Platform
+        Core/Src/FreeRTOSTasks/Platform/Services
+        Core/Startup
+        Drivers
+        Drivers/Src
+        Drivers/CMSIS/DSP/Include
+        Drivers/CMSIS/Include
+        Drivers/STM32H7xx_HAL_Driver/Inc
+        Drivers/STM32H7xx_HAL_Driver/Inc/Legacy
+        Drivers/CMSIS/Device/ST/STM32H7xx/Include
+)
+
+add_subdirectory(Core/lib/cross-platform-software)
+
+file(GLOB_RECURSE SOURCES
+        "Core/Startup/*.s"
+        "Core/Src/*.cpp"
+        "Core/Src/*.c"
+        "Drivers/STM32H7xx_HAL_Driver/Src/*.c"
+        "Core/lib/FreeRTOS/*.c"
+)
+
+file(GLOB_RECURSE FREERTOS_SOURCES
+        "Core/lib/FreeRTOS/*.c"
+)
+
+file(GLOB_RECURSE PHYSICAL_LAYER
+        "Core/lib/physical_layer/src/*.cpp"
+)
+
+file(GLOB_RECURSE DATA_LAYER
+        "Core/lib/ccsds-telemetry-packets/src/*.cpp"
+)
+
+file(GLOB_RECURSE DRIVERS
+        "Core/lib/component-drivers/AT86RF215/src/*cpp"
+        "Core/lib/component-drivers/TMP117/src/*cpp"
+)
+
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${EXTRA_SOURCES} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
+set(CMAKE_EXE_LINKER_FLAGS
+        "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
+
+add_compile_definitions(LOGLEVEL_TRACE)
+
+find_library(CMSIS_DSP arm_cortexM7lfdp_math Drivers/CMSIS/Lib/GCC)
+
+add_link_options(
+        -Wl,-gc-sections,--print-memory-usage,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map
+        -mcpu=cortex-m7 -mthumb -mthumb-interwork
+        -T ${LINKER_SCRIPT}
+)
+
+target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common)
+
+add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
+        COMMAND ${CMAKE_OBJCOPY} -Oihex $<TARGET_FILE:${PROJECT_NAME}.elf> ${HEX_FILE}
+        COMMAND ${CMAKE_OBJCOPY} -Obinary $<TARGET_FILE:${PROJECT_NAME}.elf> ${BIN_FILE}
+        COMMENT "Building ${HEX_FILE}\nBuilding ${BIN_FILE}"
+)
+
+add_compile_options(-mcpu=cortex-m7 -mthumb -mthumb-interwork)
+add_compile_options(-ffunction-sections -fdata-sections -fno-common -fmessage-length=0)
+
+add_compile_definitions(ARM_MATH_CM4;ARM_MATH_MATRIX_CHECK;ARM_MATH_ROUNDING)
+add_compile_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
+add_link_options(-mfloat-abi=hard -mfpu=fpv4-sp-d16)
+
+if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
+    message(STATUS "Maximum optimization for speed")
+    add_compile_options(-Ofast)
+elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "RelWithDebInfo")
+    message(STATUS "Maximum optimization for speed, debug info included")
+    add_compile_options(-Ofast -g)
+elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "MinSizeRel")
+    message(STATUS "Maximum optimization for size")
+    add_compile_options(-Os)
+else ()
+    message(STATUS "Minimal optimization, debug info included")
+    add_compile_options(-Og -g)
+)
+
+add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
