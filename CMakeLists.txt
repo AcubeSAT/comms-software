@@ -5,11 +5,11 @@ project(STM32H7A3ZIQSetup C CXX ASM)
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/STM32H7A3ZITXQ_FLASH.ld)
 
 add_definitions(-DDEBUG -DUSE_HAL_DRIVER -DSTM32H7A3xxQ)
-#add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
+add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
 
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
-#SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
+SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
 
 find_package(etl CONFIG REQUIRED)
 find_package(logger CONFIG REQUIRED COMPONENTS log_common)
@@ -31,9 +31,9 @@ include_directories(
         Core
         Core/Inc
         Core/Inc/Platform
-        Core/Inc/Platform/ECSS_Configuration.hpp
         Core/Inc/Platform/Parameters
         Core/Inc/FreeRTOSTasks
+        Core/lib
         Core/lib/cross-platform-software
         Core/lib/physical_layer
         Core/lib/physical_layer/inc
