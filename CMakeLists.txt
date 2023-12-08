@@ -36,8 +36,12 @@ include_directories(
         Core/Inc/FreeRTOSTasks
         Core/lib/cross-platform-software
         Core/lib/physical_layer
+        Core/lib/physical_layer/inc
+        Core/lib/physical_layer/src
         Core/lib/ccsds-telemetry-packets
         Core/lib/component-drivers
+        Core/lib/component-drivers/AT86RF215/inc
+        Core/lib/component-drivers/TMP117/inc
         Core/lib/FreeRTOS/Source
         Core/lib/FreeRTOS/Source/CMSIS_RTOS_V2
         Core/lib/FreeRTOS/Source/include
