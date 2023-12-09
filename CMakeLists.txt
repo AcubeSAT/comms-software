@@ -78,6 +78,7 @@ file(GLOB_RECURSE FREERTOS_SOURCES
 file(GLOB_RECURSE PHYSICAL_LAYER
         "Core/lib/physical_layer/src/*.cpp"
 )
+
 list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
 
 file(GLOB_RECURSE DATA_LAYER
