@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19.2)
+cmake_minimum_required(VERSION 3.24)
 
 project(STM32H7A3ZIQSetup C CXX ASM)
 
@@ -78,6 +78,7 @@ file(GLOB_RECURSE FREERTOS_SOURCES
 file(GLOB_RECURSE PHYSICAL_LAYER
         "Core/lib/physical_layer/src/*.cpp"
 )
+list(FILTER PHYSICAL_LAYER EXCLUDE REGEX "Core/lib/physical_layer/src/main.cpp")
 
 file(GLOB_RECURSE DATA_LAYER
         "Core/lib/ccsds-telemetry-packets/src/*.cpp"
@@ -88,7 +89,7 @@ file(GLOB_RECURSE DRIVERS
         "Core/lib/component-drivers/TMP117/src/*cpp"
 )
 
-add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${EXTRA_SOURCES} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${EXTRA_SOURCES} ${FREERTOS_SOURCES} ${DRIVER_SOURCES} ${PHYSICAL_LAYER})
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
 
