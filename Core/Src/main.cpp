@@ -5,10 +5,11 @@
 #include "DummyTask.h"
 //#include "at86rf215.hpp"
 //#include "at86rf215config.hpp"
-//#include "MCUTemperatureTask.hpp"
 //#include "txUHFTask.hpp"
-//#include "UARTGatekeeperTask.hpp"
+#include "UARTGatekeeperTask.hpp"
+#include "MCUTemperatureTask.hpp"
 //#include "TemperatureSensorsTask.hpp"
+#include "Helpers/TimeGetter.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -30,6 +31,7 @@ void blinkyTask1(void * pvParameters){
 }
 
 void blinkyTask2(void * pvParameters){
+    auto currTime = TimeGetter::getCurrentTimeDefaultCUC();
     for(;;){
         HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
         HAL_Delay(300);
@@ -41,14 +43,14 @@ void blinkyTask2(void * pvParameters){
 }*/
 
 extern "C" void main_cpp(){
-    dummyTask.emplace();
-    dummyTask->createTask();
-    /*uartGatekeeperTask.emplace();
+    uartGatekeeperTask.emplace();
+//    dummyTask.emplace();
     mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
+//    temperatureSensorsTask.emplace();
     uartGatekeeperTask->createTask();
-    temperatureSensorsTask->createTask();
-    mcuTemperatureTask->createTask();*/
+//    dummyTask->createTask();
+//    temperatureSensorsTask->createTask();
+    mcuTemperatureTask->createTask();
 
     /**
      * Uncomment below and comment above for Led task visualization (for STM32H743)
