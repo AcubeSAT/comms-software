@@ -20,7 +20,7 @@ full integration with COMMS Software is still a work in progress
 
 ```bash
 git clone --recurse-submodules <HTTPS or SSH repo link>
-cd comms-software
+cd comms_software
 ```
 If you are using CLion you can `Reload CMake Project` and then build from the GUI.
 
