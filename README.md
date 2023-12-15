@@ -15,3 +15,18 @@ Business Logic regarding:
 This project also relies on the [Cross Platform Software](https://gitlab.com/acubesat/obc/cross-platform-software)
 repository, created to accomodate the common functionality for all of the satellite's platforms. It's
 full integration with COMMS Software is still a work in progress
+
+## Build instructions
+
+```bash
+git clone --recurse-submodules <HTTPS or SSH repo link>
+cd comms-software
+```
+If you are using CLion you can `Reload CMake Project` and then build from the GUI.
+
+In case you want to build the project from CLI
+```bash
+mkdir build && cd build
+cmake ..
+cmake --build . --target STM32H7A3ZIQSetup.elf -- -j 6
+```
