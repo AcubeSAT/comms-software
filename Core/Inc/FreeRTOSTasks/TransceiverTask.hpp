@@ -27,15 +27,15 @@ public:
      * This function calculates the PllChannelFrequency value using the formula given in the datasheet
      * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
-    uint16_t calculatePllChannelFrequency09(uint32_t frequency);
+    uint16_t calculatePllChannelFrequency24(uint32_t frequency);
 
     /*
      * This function calculates the PllChannelNumber value using the formula given in the datasheet
      * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
-    uint8_t calculatePllChannelNumber09(uint32_t frequency);
+    uint8_t calculatePllChannelNumber24(uint32_t frequency);
 
-    void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
+    void setConfiguration(uint16_t pllFrequency24, uint8_t pllChannelNumber24);
 
     static AT86RF215::AT86RF215 transceiver;
 
