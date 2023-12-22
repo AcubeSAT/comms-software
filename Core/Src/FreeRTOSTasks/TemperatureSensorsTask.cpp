@@ -2,8 +2,9 @@
 #include "TMP117.hpp"
 
 void TemperatureSensorsTask::execute() {
-    // Create a struct that holds the config settings, and set them
-    // Settings assuming we want to just poll the sensor (we don't care about the alerts):
+    // This struct holds settings for the sensors. For polling, continuous mode is used
+    // (the sensors periodically produce new values). Alert settings are irrelevant for now,
+    // since the alert pin was not used.
     TMP117::Config config = {
             TMP117::Continuous,
             static_cast<uint8_t>(7),
@@ -13,8 +14,7 @@ void TemperatureSensorsTask::execute() {
             true
     };
 
-    // for debugging purposes
-    char* errorStrings[] = {"NoErrors",
+    std::string errorStrings[] = {"NoErrors",
                             "Timeout",
                             "InvalidEEPROM",
                             "TemperatureHigh",
@@ -34,28 +34,28 @@ void TemperatureSensorsTask::execute() {
         // Log MCU Temperature
         if (temperatureMCU.first == TMP117::Error::NoErrors){
             Logger::format.precision(LoggerPrecision);
-            LOG_DEBUG << "Temperature at address " << TMP117::I2CAddress::Address3 << " (MCU)"<< " is " << temperatureMCU.second;
+            LOG_DEBUG << "Temperature at address3:0x94 (MCU) is " << temperatureMCU.second;
             PlatformParameters::commsMCUTemperature.setValue(temperatureMCU.second);
         } else {
-            LOG_ERROR << "Could not get temperature from address" << TMP117::I2CAddress::Address3 << " (MCU).Error: "<< errorStrings[temperatureMCU.first];
+            LOG_ERROR << "Could not get temperature from address3:0x94 (MCU). Error: "<< errorStrings[temperatureMCU.first];
         }
 
         // Log UHF Temperature
         if (temperatureUHF.first == TMP117::Error::NoErrors){
             Logger::format.precision(LoggerPrecision);
-            LOG_DEBUG << "Temperature at address " << TMP117::I2CAddress::Address1 << " (UHF PA)"<< " is " << temperatureUHF.second ;
+            LOG_DEBUG << "Temperature at address1:0x90 (UHF PA) is " << temperatureUHF.second ;
             PlatformParameters::commsPCBTemperatureUHF.setValue(temperatureUHF.second);
         } else {
-            LOG_ERROR << "Error getting temperature from address" << TMP117::I2CAddress::Address1 << " (UHF PA).Error: "<< errorStrings[temperatureUHF.first];
+            LOG_ERROR << "Could not get temperature from address1:0x90 (UHF PA). Error: "<< errorStrings[temperatureUHF.first];
         }
 
         // Log S-BAND Temperature
         if (temperatureSBAND.first == TMP117::Error::NoErrors){
             Logger::format.precision(LoggerPrecision);
-            LOG_DEBUG << "Temperature at address " << TMP117::I2CAddress::Address4 << " (S-BAND PA)"<< " is " << temperatureSBAND.second;
+            LOG_DEBUG << "Temperature at address4:0x96 (S-BAND PA)"<< " is " << temperatureSBAND.second;
             PlatformParameters::commsPCBTemperatureSBAND.setValue(temperatureSBAND.second);
         } else {
-            LOG_ERROR << "Error getting temperature from address" << TMP117::I2CAddress::Address4 << "(S-BAND PA).Error: "<< errorStrings[temperatureSBAND.first];
+            LOG_ERROR << "Could not get temperature from address4:0x96 (S-BAND PA). Error: "<< errorStrings[temperatureSBAND.first];
         }
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
