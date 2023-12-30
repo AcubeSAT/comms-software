@@ -2,11 +2,33 @@
 
 #include <etl/optional.h>
 #include "Task.hpp"
+#include "ina3221.hpp"
 
 extern I2C_HandleTypeDef hi2c2;
 
 class CurrentSensorsTask : public Task {
 public:
+
+    /**
+     * Functionality of each channel of INA3221 on the comms board.
+     */
+    enum class Channel : uint8_t {
+        FPGA = 1,
+        RF_UHF = 2,
+        RF_S = 3
+    };
+
+    /**
+     * Prints current, shunt voltage, bus voltage, power consumption of the input channel
+     * @param sensor pointer to INA3221 instance
+     * @param ch input channel
+     * @param current enable/disable current display
+     * @param shuntVolt enable/disable shunt voltage display
+     * @param busVolt enable/disable bus voltage display
+     * @param pow enable/disable power consumption display
+     */
+    static void display(INA3221::INA3221 &sensor, Channel ch,
+                        bool current, bool shuntVolt, bool busVolt, bool pow);
 
     void execute();
 
