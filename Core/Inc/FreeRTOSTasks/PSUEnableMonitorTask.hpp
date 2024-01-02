@@ -1,8 +1,24 @@
-//
-// Created by ntoylker on 27/12/2023.
-//
+#pragma once
 
-#ifndef STM32H7A3ZIQSETUP_PSUENABLEMONITORTASK_HPP
-#define STM32H7A3ZIQSETUP_PSUENABLEMONITORTASK_HPP
+#include <optional>
+#include "Task.hpp"
 
-#endif //STM32H7A3ZIQSETUP_PSUENABLEMONITORTASK_HPP
+class PSUEnableMonitorTask : public Task {
+private:
+    const static inline uint16_t TaskStackDepth = 2000;
+
+    StackType_t taskStack[TaskStackDepth];
+public:
+    void execute();
+
+    PSUEnableMonitorTask() : Task("PSUEnableMonitor") {}
+
+    void createTask(){
+        xTaskCreateStatic(vClassTask<PSUEnableMonitorTask>, this->TaskName,
+                          PSUEnableMonitorTask::TaskStackDepth, this, tskIDLE_PRIORITY + 5,
+                          this->taskStack, &(this->taskBuffer));
+    }
+};
+
+inline std::optional<PSUEnableMonitorTask> psuEnableMonitorTask;
+
