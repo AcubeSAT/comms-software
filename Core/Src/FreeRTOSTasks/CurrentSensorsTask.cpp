@@ -1,54 +1,55 @@
 #include "CurrentSensorsTask.hpp"
 #include "ina3221.hpp"
-#include <etl/string.h>
+#include "etl/string.h"
 
-void CurrentSensorsTask::display(INA3221::INA3221 &sensor, const Channel ch,
-                                 const bool current, const bool shuntVolt, const bool busVolt, const bool pow) {
-    etl::string<7> chStr;
-    switch (ch) {
+void CurrentSensorsTask::display(const Channel channel,
+                                 const bool displayShuntVoltage, const bool displayBusVoltage, const bool displayCurrent, const bool displayPower) {
+    etl::string<7> channelString;
+    switch (channel) {
         case Channel::FPGA:
-            chStr.assign("FPGA");
+            channelString.assign("FPGA");
             break;
         case Channel::RF_UHF:
-            chStr.assign("RF_UHF");
+            channelString.assign("RF_UHF");
             break;
         case Channel::RF_S:
-            chStr.assign("RF_S");
+            channelString.assign("RF_S");
             break;
         default:
-            chStr.assign("ERROR");
+            channelString.assign("ERROR");
     }
 
-    auto chNum = static_cast<uint8_t>(ch);
-    if (current) {
-        auto shuntCurrent = sensor.getCurrent(chNum);
-        LOG_DEBUG << "Channel shunt current\t" << chStr.data() << ": " << shuntCurrent.value() << " mA ";
+    auto channelIndex = to_underlying(channel);
+    if (displayShuntVoltage) {
+        auto shuntVoltage = std::get<0>(channelMeasurement)[channelIndex];
+        LOG_DEBUG << "Channel shunt Voltage\t" << channelString.data() << ": " << shuntVoltage.value() << " uV ";
     }
-    if (shuntVolt) {
-        auto shuntVoltage = sensor.getShuntVoltage(chNum);
-        LOG_DEBUG << "Channel shunt Voltage\t" << chStr.data() << ": " << shuntVoltage.value() << " mV ";
+    if (displayBusVoltage) {
+        auto busVoltage = std::get<1>(channelMeasurement)[channelIndex];
+        LOG_DEBUG << "Channel bus Voltage\t" << channelString.data() << ": " << busVoltage.value() << " uV ";
     }
-    if (busVolt) {
-        auto busVoltage = sensor.getBusVoltage(chNum);
-        LOG_DEBUG << "Channel bus Voltage\t" << chStr.data() << ": " << busVoltage.value() << " mV ";
+    if (displayCurrent) {
+        auto current = std::get<2>(channelMeasurement)[channelIndex];
+        LOG_DEBUG << "Channel shunt current\t" << channelString.data() << ": " << current.value() << " uA ";
     }
-    if (pow) {
-        auto power = sensor.getPower(chNum);
-        LOG_DEBUG << "Channel power\t\t" << chStr.data() << ": " << power.value() << " mW\n";
+    if (displayPower) {
+        auto power = std::get<3>(channelMeasurement)[channelIndex];
+        LOG_DEBUG << "Channel power\t\t" << channelString.data() << ": " << power.value() << " mW\n";
     }
 }
 
 void CurrentSensorsTask::execute() {
     auto error = INA3221::Error::NO_ERRORS;
 
-    INA3221::INA3221 currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
+    currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
 
     while (true) {
         Logger::format.precision(Precision);
+        channelMeasurement = currentSensor.getMeasurement().value();
 
-        display(currentSensor, Channel::FPGA, true, true, true, true);
-        display(currentSensor, Channel::RF_UHF, true, true, true, true);
-        display(currentSensor, Channel::RF_S, true, true, true, true);
+        display(Channel::FPGA, true, true, true, true);
+        display(Channel::RF_UHF, true, true, true, true);
+        display(Channel::RF_S, true, true, true, true);
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
