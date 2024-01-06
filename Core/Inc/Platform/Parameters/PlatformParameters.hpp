@@ -96,6 +96,7 @@ namespace PlatformParameters {
         TCFrameSequenceCounter = 2025,
         COMMSPCBTemperatureUHF = 2026,
         COMMSPCBTemperatureSBAND = 2027,
+        COMMSPCBTemperatureMCU = 2038,
         COMMSMCUTemperature = 2028,
         COMMSMCUInputVoltage = 2029,
         COMMSMCUBootCounter = 2030,
@@ -140,6 +141,7 @@ namespace PlatformParameters {
      */
     inline Parameter<uint16_t> commsPCBTemperatureUHF(0);
     inline Parameter<uint16_t> commsPCBTemperatureSBAND(0);
+    inline Parameter<uint16_t> commsPCBTemperatureMCU(0);
     inline Parameter<uint16_t> commsMCUTemperature(0);
     inline Parameter<uint16_t> commsMCUInputVoltage(0);
 
