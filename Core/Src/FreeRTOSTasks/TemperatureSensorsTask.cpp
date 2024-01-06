@@ -22,7 +22,7 @@ void TemperatureSensorsTask::execute() {
     etl::pair<TMP117::Error, float> temperature;
     while(true){
         Logger::format.precision(LoggerPrecision);
-        for (uint8_t i; i<3; i++){
+        for (uint8_t i=0; i<3; i++){
             temperature = sensors[i].getTemperature(true);
             if(temperature.first == TMP117::Error::NoErrors){
                 LOG_DEBUG << "Temperature at " << sensorNames[i] << ": " << temperature.second;
