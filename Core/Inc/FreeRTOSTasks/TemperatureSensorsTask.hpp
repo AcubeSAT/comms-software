@@ -3,6 +3,7 @@
 #include <optional>
 #include "Task.hpp"
 #include "main.h"
+#include "TMP117.hpp"
 
 extern I2C_HandleTypeDef hi2c2;
 
@@ -23,6 +24,7 @@ private:
     const static inline uint16_t DelayMs = 1000;
     const static inline uint16_t TaskStackDepth = 2000;
     const static inline uint8_t LoggerPrecision = 2;
+    StackType_t taskStack[TaskStackDepth];
 
     const std::string errorStrings[7] = {"NoErrors",
                                          "Timeout",
@@ -31,14 +33,25 @@ private:
                                          "TemperatureLow",
                                          "NoDataReady",
                                          "InvalidCalibrationOffset"};
-    const std::string sensorNames[3] = { "PCB MCU",
-                                         "PCB UHF PA",
-                                         "PCB SBAND PA"};
-    Parameter<uint16_t> PlatformParameters[3] = { PlatformParameters::commsPCBTemperatureMCU,
-                                                  PlatformParameters::commsPCBTemperatureUHF,
-                                                  PlatformParameters::commsPCBTemperatureSBAND };
 
-    StackType_t taskStack[TaskStackDepth];
+    // This struct holds settings for the sensors. For polling, continuous mode is used
+    // (the sensors periodically produce new values). Alert settings are irrelevant for now,
+    // since the alert pin was not used.
+    TMP117::Config config = {
+            TMP117::Continuous,
+            static_cast<uint8_t>(7),
+            TMP117::Samples8,
+            true,
+            false,
+            true
+    };
+
+    struct sensor {
+        TMP117::TMP117 sensorObject;
+        Parameter<uint16_t>& platformParameterReference;
+        const char* sensorName;
+    };
+
 };
 
 inline std::optional<TemperatureSensorsTask> temperatureSensorsTask;
