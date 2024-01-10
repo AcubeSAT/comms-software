@@ -4,6 +4,7 @@
 #include "Task.hpp"
 #include "main.h"
 #include "TMP117.hpp"
+#include "etl/optional.h"
 
 extern I2C_HandleTypeDef hi2c2;
 
@@ -24,19 +25,26 @@ private:
     const static inline uint16_t DelayMs = 1000;
     const static inline uint16_t TaskStackDepth = 2000;
     const static inline uint8_t LoggerPrecision = 2;
+    const static uint8_t maxErrorStringSize = 25;
+    const static uint8_t maxSensorNameSize = 16;
     StackType_t taskStack[TaskStackDepth];
 
-    const std::string errorStrings[7] = {"NoErrors",
-                                         "Timeout",
-                                         "InvalidEEPROM",
-                                         "TemperatureHigh",
-                                         "TemperatureLow",
-                                         "NoDataReady",
-                                         "InvalidCalibrationOffset"};
+    /** A method that maps an error to a string.
+     * @param error The type of error
+     * @return      The corresponding string of error.Error strings should be smaller than maxErrorStringSize.
+     */
+    static etl::string<maxErrorStringSize> errorString(TMP117::Error error);
 
-    // This struct holds settings for the sensors. For polling, continuous mode is used
-    // (the sensors periodically produce new values). Alert settings are irrelevant for now,
-    // since the alert pin was not used.
+    /** A method that maps an I2C address to a descriptive sensor name.
+     * @param slaveAddress The I2C address
+     * @return             The name of the sensor that uses slaveAddress.It must be smaller than maxSensorNameSize.
+     */
+    static etl::string<maxSensorNameSize> sensorName(TMP117::I2CAddress slaveAddress);
+
+    /** This struct holds settings for the sensors. For polling, continuous mode is used
+     * (the sensors periodically produce new values). Alert settings are irrelevant for now,
+     * since the alert pin was not used.
+     */
     TMP117::Config config = {
             TMP117::Continuous,
             static_cast<uint8_t>(7),
@@ -49,7 +57,7 @@ private:
     struct sensor {
         TMP117::TMP117 sensorObject;
         Parameter<uint16_t>& platformParameterReference;
-        const char* sensorName;
+        etl::optional<etl::string<maxSensorNameSize>> sensorName;
     };
 
 };
