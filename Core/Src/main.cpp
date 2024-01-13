@@ -3,6 +3,7 @@
 #include "list.h"
 #include "task.h"
 #include "DummyTask.h"
+#include "PSUEnableMonitorTask.hpp"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
 #include "MCUTemperatureTask.hpp"
@@ -44,6 +45,7 @@ namespace AT86RF215 {
 }
 
 extern "C" void main_cpp(){
+    psuEnableMonitorTask.emplace();
     uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
@@ -51,6 +53,7 @@ extern "C" void main_cpp(){
     watchdogTask.emplace();
     transceiverTask.emplace();
 
+    psuEnableMonitorTask->createTask();
     uartGatekeeperTask->createTask();
     transceiverTask->createTask();
     temperatureSensorsTask->createTask();
