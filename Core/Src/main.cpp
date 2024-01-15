@@ -75,6 +75,7 @@ extern "C" void main_cpp(){
 /**
  * @brief This function handles EXTI line[15:10] interrupts.
  */
+
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 
