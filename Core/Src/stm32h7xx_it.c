@@ -177,19 +177,17 @@ void DMA1_Stream0_IRQHandler(void)
 /**
   * @brief This function handles EXTI line[15:10] interrupts.
   */
-
-/* @ntoylker 15/1/24 COMMENTED OUT BECAUSE OF BUILD "multiple definitions" error. in main.cpp there is an implementation
- * Don't know 100% if this move is correct. Will come back to fix it if else */
-//void EXTI15_10_IRQHandler(void)
-//{
+void EXTI15_10_IRQHandler(void)
+{
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 //
   /* USER CODE END EXTI15_10_IRQn 0 */
-//    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
+  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 //
   /* USER CODE END EXTI15_10_IRQn 1 */
-//}
+}
+
 /**
   * @brief This function handles TIM6 global interrupt, DAC1_CH1 and DAC1_CH2 underrun error interrupts.
   */
