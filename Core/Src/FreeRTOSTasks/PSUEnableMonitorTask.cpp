@@ -5,31 +5,36 @@
 #include "PSU.hpp"
 //#include "../lib/component-drivers/PSU/src/PSU.cpp"
 
+PSU::PSU psu = PSU::PSU( GPIOD, GPIO_PIN_9
+                               , GPIOC, GPIO_PIN_7
+                               , GPIOA, GPIO_PIN_9
+                               , GPIOD, GPIO_PIN_8
+                               , GPIOE, GPIO_PIN_13);
 
 void PSUEnableMonitorTask::execute() {
 
     // 1st enable the different parts of PSU
-    PSU::PSU::enablePartPSU(P5V_FPGA_EN_GPIO_Port, P5V_FPGA_EN_Pin);
+    psu.enablePartPSU(psu.p5vFPGAenPORT, psu.p5vFPGAenPIN);
     HAL_Delay(200); // settle time
-    PSU::PSU::enablePartPSU(P5V_RF_EN_GPIO_Port, P5V_RF_EN_Pin);
+    psu.enablePartPSU(psu.p5vRFenPORT, psu.p5vRFenPIN);
     HAL_Delay(200); // settle time
 
-    if (PSU::PSU::PGread())
+    if (psu.PGread())
         LOG_INFO << "ALL 3 PG signals are in SET state (P5V_FPGA, P5V_RF, P3V3_RF)";
 
     // the periodic(3 sec) monitoring of PG signals
     while (1) {
-        if(PSU::PSU::isPinOff(P5V_FPGA_PG_GPIO_Port, P5V_FPGA_PG_Pin)) {
+        if(psu.isPinOff(psu.p5vFPGApgPORT, psu.p5vFPGApgPIN)) {
             LOG_INFO << "P5V_FPGA PG signal is NOT in SET state";
-            PSU::PSU::solvePGfault(P5V_FPGA_PG_GPIO_Port, P5V_FPGA_PG_Pin);
+            psu.solvePGfault(psu.p5vFPGApgPORT, psu.p5vFPGApgPIN);
         }
-        if(PSU::PSU::isPinOff(P5V_RF_PG_GPIO_Port, P5V_RF_PG_Pin)) {
+        if(psu.isPinOff(psu.p5vRFpgPORT, psu.p5vRFpgPIN)) {
             LOG_INFO << "P5V_RF PG signal is NOT in SET state";
-            PSU::PSU::solvePGfault(P5V_RF_PG_GPIO_Port, P5V_RF_PG_Pin);
+            psu.solvePGfault(psu.p5vRFpgPORT, psu.p5vRFpgPIN);
         }
-        if(PSU::PSU::isPinOff(P3V3_RF_PG_GPIO_Port, P3V3_RF_PG_Pin)) {
+        if(psu.isPinOff(psu.p3v3RFenPORT, psu.p3v3RFpgPIN)) {
             LOG_INFO << "P3V3_RF PG signal is NOT in SET state";
-            PSU::PSU::solvePGfault(P3V3_RF_PG_GPIO_Port, P3V3_RF_PG_Pin);
+            psu.solvePGfault(psu.p3v3RFenPORT, psu.p3v3RFpgPIN);
         }
 
         HAL_Delay(3000);

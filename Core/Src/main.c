@@ -567,13 +567,13 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOB, LD1_Pin|LD3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, P5V_RF_EN_Pin|LD2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOE, P5V_FPGA_EN_Pin|P5V_RF_EN_Pin|LD2_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : B1_Pin P5V_RF_PG_Pin */
-  GPIO_InitStruct.Pin = B1_Pin|P5V_RF_PG_Pin;
+  /*Configure GPIO pin : B1_Pin */
+  GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : USB_FS_PWR_EN_Pin */
   GPIO_InitStruct.Pin = USB_FS_PWR_EN_Pin;
@@ -596,8 +596,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : P5V_RF_EN_Pin LD2_Pin */
-  GPIO_InitStruct.Pin = P5V_RF_EN_Pin|LD2_Pin;
+  /*Configure GPIO pins : P5V_FPGA_PG_Pin P5V_RF_PG_Pin P3V3_RF_PG_Pin */
+  GPIO_InitStruct.Pin = P5V_FPGA_PG_Pin|P5V_RF_PG_Pin|P3V3_RF_PG_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : P5V_FPGA_EN_Pin P5V_RF_EN_Pin LD2_Pin */
+  GPIO_InitStruct.Pin = P5V_FPGA_EN_Pin|P5V_RF_EN_Pin|LD2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -615,11 +621,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(USB_FS_OVCR_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : P3V3_RF_PG_Pin */
-  GPIO_InitStruct.Pin = P3V3_RF_PG_Pin;
+  /*Configure GPIO pin : USB_OTG_HS_VBUS_Pin */
+  GPIO_InitStruct.Pin = USB_OTG_HS_VBUS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(P3V3_RF_PG_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(USB_OTG_HS_VBUS_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : USB_FS_ID_Pin */
   GPIO_InitStruct.Pin = USB_FS_ID_Pin;
