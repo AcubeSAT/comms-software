@@ -1,8 +1,5 @@
 #include "CurrentSensorsTask.hpp"
-#include "ina3221.hpp"
 #include "etl/string.h"
-
-//INA3221::INA3221 CurrentSensorsTask::currentSensor
 
 void CurrentSensorsTask::display(const Channel channel,
                                  const bool displayShuntVoltage, const bool displayBusVoltage, const bool displayCurrent, const bool displayPower) {
@@ -41,9 +38,6 @@ void CurrentSensorsTask::display(const Channel channel,
 }
 
 void CurrentSensorsTask::execute() {
-    auto error = INA3221::Error::NO_ERRORS;
-
-
     while (true) {
         Logger::format.precision(Precision);
         channelMeasurement = currentSensor.getMeasurement().value();
@@ -54,5 +48,4 @@ void CurrentSensorsTask::execute() {
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
-
 }
