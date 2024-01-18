@@ -27,16 +27,16 @@ public:
      * This function calculates the PllChannelFrequency value using the formula given in the datasheet
      * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
-    uint16_t calculatePllChannelFrequency24(uint32_t frequency);
+    uint16_t calculatePllChannelFrequency(uint32_t frequency);
 
     /*
      * This function calculates the PllChannelNumber value using the formula given in the datasheet
      * for Fine Resolution Channel Scheme CNM.CM=1 (section 6.3.2)
      */
-    uint8_t calculatePllChannelNumber24(uint32_t frequency);
+    uint8_t calculatePllChannelNumber(uint32_t frequency);
 
     void setConfiguration(uint16_t pllFrequency24, uint8_t pllChannelNumber24);
-
+    void setF();
     static AT86RF215::AT86RF215 transceiver;
 
     void createTask() {
@@ -50,8 +50,8 @@ private:
 
     constexpr static uint16_t DelayMs = 10;
     constexpr static uint16_t TaskStackDepth = 2000;
-    constexpr static uint32_t FrequencyUHF = 436500;
-
+    uint32_t FrequencyUHF;
+    uint16_t rfid=1;
     QueueHandle_t packetQueue;
     AT86RF215::Error error;
     StackType_t taskStack[TaskStackDepth];
