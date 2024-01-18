@@ -8,7 +8,6 @@ extern I2C_HandleTypeDef hi2c2;
 
 class CurrentSensorsTask : public Task {
 public:
-
     /**
      * Functionality of each channel of INA3221 on the comms board.
      */
