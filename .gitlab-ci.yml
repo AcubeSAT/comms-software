@@ -17,7 +17,7 @@ build-arm:
     - cd cross-platform-software && git submodule update --init --recursive
     - cd ..
     - cd physical_layer && git submodule update --init --recursive
-    - cd ..
+    - cd ../..
     - mkdir build && cd build
     - cmake ..
     - cmake --build . --target STM32H7A3ZIQSetup.elf -- -j 6
