@@ -81,7 +81,7 @@ void TemperatureSensorsTask::execute() {
 /** Tests the methods: readRegister(),writeRegister()
  *  Writes a specified value to a specified register.It is expected that the read value is the same as the specified value
 **/
-/*
+
 void TemperatureSensorsTask::execute() {
     TMP117::TMP117 sensor = TMP117::TMP117(hi2c2,TMP117::I2CAddress::Address1,config);
 
@@ -101,7 +101,7 @@ void TemperatureSensorsTask::execute() {
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }
- */
+
 
 /** Tests the methods: configure()
  * Reads the configuration register (only the 11 least significant bits concern settings) and compares it with
@@ -169,7 +169,7 @@ void TemperatureSensorsTask::execute() {
         sensor.writeRegister(TMP117::RegisterAddress::ConfigurationRegister, currentVal.second.value() | 0x2);
         sensor.configure();
 
-        //Read the registers again.Only the one that was read written with writeEEPROM should hold it's new value.
+        //Read the registers again.Only the one that was read written with writeEEPROM should hold its new value.
         auto afterRead1 = sensor.readEEPROM(1);
         auto afterRead2 = sensor.readEEPROM(2);
         LOG_DEBUG << "after-read errors: " << afterRead1.first << " and " << afterRead1.first;
