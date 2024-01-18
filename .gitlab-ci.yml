@@ -1,0 +1,23 @@
+stages:
+  - build
+
+build-arm:
+  image: spacedot/build-arm
+  stage: build
+  script:
+    - cd ./Core/lib
+    - git clone https://gitlab.com/acubesat/comms/software/ccsds-telemetry-packets.git
+    - git clone https://gitlab.com/acubesat/comms/software/component-drivers.git
+    - git clone https://gitlab.com/acubesat/obc/cross-platform-software.git
+    - git clone https://gitlab.com/acubesat/comms/software/physical_layer.git
+    - cd ccsds-telemetry-packets && git submodule update --init --recursive
+    - cd ..
+    - cd component-drivers && git submodule update --init --recursive
+    - cd ..
+    - cd cross-platform-software && git submodule update --init --recursive
+    - cd ..
+    - cd physical_layer && git submodule update --init --recursive
+    - cd ..
+    - mkdir build && cd build
+    - cmake ..
+    - cmake --build . --target STM32H7A3ZIQSetup.elf -- -j 6
