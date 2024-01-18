@@ -18,7 +18,8 @@ public:
         RF_S = 2
     };
 
-    static INA3221::INA3221 currentSensor;
+    static inline INA3221::Error error = INA3221::Error::NO_ERRORS;
+    static inline INA3221::INA3221 currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
     INA3221::ChannelMeasurement channelMeasurement;
 
     /**
@@ -49,5 +50,6 @@ private:
 
     StackType_t taskStack[TaskStackDepth];
 };
+
 
 inline etl::optional<CurrentSensorsTask> currentSensorsTask;

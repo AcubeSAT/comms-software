@@ -2,6 +2,8 @@
 #include "ina3221.hpp"
 #include "etl/string.h"
 
+//INA3221::INA3221 CurrentSensorsTask::currentSensor
+
 void CurrentSensorsTask::display(const Channel channel,
                                  const bool displayShuntVoltage, const bool displayBusVoltage, const bool displayCurrent, const bool displayPower) {
     etl::string<7> channelString;
@@ -19,7 +21,7 @@ void CurrentSensorsTask::display(const Channel channel,
             channelString.assign("ERROR");
     }
 
-    auto channelIndex = to_underlying(channel);
+    auto channelIndex = static_cast<std::underlying_type_t<Channel>>(channel);
     if (displayShuntVoltage) {
         auto shuntVoltage = std::get<0>(channelMeasurement)[channelIndex];
         LOG_DEBUG << "Channel shunt Voltage\t" << channelString.data() << ": " << shuntVoltage.value() << " uV ";
@@ -41,7 +43,6 @@ void CurrentSensorsTask::display(const Channel channel,
 void CurrentSensorsTask::execute() {
     auto error = INA3221::Error::NO_ERRORS;
 
-    currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
 
     while (true) {
         Logger::format.precision(Precision);
