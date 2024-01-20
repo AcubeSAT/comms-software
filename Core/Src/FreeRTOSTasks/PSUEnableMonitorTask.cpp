@@ -5,11 +5,11 @@
 #include "PSU.hpp"
 //#include "../lib/component-drivers/PSU/src/PSU.cpp"
 
-PSU::PSU psu = PSU::PSU( GPIOD, GPIO_PIN_9
-                               , GPIOC, GPIO_PIN_7
-                               , GPIOA, GPIO_PIN_9
-                               , GPIOD, GPIO_PIN_8
-                               , GPIOE, GPIO_PIN_13);
+PSU psu = PSU( GPIOD, GPIO_PIN_9
+        , GPIOC, GPIO_PIN_7
+        , GPIOA, GPIO_PIN_9
+        , GPIOD, GPIO_PIN_8
+        , GPIOE, GPIO_PIN_13);
 
 void PSUEnableMonitorTask::execute() {
 
