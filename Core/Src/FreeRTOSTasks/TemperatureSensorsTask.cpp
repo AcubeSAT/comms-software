@@ -1,7 +1,7 @@
 #include "TemperatureSensorsTask.hpp"
 #include "TMP117.hpp"
 
-etl::string<TemperatureSensorsTask::maxErrorStringSize> TemperatureSensorsTask::errorString(TMP117::Error error){
+etl::string<TemperatureSensorsTask::MaxErrorStringSize> TemperatureSensorsTask::errorString(TMP117::Error error){
     switch(error) {
         case TMP117::NoErrors:
             return "NoErrors";
@@ -24,7 +24,7 @@ etl::string<TemperatureSensorsTask::maxErrorStringSize> TemperatureSensorsTask::
     return "UnknownError";
 }
 
-etl::string<TemperatureSensorsTask::maxSensorNameSize> TemperatureSensorsTask::sensorName(TMP117::I2CAddress slaveAddress){
+etl::string<TemperatureSensorsTask::MaxSensorNameSize> TemperatureSensorsTask::sensorName(TMP117::I2CAddress slaveAddress){
     switch(slaveAddress) {
         case TMP117::I2CAddress::Address3:
             return "PCB MCU";
@@ -40,20 +40,7 @@ etl::string<TemperatureSensorsTask::maxSensorNameSize> TemperatureSensorsTask::s
 }
 
 void TemperatureSensorsTask::execute() {
-
-    etl::array<sensor, 3> sensors = {
-        sensor {TMP117::TMP117(hi2c2, TMP117::I2CAddress::Address3, config),
-                         PlatformParameters::commsPCBTemperatureMCU,
-                         sensorName(TMP117::Address3)},
-        sensor {TMP117::TMP117(hi2c2, TMP117::I2CAddress::Address1, config),
-                         PlatformParameters::commsPCBTemperatureUHF,
-                         sensorName(TMP117::I2CAddress::Address1)},
-        sensor {TMP117::TMP117(hi2c2, TMP117::I2CAddress::Address4, config),
-                         PlatformParameters::commsPCBTemperatureSBAND,
-                         sensorName(TMP117::I2CAddress::Address4)},
-    };
-
-    // for temporarily holding of a temperature and error
+    // for temporarily holding a temperature and an error
     etl::pair<TMP117::Error, float> temperature;
 
     while (true) {
@@ -61,10 +48,10 @@ void TemperatureSensorsTask::execute() {
         for (auto s : sensors) {
             temperature = s.sensorObject.getTemperature(true);
             if (temperature.first == TMP117::Error::NoErrors) {
-                LOG_DEBUG << "Temperature at " << s.sensorName->data() << ": " << temperature.second;
+                LOG_DEBUG << "Temperature at " << s.sensorName.data() << ": " << temperature.second;
                 s.platformParameterReference.setValue(temperature.second);
             } else {
-                LOG_ERROR << "Could not get temperature at " << s.sensorName->data() << ". Error: "
+                LOG_ERROR << "Could not get temperature at " << s.sensorName.data() << ". Error: "
                           << errorString(temperature.first).data();
             }
         }
