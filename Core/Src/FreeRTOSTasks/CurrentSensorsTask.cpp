@@ -33,7 +33,7 @@ void CurrentSensorsTask::display(const Channel channel,
     }
     if (displayPower) {
         auto power = std::get<3>(channelMeasurement)[channelIndex];
-        LOG_DEBUG << "Channel power\t\t" << channelString.data() << ": " << power.value() << " mW\n";
+        LOG_DEBUG << "Channel power\t\t" << channelString.data() << ": " << power.value() << " mW";
     }
 }
 

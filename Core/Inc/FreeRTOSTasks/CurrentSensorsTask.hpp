@@ -24,14 +24,13 @@ public:
     /**
      * Prints current, shunt voltage, bus voltage, power consumption of the input channel
      * @param channel input channel
-     * @param current enable/disable current display
-     * @param shuntVolt enable/disable shunt voltage display
-     * @param busVolt enable/disable bus voltage display
-     * @param pow enable/disable power consumption display
+     * @param displayShuntVoltage enable/disable shunt voltage display
+     * @param displayBusVoltage enable/disable bus voltage display
+     * @param displayCurrent enable/disable current display
+     * @param displayPower enable/disable power consumption display
      */
     void display(Channel channel,
-                        bool current, bool shuntVolt, bool busVolt, bool pow);
-
+                         bool displayShuntVoltage, bool displayBusVoltage, bool displayCurrent, bool displayPower);
     void execute();
 
     CurrentSensorsTask() : Task("Current Sensors") {}
@@ -43,7 +42,7 @@ public:
     }
 
 private:
-    static constexpr uint16_t DelayMs = 1000;
+    static constexpr uint16_t DelayMs = 2000;
     static constexpr uint16_t TaskStackDepth = 2000;
     static constexpr uint8_t Precision = 3;
 
