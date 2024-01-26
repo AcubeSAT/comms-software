@@ -1,0 +1,11 @@
+stages:
+  - build
+
+build-arm:
+  image: spacedot/build-arm
+  stage: build
+  script:
+    - git submodule update --init --recursive
+    - mkdir build && cd build
+    - cmake ..
+    - cmake --build . --target STM32H7A3ZIQSetup.elf -- -j 6
