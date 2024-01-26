@@ -2,16 +2,19 @@
 #include "FreeRTOS.h"
 #include "list.h"
 #include "task.h"
-#include "DummyTask.h"
+#include "InitializationTask.hpp"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
-#include "MCUTemperatureTask.hpp"
+/*
+#include "DummyTask.h"
 #include "txUHFTask.hpp"
-#include "UARTGatekeeperTask.hpp"
-#include "TemperatureSensorsTask.hpp"
 #include "TransceiverTask.hpp"
-#include "TimeKeepingTask.hpp"
 #include "WatchdogTask.hpp"
+#include "TemperatureSensorsTask.hpp"
+*/
+#include "UARTGatekeeperTask.hpp"
+#include "MCUTemperatureTask.hpp"
+#include "TimeKeepingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -44,19 +47,27 @@ namespace AT86RF215 {
 }
 
 extern "C" void main_cpp(){
+
+    //SYS_Initialize(NULL);
+
+    initializationTask.emplace();
+    /*
     uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
     watchdogTask.emplace();
-    transceiverTask.emplace();
+    transceiverTask.emplace(); */
 
+    initializationTask->createTask();
+    /*
     uartGatekeeperTask->createTask();
     transceiverTask->createTask();
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
     watchdogTask->createTask();
+     */
 
     vTaskStartScheduler();
 
