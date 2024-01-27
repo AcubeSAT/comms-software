@@ -5,13 +5,11 @@
 #include "InitializationTask.hpp"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
-/*
-#include "DummyTask.h"
 #include "txUHFTask.hpp"
-#include "TransceiverTask.hpp"
-#include "WatchdogTask.hpp"
-#include "TemperatureSensorsTask.hpp"
-*/
+//#include "DummyTask.h"
+//#include "TransceiverTask.hpp"
+//#include "WatchdogTask.hpp"
+//#include "TemperatureSensorsTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "MCUTemperatureTask.hpp"
 #include "TimeKeepingTask.hpp"
@@ -51,23 +49,22 @@ extern "C" void main_cpp(){
     //SYS_Initialize(NULL);
 
     initializationTask.emplace();
-    /*
+//    temperatureSensorsTask.emplace();
+//    transceiverTask.emplace();
+//    txUHFTask.emplace();
+//    watchdogTask.emplace();
     uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
-    watchdogTask.emplace();
-    transceiverTask.emplace(); */
 
     initializationTask->createTask();
-    /*
+//    transceiverTask->createTask();
+//    temperatureSensorsTask->createTask();
+    txUHFTask->createTask();
+//    watchdogTask->createTask();
     uartGatekeeperTask->createTask();
-    transceiverTask->createTask();
-    temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
-    watchdogTask->createTask();
-     */
 
     vTaskStartScheduler();
 
