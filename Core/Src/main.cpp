@@ -45,16 +45,16 @@ namespace AT86RF215 {
 }
 
 extern "C" void main_cpp(){
-    psuEnableMonitorTask.emplace();
     uartGatekeeperTask.emplace();
+    psuEnableMonitorTask.emplace();
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
     watchdogTask.emplace();
     transceiverTask.emplace();
 
-    psuEnableMonitorTask->createTask();
     uartGatekeeperTask->createTask();
+    psuEnableMonitorTask->createTask();
     transceiverTask->createTask();
     temperatureSensorsTask->createTask();
     mcuTemperatureTask->createTask();
@@ -75,29 +75,8 @@ extern "C" void main_cpp(){
 /**
  * @brief This function handles EXTI line[15:10] interrupts.
  */
-
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
 
     TransceiverTask::transceiver.handle_irq();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
