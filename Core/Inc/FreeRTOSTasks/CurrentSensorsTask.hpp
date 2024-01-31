@@ -9,7 +9,7 @@ extern I2C_HandleTypeDef hi2c2;
 class CurrentSensorsTask : public Task {
 public:
     /**
-     * Functionality of each channel of INA3221 on the comms board.
+     * Functionality of each channel of INA3221 on the comms board
      */
     enum class Channel : uint8_t {
         FPGA = 0,
@@ -17,6 +17,14 @@ public:
         RF_S = 2
     };
 
+
+    /**
+     * Tuple which stores everything the driver returns
+     * <0> Array of 3 elements which stores the shunt voltages in uV
+     * <1> Array of 3 elements which stores the bus voltages in uV
+     * <2> Array of 3 elements which stores the currents in uA
+     * <3> Array of 3 elements which stores the consumed powers in mW
+     */
     INA3221::ChannelMeasurement channelMeasurement;
 
     /**
