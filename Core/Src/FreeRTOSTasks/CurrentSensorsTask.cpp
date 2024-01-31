@@ -38,6 +38,9 @@ void CurrentSensorsTask::display(const Channel channel,
 }
 
 void CurrentSensorsTask::execute() {
+    INA3221::Error error = INA3221::Error::NO_ERRORS;
+    INA3221::INA3221 currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
+
     while (true) {
         Logger::format.precision(Precision);
         channelMeasurement = currentSensor.getMeasurement().value();
