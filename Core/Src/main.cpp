@@ -48,21 +48,21 @@ extern "C" void main_cpp(){
 
     //SYS_Initialize(NULL);
 
+    uartGatekeeperTask.emplace();
     initializationTask.emplace();
 //    temperatureSensorsTask.emplace();
 //    transceiverTask.emplace();
 //    txUHFTask.emplace();
 //    watchdogTask.emplace();
-    uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
     timeKeepingTask.emplace();
 
+    uartGatekeeperTask->createTask();
     initializationTask->createTask();
 //    transceiverTask->createTask();
 //    temperatureSensorsTask->createTask();
-    txUHFTask->createTask();
+//    txUHFTask->createTask();
 //    watchdogTask->createTask();
-    uartGatekeeperTask->createTask();
     mcuTemperatureTask->createTask();
     timeKeepingTask->createTask();
 
