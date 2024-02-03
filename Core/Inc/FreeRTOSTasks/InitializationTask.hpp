@@ -9,7 +9,7 @@
 
 class InitializationTask: public Task {
 public:
-    const static inline uint16_t TaskStackDepth = 8300;
+    const static inline uint16_t TaskStackDepth = 4800;
 
     StackType_t taskStack[TaskStackDepth];
 
