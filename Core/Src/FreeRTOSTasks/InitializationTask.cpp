@@ -5,7 +5,7 @@ void InitializationTask::execute() {
     dummyTask.emplace();
     temperatureSensorsTask.emplace();
     transceiverTask.emplace();
-    txUHFTask.emplace();
+//    txUHFTask.emplace();
     watchdogTask.emplace();
 //    uartGatekeeperTask.emplace();
 //    mcuTemperatureTask.emplace();
@@ -14,7 +14,7 @@ void InitializationTask::execute() {
     dummyTask->createTask();
     temperatureSensorsTask->createTask();
     transceiverTask->createTask();
-    txUHFTask->createTask();
+//    txUHFTask->createTask();
     watchdogTask->createTask();
 //    uartGatekeeperTask->createTask();
 //    mcuTemperatureTask->createTask();

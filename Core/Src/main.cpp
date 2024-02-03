@@ -5,7 +5,7 @@
 #include "InitializationTask.hpp"
 #include "at86rf215.hpp"
 #include "at86rf215config.hpp"
-#include "txUHFTask.hpp"
+//#include "txUHFTask.hpp"
 //#include "DummyTask.h"
 //#include "TransceiverTask.hpp"
 //#include "WatchdogTask.hpp"
