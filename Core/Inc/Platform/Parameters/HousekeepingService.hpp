@@ -11,8 +11,8 @@ namespace HousekeepingStructures {
             {
                     // COMMS Parameters that will be monitored in the campaign
                     {0, 1000, true,
-                     {COMMSPCBTemperature1,
-                      COMMSPCBTemperature2,
+                     {COMMSPCBTemperatureUHF,
+                      COMMSPCBTemperatureSBAND,
                       COMMSMCUTemperature,
                       COMMSMCUBootCounter}},
             }
