@@ -48,7 +48,7 @@ public:
     }
 
 private:
-    static constexpr uint16_t DelayMs = 2000;
+    static constexpr uint16_t DelayMs = 15000;
     static constexpr uint16_t TaskStackDepth = 2000;
     static constexpr uint8_t Precision = 3;
 
