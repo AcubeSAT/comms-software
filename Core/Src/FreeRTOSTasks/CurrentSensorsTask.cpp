@@ -1,8 +1,8 @@
 #include "CurrentSensorsTask.hpp"
 #include "etl/string.h"
 
-void CurrentSensorsTask::display(const Channel channel,
-                                 const bool displayShuntVoltage, const bool displayBusVoltage, const bool displayCurrent, const bool displayPower) {
+void CurrentSensorsTask::display(const Channel channel, const bool displayShuntVoltage, const bool displayBusVoltage,
+                                 const bool displayCurrent, const bool displayPower) {
     etl::string<7> channelString;
     switch (channel) {
         case Channel::FPGA:
