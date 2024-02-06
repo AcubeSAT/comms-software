@@ -35,8 +35,9 @@ public:
      * @param displayCurrent enable/disable current display
      * @param displayPower enable/disable power consumption display
      */
-    void display(Channel channel,
-                         bool displayShuntVoltage, bool displayBusVoltage, bool displayCurrent, bool displayPower);
+    void display(Channel channell, bool displayShuntVoltage = true, bool displayBusVoltage = true,
+                 bool displayCurrent = true, bool displayPower = true);
+
     void execute();
 
     CurrentSensorsTask() : Task("Current Sensors") {}
