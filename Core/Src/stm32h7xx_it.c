@@ -174,9 +174,9 @@ void DMA1_Stream0_IRQHandler(void)
   /* USER CODE END DMA1_Stream0_IRQn 1 */
 }
 
-///**
-//  * @brief This function handles EXTI line[15:10] interrupts.
-//  */
+/**
+  * @brief This function handles EXTI line[15:10] interrupts.
+  */
 //void EXTI15_10_IRQHandler(void)
 //{
 //  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
