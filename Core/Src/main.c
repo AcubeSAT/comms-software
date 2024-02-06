@@ -602,11 +602,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PG7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_7;
+  /*Configure GPIO pin : USB_FS_OVCR_Pin */
+  GPIO_InitStruct.Pin = USB_FS_OVCR_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+  HAL_GPIO_Init(USB_FS_OVCR_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : USB_FS_VBUS_Pin */
   GPIO_InitStruct.Pin = USB_FS_VBUS_Pin;
