@@ -1,7 +1,7 @@
 #THIS FILE IS AUTO GENERATED FROM THE TEMPLATE! DO NOT CHANGE!
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION 1)
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.27)
 
 # specify cross-compilers and tools
 set(CMAKE_C_COMPILER arm-none-eabi-gcc)
@@ -54,6 +54,8 @@ include_directories(Drivers/STM32H7xx_HAL_Driver/Src)
 include_directories(Core/Inc/FreeRTOSTasks)
 include_directories(Core/src/FreeRTOSTasks)
 include_directories(Core/Inc/Platform/Parameters)
+include_directories(Core/Inc/Platform)
+include_directories(Core/Inc/CAN)
 include_directories(Core/Src/)
 include_directories("Core/lib/FreeRTOS/Source")
 include_directories("Core/lib/FreeRTOS/Source/include")
