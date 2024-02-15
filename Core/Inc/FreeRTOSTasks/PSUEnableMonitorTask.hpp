@@ -1,6 +1,6 @@
 #pragma once
 
-#include <optional>
+#include <etl/optional.h>
 #include "Task.hpp"
 
 class PSUEnableMonitorTask : public Task {
@@ -20,5 +20,5 @@ public:
     }
 };
 
-inline std::optional<PSUEnableMonitorTask> psuEnableMonitorTask;
+inline etl::optional<PSUEnableMonitorTask> psuEnableMonitorTask;
 
