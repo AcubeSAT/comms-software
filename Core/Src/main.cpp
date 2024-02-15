@@ -12,6 +12,9 @@
 //#include "TemperatureSensorsTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "MCUTemperatureTask.hpp"
+#include "TemperatureSensorsTask.hpp"
+#include "CurrentSensorsTask.hpp"
+#include "TransceiverTask.hpp"
 #include "TimeKeepingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
@@ -56,6 +59,7 @@ extern "C" void main_cpp(){
 //    watchdogTask.emplace();
     mcuTemperatureTask.emplace();
     timeKeepingTask.emplace();
+<<<<<<< HEAD
 
     uartGatekeeperTask->createTask();
     initializationTask->createTask();
@@ -63,8 +67,22 @@ extern "C" void main_cpp(){
 //    temperatureSensorsTask->createTask();
 //    txUHFTask->createTask();
 //    watchdogTask->createTask();
+=======
+    currentSensorsTask.emplace();
+    transceiverTask.emplace();
+    watchdogTask.emplace();
+
+    uartGatekeeperTask->createTask();
+>>>>>>> main
     mcuTemperatureTask->createTask();
+    temperatureSensorsTask->createTask();
     timeKeepingTask->createTask();
+<<<<<<< HEAD
+=======
+    currentSensorsTask->createTask();
+    transceiverTask->createTask();
+    watchdogTask->createTask();
+>>>>>>> main
 
     vTaskStartScheduler();
 
