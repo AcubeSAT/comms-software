@@ -27,6 +27,10 @@ private:
     const static inline uint8_t LoggerPrecision = 2;
     const static uint8_t MaxErrorStringSize = 25;
     const static uint8_t MaxSensorNameSize = 16;
+    /**
+     * Check TMP117 datasheet Table 7-7 for cycle time values
+     */
+    const static uint8_t CycleTime = 7;
     StackType_t taskStack[TaskStackDepth];
 
     /** A method that maps an error to a string.
@@ -47,7 +51,7 @@ private:
      */
     TMP117::Config config = {
             TMP117::Continuous,
-            static_cast<uint8_t>(7),
+            CycleTime,
             TMP117::Samples8,
             0,
             true,
