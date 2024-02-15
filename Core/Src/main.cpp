@@ -38,8 +38,6 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
 
-    //SYS_Initialize(NULL);
-
     initializationTask.emplace();
 
     initializationTask->createTask();
