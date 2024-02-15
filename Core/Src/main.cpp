@@ -56,17 +56,12 @@ extern "C" void main_cpp(){
     watchdogTask.emplace();
 
     uartGatekeeperTask->createTask();
-<<<<<<< HEAD
     psuEnableMonitorTask->createTask();
     transceiverTask->createTask();
     temperatureSensorsTask->createTask();
-=======
->>>>>>> main
     mcuTemperatureTask->createTask();
-    temperatureSensorsTask->createTask();
     timeKeepingTask->createTask();
     currentSensorsTask->createTask();
-    transceiverTask->createTask();
     watchdogTask->createTask();
 
     vTaskStartScheduler();
