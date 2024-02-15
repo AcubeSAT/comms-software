@@ -2,23 +2,23 @@
 
 void InitializationTask::execute() {
 
+    uartGatekeeperTask.emplace();
     dummyTask.emplace();
     temperatureSensorsTask.emplace();
     transceiverTask.emplace();
-//    txUHFTask.emplace();
     watchdogTask.emplace();
-//    uartGatekeeperTask.emplace();
-//    mcuTemperatureTask.emplace();
-//    timeKeepingTask.emplace();
+    mcuTemperatureTask.emplace();
+    timeKeepingTask.emplace();
+    currentSensorsTask.emplace();
 
+    uartGatekeeperTask->createTask();
     dummyTask->createTask();
     temperatureSensorsTask->createTask();
     transceiverTask->createTask();
-//    txUHFTask->createTask();
     watchdogTask->createTask();
-//    uartGatekeeperTask->createTask();
-//    mcuTemperatureTask->createTask();
-//    timeKeepingTask->createTask();
+    mcuTemperatureTask->createTask();
+    timeKeepingTask->createTask();
+    currentSensorsTask->createTask();
 
     vTaskSuspend(NULL);
 }

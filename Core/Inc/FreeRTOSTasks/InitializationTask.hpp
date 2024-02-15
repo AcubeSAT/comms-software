@@ -4,12 +4,15 @@
 #include "DummyTask.h"
 #include "TemperatureSensorsTask.hpp"
 #include "TransceiverTask.hpp"
-#include "txUHFTask.hpp"
 #include "WatchdogTask.hpp"
+#include "UARTGatekeeperTask.hpp"
+#include "MCUTemperatureTask.hpp"
+#include "CurrentSensorsTask.hpp"
+#include "TimeKeepingTask.hpp"
 
 class InitializationTask: public Task {
 public:
-    const static inline uint16_t TaskStackDepth = 4800;
+    const static inline uint16_t TaskStackDepth = 8300;
 
     StackType_t taskStack[TaskStackDepth];
 
