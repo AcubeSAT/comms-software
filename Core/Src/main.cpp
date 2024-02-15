@@ -10,6 +10,7 @@
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
+#include "CurrentSensorsTask.hpp"
 #include "TransceiverTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "WatchdogTask.hpp"
@@ -50,15 +51,22 @@ extern "C" void main_cpp(){
     mcuTemperatureTask.emplace();
     temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
-    watchdogTask.emplace();
+    currentSensorsTask.emplace();
     transceiverTask.emplace();
+    watchdogTask.emplace();
 
     uartGatekeeperTask->createTask();
+<<<<<<< HEAD
     psuEnableMonitorTask->createTask();
     transceiverTask->createTask();
     temperatureSensorsTask->createTask();
+=======
+>>>>>>> main
     mcuTemperatureTask->createTask();
+    temperatureSensorsTask->createTask();
     timeKeepingTask->createTask();
+    currentSensorsTask->createTask();
+    transceiverTask->createTask();
     watchdogTask->createTask();
 
     vTaskStartScheduler();
