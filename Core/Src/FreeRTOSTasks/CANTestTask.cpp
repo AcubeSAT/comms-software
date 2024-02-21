@@ -18,9 +18,8 @@ void CANTestTask::execute() {
     while (true) {
         canGatekeeperTask->switchActiveBus(CAN::ActiveBus::Main);
         CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload1.data(), false);
-//        canGatekeeperTask->switchActiveBus(CAN::ActiveBus::Redundant);
-//
-//        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload2.data(), false);
+        canGatekeeperTask->switchActiveBus(CAN::ActiveBus::Redundant);
+        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload2.data(), false);
 
         xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
         vTaskDelay(pdMS_TO_TICKS(1000));
