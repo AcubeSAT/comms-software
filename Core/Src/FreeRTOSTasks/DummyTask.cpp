@@ -1,10 +1,10 @@
-#include "FreeRTOSTasks/DummyTask.h"
+#include "DummyTask.hpp"
 #include "Task.hpp"
-#include <iostream>
 
 void DummyTask::execute() {
-    for(;;){
+    while (true) {
         HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-        HAL_Delay(300);
+        LOG_DEBUG << "Interrupt Count: " << interruptCount;
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
