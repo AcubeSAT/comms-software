@@ -13,6 +13,7 @@
 #include "TransceiverTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "WatchdogTask.hpp"
+#include "TCHandlingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -52,6 +53,7 @@ extern "C" void main_cpp(){
     currentSensorsTask.emplace();
     transceiverTask.emplace();
     watchdogTask.emplace();
+    tcHandlingTask.emplace();
 
     uartGatekeeperTask->createTask();
     mcuTemperatureTask->createTask();
@@ -60,6 +62,7 @@ extern "C" void main_cpp(){
     currentSensorsTask->createTask();
     transceiverTask->createTask();
     watchdogTask->createTask();
+    tcHandlingTask->createTask();
 
     vTaskStartScheduler();
 
@@ -80,3 +83,19 @@ extern "C" void EXTI15_10_IRQHandler(void) {
 
     TransceiverTask::transceiver.handle_irq();
 }
+
+extern "C" void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size){
+    // Size is used for copying the correct size of data to the TcCommand buffer,
+    // of the TC Handling Task
+    tcHandlingTask->incomingMessageSize = Size;
+    BaseType_t xHigherPriorityTaskWoken;
+
+    xHigherPriorityTaskWoken = pdFALSE;
+    xTaskNotifyFromISR(tcHandlingTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+
+    // Reset the DMA to receive the next chunk of data
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart3, tcHandlingTask->RxDmaBuffer.data(), MaxUsartTCSize);
+}
+
+
