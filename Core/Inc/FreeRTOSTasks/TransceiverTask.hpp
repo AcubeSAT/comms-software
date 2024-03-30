@@ -45,6 +45,8 @@ public:
                           this->taskStack, &(this->taskBuffer));
     }
 
+    uint8_t checkTheSPI();
+
 private:
     AT86RF215::AT86RF215Configuration configFrequency;
 

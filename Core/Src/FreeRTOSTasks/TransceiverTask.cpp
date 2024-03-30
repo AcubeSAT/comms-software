@@ -36,6 +36,19 @@ uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency) {
     return N & 0xFF;
 }
 
+uint8_t TransceiverTask::checkTheSPI() {
+    uint8_t spi_error = 0;
+    AT86RF215::DevicePartNumber dpn = transceiver.get_part_number(error);
+    if(dpn == AT86RF215::DevicePartNumber::AT86RF215)
+        LOG_DEBUG << "SPI OK" ;
+    else{
+        spi_error = 1;
+        LOG_DEBUG << "SPI ERROR" ;
+        transceiver.chip_reset(error);
+    }
+    return spi_error;
+}
+
 void TransceiverTask::execute() {
     setConfiguration(calculatePllChannelFrequency09(FrequencyUHF), calculatePllChannelNumber09(FrequencyUHF));
 
@@ -47,10 +60,10 @@ void TransceiverTask::execute() {
 
     while (true) {
         int delay = 1000; //in ms
-        /** Part Number and model
-        LOG_DEBUG << "part num: " << static_cast<uint16_t>(transceiver.get_part_number(error))<< "\n"; // must be 52 (decimal) for the regular model
-        LOG_DEBUG << "version num: " << static_cast<uint16_t>(transceiver.get_version_number(error))<< "\n";  //1 for v1, 3 for v3
-        **/
+        // Check SPI
+        while (checkTheSPI() != 0){
+            vTaskDelay(10);
+        };
 
         /** Energy measurement
         transceiver.clear_channel_assessment(AT86RF215::RF09,error); //sets the tranceiver to state RF_TXPREP (and presumably,the energy
