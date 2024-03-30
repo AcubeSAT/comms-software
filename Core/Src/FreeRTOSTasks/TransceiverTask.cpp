@@ -46,7 +46,36 @@ void TransceiverTask::execute() {
     PacketType packet = createRandomPacket(currentPacketLength);
 
     while (true) {
-        transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
+        int delay = 1000; //in ms
+        /** Part Number and model
+        LOG_DEBUG << "part num: " << static_cast<uint16_t>(transceiver.get_part_number(error))<< "\n"; // must be 52 (decimal) for the regular model
+        LOG_DEBUG << "version num: " << static_cast<uint16_t>(transceiver.get_version_number(error))<< "\n";  //1 for v1, 3 for v3
+        **/
+
+        /** Energy measurement
+        transceiver.clear_channel_assessment(AT86RF215::RF09,error); //sets the tranceiver to state RF_TXPREP (and presumably,the energy
+                                                                                  //measurement is started by the tranceiver)
+        vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to read the measurement
+        if (error!=AT86RF215::NO_ERRORS)
+            LOG_DEBUG << "Error: " << static_cast<uint8_t>(error) << "\n"; //look enum at at86rf215.hpp for error values
+        else
+            LOG_DEBUG << "Energy: " << transceiver.energy_measurement << "\n"; //range -127..4 (dBm?)
+        **/
+
+        /**RXFS,RSFE interrupts and packet reception**/
+        transceiver.transmitBasebandPacketsRx(AT86RF215::RF09,error); // sets the tranceiver to state RX
+        vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to detect the interreputs and read the packets
+        if (error!=AT86RF215::NO_ERRORS)
+            LOG_DEBUG << "Error: " << static_cast<uint8_t>(error) << "\n"; //look enum at at86rf215.hpp for error values
+        else // use test variables got t_rxfs,got_rxfe to determine if the interrupts occured
+            if (transceiver.got_rxfs)
+                LOG_DEBUG << "Got rxfs\n";
+            if (transceiver.got_rxfe)
+                LOG_DEBUG << "Got rxfe\n";
+            for (int i=0; i<2047; i++)
+                LOG_DEBUG << transceiver.received_packet[i] << " ";
+            LOG_DEBUG << "\n";
+
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }

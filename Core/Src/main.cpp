@@ -46,18 +46,18 @@ namespace AT86RF215 {
 
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
-    timeKeepingTask.emplace();
-    currentSensorsTask.emplace();
+    //mcuTemperatureTask.emplace();
+    //temperatureSensorsTask.emplace();
+    //timeKeepingTask.emplace();
+    //currentSensorsTask.emplace();
     transceiverTask.emplace();
     watchdogTask.emplace();
 
     uartGatekeeperTask->createTask();
-    mcuTemperatureTask->createTask();
-    temperatureSensorsTask->createTask();
-    timeKeepingTask->createTask();
-    currentSensorsTask->createTask();
+    //mcuTemperatureTask->createTask();
+    //temperatureSensorsTask->createTask();
+    //timeKeepingTask->createTask();
+    //currentSensorsTask->createTask();
     transceiverTask->createTask();
     watchdogTask->createTask();
 
@@ -77,6 +77,6 @@ extern "C" void main_cpp(){
  */
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-
+    LOG_DEBUG << "interrupt received\n";
     TransceiverTask::transceiver.handle_irq();
 }
