@@ -50,34 +50,38 @@ uint8_t TransceiverTask::checkTheSPI() {
 }
 
 void TransceiverTask::execute() {
+    // Check SPI
+    while (checkTheSPI() != 0){
+        vTaskDelay(10);
+    };
+
     setConfiguration(calculatePllChannelFrequency09(FrequencyUHF), calculatePllChannelNumber09(FrequencyUHF));
 
     transceiver.chip_reset(error);
     transceiver.setup(error);
-
+    LOG_DEBUG << "test";
     uint16_t currentPacketLength = 44;
     PacketType packet = createRandomPacket(currentPacketLength);
 
-    while (true) {
-        int delay = 1000; //in ms
-        // Check SPI
-        while (checkTheSPI() != 0){
-            vTaskDelay(10);
-        };
 
-        /** Energy measurement
+    while (true) {
+        int delay = 500; //in ms
+        LOG_DEBUG << "entered task";
+
+        /** Energy measurement**/
         transceiver.clear_channel_assessment(AT86RF215::RF09,error); //sets the tranceiver to state RF_TXPREP (and presumably,the energy
-                                                                                  //measurement is started by the tranceiver)
+                                                                                  //measurement is started by the tranceiver's energy module)
         vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to read the measurement
         if (error!=AT86RF215::NO_ERRORS)
             LOG_DEBUG << "Error: " << static_cast<uint8_t>(error) << "\n"; //look enum at at86rf215.hpp for error values
         else
-            LOG_DEBUG << "Energy: " << transceiver.energy_measurement << "\n"; //range -127..4 (dBm?)
-        **/
+            LOG_DEBUG << "Energy (EDC register): " << transceiver.energy_measurement << "\n"; //range -127..4 dbm
+            LOG_DEBUG << "Energy (RSSI register): " << transceiver.get_rssi(AT86RF215::RF09,error) << "\n";
 
-        /**RXFS,RSFE interrupts and packet reception**/
+
+        /**RXFS,RSFE interrupts and packet reception
         transceiver.transmitBasebandPacketsRx(AT86RF215::RF09,error); // sets the tranceiver to state RX
-        vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to detect the interreputs and read the packets
+        vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to detect the interrupts and read the packets
         if (error!=AT86RF215::NO_ERRORS)
             LOG_DEBUG << "Error: " << static_cast<uint8_t>(error) << "\n"; //look enum at at86rf215.hpp for error values
         else // use test variables got t_rxfs,got_rxfe to determine if the interrupts occured
@@ -88,6 +92,7 @@ void TransceiverTask::execute() {
             for (int i=0; i<2047; i++)
                 LOG_DEBUG << transceiver.received_packet[i] << " ";
             LOG_DEBUG << "\n";
+         **/
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
