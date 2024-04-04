@@ -59,7 +59,7 @@ void TransceiverTask::execute() {
 
     transceiver.chip_reset(error);
     transceiver.setup(error);
-    LOG_DEBUG << "test";
+    LOG_DEBUG << "passed chip_reset and setup";
     uint16_t currentPacketLength = 44;
     PacketType packet = createRandomPacket(currentPacketLength);
 
@@ -68,7 +68,7 @@ void TransceiverTask::execute() {
         int delay = 500; //in ms
         LOG_DEBUG << "entered task";
 
-        /** Energy measurement**/
+        /** Energy measurement
         transceiver.clear_channel_assessment(AT86RF215::RF09,error); //sets the tranceiver to state RF_TXPREP (and presumably,the energy
                                                                                   //measurement is started by the tranceiver's energy module)
         vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to read the measurement
@@ -77,9 +77,9 @@ void TransceiverTask::execute() {
         else
             LOG_DEBUG << "Energy (EDC register): " << transceiver.energy_measurement << "\n"; //range -127..4 dbm
             LOG_DEBUG << "Energy (RSSI register): " << transceiver.get_rssi(AT86RF215::RF09,error) << "\n";
+        **/
 
-
-        /**RXFS,RSFE interrupts and packet reception
+        /**RXFS,RSFE interrupts and packet reception**/
         transceiver.transmitBasebandPacketsRx(AT86RF215::RF09,error); // sets the tranceiver to state RX
         vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to detect the interrupts and read the packets
         if (error!=AT86RF215::NO_ERRORS)
@@ -92,7 +92,7 @@ void TransceiverTask::execute() {
             for (int i=0; i<2047; i++)
                 LOG_DEBUG << transceiver.received_packet[i] << " ";
             LOG_DEBUG << "\n";
-         **/
+
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
