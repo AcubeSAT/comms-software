@@ -2,6 +2,18 @@
 
 AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
 
+uint8_t TransceiverTask::checkTheSPI() {
+    uint8_t spi_error = 0;
+    AT86RF215::DevicePartNumber dpn = transceiver.get_part_number(error);
+    if(dpn == AT86RF215::DevicePartNumber::AT86RF215)
+        LOG_DEBUG << "SPI OK" ;
+    else{
+        spi_error = 1;
+        LOG_DEBUG << "SPI ERROR" ;
+        transceiver.chip_reset(error);
+    }
+    return spi_error;
+}
 
 TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length) {
     PacketType packet;
@@ -12,10 +24,55 @@ TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length)
 }
 
 void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09) {
-    configFrequency.pllFrequency09 = pllFrequency09;
-    configFrequency.pllChannelNumber09 = pllChannelNumber09;
-    configFrequency.pllChannelMode09 = AT86RF215::PLLChannelMode::FineResolution450;
-    transceiver.config = configFrequency;
+    // Sub GHz radio and BBC0
+    //     General Settings
+    customConfig.pllFrequency09 = pllFrequency09;
+    customConfig.pllChannelNumber09 = pllChannelNumber09;
+    customConfig.pllChannelMode09 = AT86RF215::PLLChannelMode::FineResolution450;
+    customConfig.continuousTransmit09 = false;
+    customConfig.baseBandEnable09 = true;
+    customConfig.physicalLayerType09 = AT86RF215::PhysicalLayerType::BB_MRFSK;
+    customConfig. frameCheckSequenceType09 = AT86RF215::FrameCheckSequenceType::FCS_32;
+
+
+    //     Receiver frontend
+    customConfig.ifInversion09 = false;
+    customConfig.ifShift09 = false;
+    customConfig.rxBandwidth09 = AT86RF215::ReceiverBandwidth::RF_BW200KHZ_IF250KHZ;
+    customConfig.rxRelativeCutoffFrequency09 = AT86RF215::RxRelativeCutoffFrequency::FCUT_0375;
+    customConfig.receiverSampleRate09 = AT86RF215::ReceiverSampleRate::FS_400;
+
+    //     AGC
+    customConfig.agcEnabled09 = false;
+    customConfig.agcInput09 = false;
+    customConfig.averageTimeNumberSamples09 = AT86RF215::AverageTimeNumberSamples::AVGS_8;
+    customConfig.automaticGainControlTarget09 = AT86RF215::AutomaticGainTarget::DB30;
+    customConfig.gainControlWord09 = 23;
+
+    //     RSSI
+    customConfig.energyDetectionMode09 = AT86RF215::EnergyDetectionMode::RF_EDAUTO;
+    customConfig.energyDetectFactor09 = 16;
+    customConfig.energyDetectionBasis09 = AT86RF215::EnergyDetectionTimeBasis::RF_8MS;
+
+    //     Tx frontend
+    customConfig.txRelativeCutoffFrequency09 = AT86RF215::TxRelativeCutoffFrequency::FCUT_0375;
+    customConfig.transceiverSampleRate09 = AT86RF215::TransmitterSampleRate::FS_400;
+    customConfig.powerAmplifierRampTime09 = AT86RF215::PowerAmplifierRampTime::RF_PARAMP32U;
+    customConfig.transmitterCutOffFrequency09 = AT86RF215::TransmitterCutOffFrequency::RF_FLC80KHZ;
+    customConfig.txOutPower09 = 0x1F;  // Each increment adds 1dBm,max value is 0x1F
+
+    //     Modulation settings
+    customConfig.directModulation09 = true;
+    customConfig.enablePE09 = false;
+    customConfig.configPE0_09 = 0x2;
+    customConfig.configPE1_09 = 0x3;
+    customConfig.configPE2_09 = 0xFC;
+    //         BT = 1 , MIDXS = 1, MIDX = 1, MOR = B-FSK
+    transceiver.spi_write_8(AT86RF215::BBC0_FSKC0, 86, error);
+
+    // 2.4 GHz radio and BBC1
+
+    transceiver.config = customConfig;
 }
 
 /*
@@ -36,19 +93,6 @@ uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency) {
     return N & 0xFF;
 }
 
-uint8_t TransceiverTask::checkTheSPI() {
-    uint8_t spi_error = 0;
-    AT86RF215::DevicePartNumber dpn = transceiver.get_part_number(error);
-    if(dpn == AT86RF215::DevicePartNumber::AT86RF215)
-        LOG_DEBUG << "SPI OK" ;
-    else{
-        spi_error = 1;
-        LOG_DEBUG << "SPI ERROR" ;
-        transceiver.chip_reset(error);
-    }
-    return spi_error;
-}
-
 void TransceiverTask::execute() {
     // Check SPI
     while (checkTheSPI() != 0){
@@ -65,8 +109,8 @@ void TransceiverTask::execute() {
 
 
     while (true) {
-        int delay = 500; //in ms
-        LOG_DEBUG << "entered task";
+        int delay = 250; //in ms
+        LOG_DEBUG << "entered loop";
 
         /** Energy measurement
         transceiver.clear_channel_assessment(AT86RF215::RF09,error); //sets the tranceiver to state RF_TXPREP (and presumably,the energy
@@ -87,11 +131,13 @@ void TransceiverTask::execute() {
         else // use test variables got t_rxfs,got_rxfe to determine if the interrupts occured
             if (transceiver.got_rxfs)
                 LOG_DEBUG << "Got rxfs\n";
+                transceiver.got_rxfs = false;
             if (transceiver.got_rxfe)
                 LOG_DEBUG << "Got rxfe\n";
-            for (int i=0; i<2047; i++)
-                LOG_DEBUG << transceiver.received_packet[i] << " ";
-            LOG_DEBUG << "\n";
+                transceiver.got_rxfs = false;
+                for (int i=0; i<2047; i++)
+                    LOG_DEBUG << transceiver.received_packet[i] << " ";
+                LOG_DEBUG << "\n";
 
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));

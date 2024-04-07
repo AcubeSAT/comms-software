@@ -35,6 +35,9 @@ public:
      */
     uint8_t calculatePllChannelNumber09(uint32_t frequency);
 
+    /*
+     * This function allows to easily configure the most important settings
+     */
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
 
     static AT86RF215::AT86RF215 transceiver;
@@ -48,7 +51,7 @@ public:
     uint8_t checkTheSPI();
 
 private:
-    AT86RF215::AT86RF215Configuration configFrequency;
+    AT86RF215::AT86RF215Configuration customConfig;
 
     constexpr static uint16_t DelayMs = 10;
     constexpr static uint16_t TaskStackDepth = 2000;
