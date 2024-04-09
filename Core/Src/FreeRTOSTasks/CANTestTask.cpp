@@ -14,12 +14,12 @@ void CANTestTask::execute() {
     }
     String<ECSSMaxMessageSize> testPayload1("SPONGEBOB SQUAREPANTS!");
 
-    String<ECSSMaxMessageSize> testPayload2("GIATI KLANEI TO GATI!");
+    String<ECSSMaxMessageSize> testPayload2("GIATI KLANEI TO GATI! kai epeidi gourstaraj na se gamvwkjasfd;lk j lkjasd;flkj laksjdf;lkjasfd");
     while (true) {
         canGatekeeperTask->switchActiveBus(CAN::ActiveBus::Main);
-        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload1.data(), false);
-        canGatekeeperTask->switchActiveBus(CAN::ActiveBus::Redundant);
-        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, false, testPayload2.data(), false);
+        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, true, testPayload1.data(), false);
+//        canGatekeeperTask->switchActiveBus(CAN::ActiveBus::Redundant);
+//        CAN::Application::createLogMessage(CAN::NodeIDs::OBC, true, testPayload2.data(), false);
 
         xTaskNotify(canGatekeeperTask->taskHandle, 0, eNoAction);
         vTaskDelay(pdMS_TO_TICKS(1000));
