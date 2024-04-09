@@ -19,7 +19,7 @@ namespace CAN::Application {
     }
 
     void sendPongMessage() {
-        TPMessage message = {{NodeID, OBC, false}};
+        TPMessage message = {{NodeID, OBC, true}};
 
         message.appendUint8(Pong);
 
