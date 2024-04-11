@@ -40,10 +40,11 @@ void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChann
     customConfig.ifShift09 = false;
     customConfig.rxBandwidth09 = AT86RF215::ReceiverBandwidth::RF_BW200KHZ_IF250KHZ;
     customConfig.rxRelativeCutoffFrequency09 = AT86RF215::RxRelativeCutoffFrequency::FCUT_0375;
+    //      Set to FS_400 for v.1 transceiver (X-PRO) and FS_500 for v.3 transceiver (X-PRO-A)
     customConfig.receiverSampleRate09 = AT86RF215::ReceiverSampleRate::FS_400;
 
     //     AGC
-    customConfig.agcEnabled09 = false;
+    customConfig.agcEnabled09 = true;
     customConfig.agcInput09 = false;
     customConfig.averageTimeNumberSamples09 = AT86RF215::AverageTimeNumberSamples::AVGS_8;
     customConfig.automaticGainControlTarget09 = AT86RF215::AutomaticGainTarget::DB30;
@@ -59,16 +60,30 @@ void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChann
     customConfig.transceiverSampleRate09 = AT86RF215::TransmitterSampleRate::FS_400;
     customConfig.powerAmplifierRampTime09 = AT86RF215::PowerAmplifierRampTime::RF_PARAMP32U;
     customConfig.transmitterCutOffFrequency09 = AT86RF215::TransmitterCutOffFrequency::RF_FLC80KHZ;
-    customConfig.txOutPower09 = 0x1F;  // Each increment adds 1dBm,max value is 0x1F
+    customConfig.txOutPower09 = 0x0;  // Each increment adds 1dBm,max value is 0x1F
 
-    //     Modulation settings
+    //     Direct modulation and pre-emphasis filter
+    //     ENABLE ONLY IN V.3 TRANSCEIVER (X-PRO-A DEVBOARD)
     customConfig.directModulation09 = true;
     customConfig.enablePE09 = false;
     customConfig.configPE0_09 = 0x2;
     customConfig.configPE1_09 = 0x3;
     customConfig.configPE2_09 = 0xFC;
-    //         BT = 1 , MIDXS = 1, MIDX = 1, MOR = B-FSK
+
+    //     FSK modulation
+    //     BT = 1 , MIDXS = 1, MIDX = 1, MOR = B-FSK
     transceiver.spi_write_8(AT86RF215::BBC0_FSKC0, 86, error);
+
+    //     FCS and interleaving
+    uint8_t reg = transceiver.spi_read_8(AT86RF215::BBC0_PC, error);
+    // ENABLE TXSFCS (FCS autonomously calculated)
+    transceiver.spi_write_8(AT86RF215::BBC0_PC, reg | (1 << 4), error);
+    // ENABLE FCS FILTER
+    transceiver.spi_write_8(AT86RF215::BBC0_PC, reg | (1 << 6), error);
+    reg = transceiver.spi_read_8(AT86RF215::BBC0_FSKC2, error);
+    // DISABLE THE INTERLEAVING
+    transceiver.spi_write_8(AT86RF215::BBC0_PC, reg & 0, error);
+
 
     // 2.4 GHz radio and BBC1
 
@@ -112,6 +127,9 @@ void TransceiverTask::execute() {
         int delay = 250; //in ms
         LOG_DEBUG << "entered loop";
 
+        /** Tx task**/
+        transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
+
         /** Energy measurement
         transceiver.clear_channel_assessment(AT86RF215::RF09,error); //sets the tranceiver to state RF_TXPREP (and presumably,the energy
                                                                                   //measurement is started by the tranceiver's energy module)
@@ -123,22 +141,23 @@ void TransceiverTask::execute() {
             LOG_DEBUG << "Energy (RSSI register): " << transceiver.get_rssi(AT86RF215::RF09,error) << "\n";
         **/
 
-        /**RXFS,RSFE interrupts and packet reception**/
+        /**RXFS,RSFE interrupts and packet reception
         transceiver.transmitBasebandPacketsRx(AT86RF215::RF09,error); // sets the tranceiver to state RX
         vTaskDelay(pdMS_TO_TICKS(delay));  //wait for handle_irq() to detect the interrupts and read the packets
-        if (error!=AT86RF215::NO_ERRORS)
-            LOG_DEBUG << "Error: " << static_cast<uint8_t>(error) << "\n"; //look enum at at86rf215.hpp for error values
+        if (transceiver.get_state(AT86RF215::RF09,error) != AT86RF215::RF_RX)
+            LOG_DEBUG << "Eould not get to state rx\n";
         else // use test variables got t_rxfs,got_rxfe to determine if the interrupts occured
+            LOG_DEBUG << "Entered state rx\n";
             if (transceiver.got_rxfs)
                 LOG_DEBUG << "Got rxfs\n";
                 transceiver.got_rxfs = false;
             if (transceiver.got_rxfe)
                 LOG_DEBUG << "Got rxfe\n";
                 transceiver.got_rxfs = false;
-                for (int i=0; i<2047; i++)
+                for (int i=0; i<currentPacketLength; i++)
                     LOG_DEBUG << transceiver.received_packet[i] << " ";
                 LOG_DEBUG << "\n";
-
+        **/
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
