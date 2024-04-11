@@ -40,6 +40,7 @@ public:
      */
     void setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09);
 
+
     static AT86RF215::AT86RF215 transceiver;
 
     void createTask() {
