@@ -23,6 +23,7 @@ extern "C" void main_cpp(){
 //    currentSensorsTask.emplace();
 //    transceiverTask.emplace();
     watchdogTask.emplace();
+    dummyTask.emplace();
 
     uartGatekeeperTask->createTask();
     canGatekeeperTask->createTask();
@@ -32,6 +33,7 @@ extern "C" void main_cpp(){
 //    timeKeepingTask->createTask();
 //    currentSensorsTask->createTask();
 //    transceiverTask->createTask();
+    dummyTask->createTask();
     watchdogTask->createTask();
 
     vTaskStartScheduler();

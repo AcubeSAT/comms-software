@@ -14,7 +14,7 @@ void CANTestTask::execute() {
     }
     String<ECSSMaxMessageSize> testPayload1("SPONGEBOB SQUAREPANTS!");
 
-    String<ECSSMaxMessageSize> testPayload2("GIATI KLANEI TO GATI! kai epeidi gourstaraj na se gamvwkjasfd;lk j lkjasd;flkj laksjdf;lkjasfd");
+    String<ECSSMaxMessageSize> testPayload2("GIATI KLANEI TO GATI!");
     while (true) {
         canGatekeeperTask->switchActiveBus(CAN::ActiveBus::Main);
         CAN::Application::createLogMessage(CAN::NodeIDs::OBC, true, testPayload1.data(), false);
