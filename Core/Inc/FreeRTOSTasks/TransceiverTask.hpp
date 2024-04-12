@@ -13,7 +13,7 @@ class TransceiverTask : public Task {
 public:
     void execute();
 
-    constexpr static uint16_t MaxPacketLength = 64;
+    constexpr static uint16_t MaxPacketLength = 2000;
     using PacketType = etl::array<uint8_t, MaxPacketLength>;
 
     TransceiverTask() : Task("Transceiver signal transmission") {}

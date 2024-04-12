@@ -122,7 +122,7 @@ void TransceiverTask::execute() {
     transceiver.setup(error);
     LOG_DEBUG << "passed chip_reset and setup";
 
-    uint16_t currentPacketLength = 44;
+    uint16_t currentPacketLength = 100;
     PacketType packet = createRandomPacket(currentPacketLength);
 
     while (true) {
@@ -139,12 +139,12 @@ void TransceiverTask::execute() {
             LOG_DEBUG << "Energy (RSSI register): " << transceiver.get_rssi(AT86RF215::RF09,error) << "\n";
         **/
 
-        bool rx = true;  // Switch to false for tx.Could make that value change via pressing a button or periodically,
+        bool rx = false;  // Switch to false for tx.Could make that value change via pressing a button or periodically,
                          // to simulate half duplex communication
         if (rx) {
             /**RXFS,RSFE interrupts and packet reception**/
             transceiver.transmitBasebandPacketsRx(AT86RF215::RF09, error); // Sets the tranceiver to state RX
-            vTaskDelay(pdMS_TO_TICKS(3));      // Wait for handle_irq() to detect the interrupts and read the packets
+            vTaskDelay(pdMS_TO_TICKS(100));      // Wait for handle_irq() to detect the interrupts and read the packets
             if (!transceiver.got_stateRX)
                 LOG_DEBUG << "Could not get to state rx\n";   // Try fiddling with the delay above,if state RX cannot be reached
             else {         // Flag variables got_rxfs,got_rxfe determine if interrupts occurred
@@ -158,8 +158,8 @@ void TransceiverTask::execute() {
                 LOG_DEBUG << "Got rxfe\n";
                 transceiver.got_rxfe = false;
                 // Check if there is a mistake in the packet and print it
-                for (int i = 0; i < currentPacketLength; i++) {
-                    if (transceiver.received_packet[i + 2] != packet.data()[i]) {
+                for (int i = 0; i < 100; i++) {
+                    if (transceiver.received_packet[i + 2] != i) {
                         LOG_DEBUG << "Packet is wrong.Position: " << i;
                         break;
                     }
