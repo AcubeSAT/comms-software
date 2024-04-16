@@ -110,7 +110,7 @@ void TransceiverTask::execute() {
                 LOG_DEBUG << "Got rxfe\n";
                 transceiver.got_rxfe = false;
                 // Check if there is a mistake in the packet and print it
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < currentPacketLength; i++) {
                     if (transceiver.received_packet[i + 2] != i) {
                         LOG_DEBUG << "Packet is wrong.Position: " << i;
                         break;
