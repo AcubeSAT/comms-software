@@ -24,6 +24,11 @@ TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length)
 }
 
 void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09) {
+    // Frequency settings
+    customConfig.pllFrequency09 = pllFrequency09;
+    customConfig.pllChannelNumber09 = pllChannelNumber09;
+    customConfig.pllChannelMode09 = AT86RF215::PLLChannelMode::FineResolution450;
+
     //     FSK modulation
     //     BT = 1 , MIDXS = 1, MIDX = 1, MOR = B-FSK
     transceiver.spi_write_8(AT86RF215::BBC0_FSKC0, 86, error);
