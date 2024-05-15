@@ -12,11 +12,13 @@ public:
      * Functionality of each channel of INA3221 on the comms board
      */
     enum class Channel : uint8_t {
-        FPGA = 0,
+        RF_S = 0,
         RF_UHF = 1,
-        RF_S = 2
+        FPGA = 2
     };
 
+    INA3221::Error error = INA3221::Error::NO_ERRORS;
+    INA3221::INA3221 currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
 
     /**
      * Tuple which stores everything the driver returns
@@ -25,7 +27,7 @@ public:
      * <2> Array of 3 elements which stores the currents in uA
      * <3> Array of 3 elements which stores the consumed powers in mW
      */
-    INA3221::ChannelMeasurement channelMeasurement;
+    etl::expected<INA3221::ChannelMeasurement, INA3221::Error> channelMeasurement;
 
     /**
      * Prints current, shunt voltage, bus voltage, power consumption of the input channel
