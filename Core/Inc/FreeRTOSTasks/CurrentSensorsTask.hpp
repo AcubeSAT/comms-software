@@ -17,8 +17,6 @@ public:
         FPGA = 2
     };
 
-    INA3221::Error error = INA3221::Error::NO_ERRORS;
-    INA3221::INA3221 currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
 
     /**
      * Tuple which stores everything the driver returns

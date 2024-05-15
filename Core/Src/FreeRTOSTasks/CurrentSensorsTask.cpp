@@ -39,8 +39,11 @@ void CurrentSensorsTask::display(const Channel channel, const bool displayShuntV
 }
 
 void CurrentSensorsTask::execute() {
+    INA3221::Error error = INA3221::Error::NO_ERRORS;
+    INA3221::INA3221 currentSensor = INA3221::INA3221(hi2c2, INA3221::INA3221Config(), error);
+    Logger::format.precision(Precision);
+
     while (true) {
-        Logger::format.precision(Precision);
         channelMeasurement = currentSensor.getMeasurement();
         if (not channelMeasurement.has_value()) {
             LOG_ERROR << "Could not get current measurements!";
