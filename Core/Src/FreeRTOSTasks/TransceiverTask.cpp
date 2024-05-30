@@ -1,6 +1,6 @@
 #include "TransceiverTask.hpp"
 
-AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215Configuration());
+AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215CustomConfiguration());
 
 uint8_t TransceiverTask::checkTheSPI() {
     uint8_t spi_error = 0;
@@ -23,63 +23,30 @@ TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length)
     return packet;
 }
 
-void TransceiverTask::setConfiguration(uint16_t pllFrequency09, uint8_t pllChannelNumber09) {
-    // Frequency settings
-    customConfig.pllFrequency09 = pllFrequency09;
-    customConfig.pllChannelNumber09 = pllChannelNumber09;
-    customConfig.pllChannelMode09 = AT86RF215::PLLChannelMode::FineResolution450;
-
-    //     FSK modulation
-    //     BT = 1 , MIDXS = 1, MIDX = 1, MOR = B-FSK
-    transceiver.spi_write_8(AT86RF215::BBC0_FSKC0, 86, error);
-
-    //     FCS and interleaving
-    uint8_t reg = transceiver.spi_read_8(AT86RF215::BBC0_PC, error);
-    //         ENABLE TXSFCS (FCS autonomously calculated)
-    transceiver.spi_write_8(AT86RF215::BBC0_PC, reg | (1 << 4), error);
-    //         ENABLE FCS FILTER
-    transceiver.spi_write_8(AT86RF215::BBC0_PC, reg | (1 << 6), error);
-    reg = transceiver.spi_read_8(AT86RF215::BBC0_FSKC2, error);
-    //         DISABLE THE INTERLEAVING
-    transceiver.spi_write_8(AT86RF215::BBC0_PC, reg & 0, error);
-
-    transceiver.config = customConfig;
-}
-
-/*
-* The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
-* to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
-*/
-uint16_t TransceiverTask::calculatePllChannelFrequency09(uint32_t frequency) {
-    uint32_t N = (frequency - 377000) * 65536 / 6500;
-    return N >> 8;
-}
-
-/*
-* The frequency cannot be lower than 377000 as specified in section 6.3.2. The frequency range related
-* to Fine Resolution Channel Scheme CNM.CM=1 is from 389.5MHz to 510MHz
-*/
-uint8_t TransceiverTask::calculatePllChannelNumber09(uint32_t frequency) {
-    uint32_t N = (frequency - 377000) * 65536 / 6500;
-    return N & 0xFF;
-}
-
 void TransceiverTask::execute() {
     // Check SPI
     while (checkTheSPI() != 0) {
         vTaskDelay(10);
     };
 
-    setConfiguration(calculatePllChannelFrequency09(FrequencyUHF), calculatePllChannelNumber09(FrequencyUHF));
     transceiver.chip_reset(error);
     transceiver.setup(error);
     LOG_DEBUG << "passed chip_reset and setup";
+
+    // Disable baseband cores if needed (by default, they are both turned on)
+    if (!enableBBC0){
+        uint8_t reg = transceiver.spi_read_8(AT86RF215::BBC0_PC,error);
+        transceiver.spi_write_8(AT86RF215::BBC0_PC,reg | 0x4, error);
+    }
+    if (!enableBBC1){
+        uint8_t reg = transceiver.spi_read_8(AT86RF215::BBC1_PC,error);
+        transceiver.spi_write_8(AT86RF215::BBC1_PC,reg | 0x4, error);
+    }
 
     uint16_t currentPacketLength = 100;
     PacketType packet = createRandomPacket(currentPacketLength);
 
     while (true) {
-        LOG_DEBUG << "entered loop";
 
         /** Energy measurement
         transceiver.clear_channel_assessment(AT86RF215::RF09,error);           // sets the tranceiver to state RF_TXPREP (handle_irq() then sets the state
@@ -92,39 +59,80 @@ void TransceiverTask::execute() {
             LOG_DEBUG << "Energy (RSSI register): " << transceiver.get_rssi(AT86RF215::RF09,error) << "\n";
         **/
 
-        bool rx = true;  // true: Rx  false: Tx
-        if (rx) {
-            /**RXFS,RSFE interrupts and packet reception**/
-            transceiver.transmitBasebandPacketsRx(AT86RF215::RF09, error); // Sets the tranceiver to state RX
-            vTaskDelay(pdMS_TO_TICKS(100));      // Wait for handle_irq() to detect the interrupts and read the packets
-            if (!transceiver.got_stateRX)
-                LOG_DEBUG << "Could not get to state rx\n";   // Try fiddling with the delay above,if state RX cannot be reached
-            else {
-                LOG_DEBUG << "Entered state rx\n";
-                transceiver.got_stateRX = false;
-            }
-            if (transceiver.got_rxfs)  // Flag variables got_rxfs,got_rxfe signal if interrupts occurred
-                LOG_DEBUG << "Got rxfs\n";
-                transceiver.got_rxfs = false;
-            if (transceiver.got_rxfe) {
-                LOG_DEBUG << "Got rxfe\n";
-                transceiver.got_rxfe = false;
-                // Check if there is a mistake in the packet and print it
-                for (int i = 0; i < currentPacketLength; i++) {
-                    if (transceiver.received_packet[i + 2] != i) {
-                        LOG_DEBUG << "Packet is wrong.Position: " << i;
-                        break;
-                    }
-                    LOG_DEBUG << transceiver.received_packet[i + 2];
+        bool packet_correct = true;
+        // UHF
+        if (enableBBC0) {
+            if (RxTxUHF){  // Transmission
+                transceiver.basebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
+                if (error != AT86RF215::NO_ERRORS){
+                    LOG_DEBUG << "UHF: Could not send packet";
                 }
+                else{
+                    LOG_DEBUG << "UHF: Packet sent";
+                }
+            }
+            else {  // Reception
+                transceiver.basebandPacketsRx(AT86RF215::RF09, error); // Sets the tranceiver to state RX
+                vTaskDelay(pdMS_TO_TICKS(100));                        // Wait for handle_irq() to detect the interrupts and read the packets
+                if (transceiver.BBC0_got_rxfe){
+                    for (uint16_t i=0; i<currentPacketLength; i++){
+                        if (transceiver.received_packet[i+2] != packet.data()[i]){   // For some reason the received bits start on index 2
+                            LOG_DEBUG << "UHF: Incorrect Packet Reception";
+                            packet_correct = false;
+                            break;
+                        }
+                    }
+                    if (packet_correct){
+                        LOG_DEBUG << "UHF: Correct Packet Reception";
+                    }
 
+                    packet_correct = true;                                   // Reset flags
+                    transceiver.BBC0_got_rxfe = false;
+                    for (uint16_t i=0; i<currentPacketLength+2; i++){        // Reset packet buffer
+                        transceiver.received_packet[i] = 0;
+                    }
+                }
             }
         }
-        else{
-            /** Tx task **/
-            transceiver.transmitBasebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
+
+        // S-BAND
+        if (enableBBC1) {
+            if (RxTxSBAND){  // Transmission
+                transceiver.basebandPacketsTx(AT86RF215::RF24, packet.data(), currentPacketLength, error);
+                if (error != AT86RF215::NO_ERRORS){
+                    LOG_DEBUG << "S-BAND: Could not send packet";
+                }
+                else{
+                    LOG_DEBUG << "S-BAND: Packet sent";
+                }
+            }
+            else {  // Reception
+                transceiver.basebandPacketsRx(AT86RF215::RF24, error); // Sets the tranceiver to state RX
+                vTaskDelay(pdMS_TO_TICKS(100));                        // Wait for handle_irq() to detect the interrupts and read the packets
+                if (transceiver.BBC1_got_rxfe){
+                    for (uint16_t i=0; i<currentPacketLength; i++){
+                        if (transceiver.received_packet[i+2] != packet.data()[i]){   // For some reason the received bits start on index 2
+                            LOG_DEBUG << "S-BAND: Incorrect Packet Reception";
+                            packet_correct = false;
+                            break;
+                        }
+                    }
+                    if (packet_correct){
+                        LOG_DEBUG << "s-BAND: Correct Packet Reception";
+                    }
+
+                    packet_correct = true;                                   // Reset flags
+                    transceiver.BBC1_got_rxfe = false;
+                    for (uint16_t i=0; i<currentPacketLength+2; i++){        // Reset packet buffer
+                        transceiver.received_packet[i] = 0;
+                    }
+                }
+            }
         }
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }
+
+
+

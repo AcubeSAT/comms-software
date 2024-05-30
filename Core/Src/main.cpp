@@ -4,7 +4,7 @@
 #include "task.h"
 #include "DummyTask.h"
 #include "at86rf215.hpp"
-#include "at86rf215config.hpp"
+#include "at86rf215customConfig.hpp"
 #include "MCUTemperatureTask.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
@@ -41,7 +41,7 @@ void blinkyTask2(void * pvParameters){
 }
 
 namespace AT86RF215 {
-    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215Configuration());
+    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215CustomConfiguration());
 }
 
 extern "C" void main_cpp(){
