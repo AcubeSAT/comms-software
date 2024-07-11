@@ -12,7 +12,8 @@
 #include "CurrentSensorsTask.hpp"
 #include "TransceiverTask.hpp"
 #include "TimeKeepingTask.hpp"
-#include "WatchdogTask.hpp"
+#include "IQTransmissionTask.hpp"
+//#include "WatchdogTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -47,19 +48,21 @@ namespace AT86RF215 {
 extern "C" void main_cpp(){
     uartGatekeeperTask.emplace();
     mcuTemperatureTask.emplace();
-    temperatureSensorsTask.emplace();
+//    temperatureSensorsTask.emplace();
     timeKeepingTask.emplace();
-    currentSensorsTask.emplace();
-    transceiverTask.emplace();
-    watchdogTask.emplace();
+//    currentSensorsTask.emplace();
+//    transceiverTask.emplace();
+    iqTransmissionTask.emplace();
+//    watchdogTask.emplace();
 
     uartGatekeeperTask->createTask();
     mcuTemperatureTask->createTask();
-    temperatureSensorsTask->createTask();
+//    temperatureSensorsTask->createTask();
     timeKeepingTask->createTask();
-    currentSensorsTask->createTask();
-    transceiverTask->createTask();
-    watchdogTask->createTask();
+//    currentSensorsTask->createTask();
+//    transceiverTask->createTask();
+    iqTransmissionTask->createTask();
+//    watchdogTask->createTask();
 
     vTaskStartScheduler();
 
@@ -77,6 +80,6 @@ extern "C" void main_cpp(){
  */
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-
+    IQTransmissionTask::interruptCount++;
     TransceiverTask::transceiver.handle_irq();
 }
