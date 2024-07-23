@@ -57,16 +57,31 @@ void IQTransmissionTask::execute() {
     setConfiguration(calculatePllChannelFrequency24(FrequencyS), calculatePllChannelNumber24(FrequencyS));
     transceiver.chip_reset(error);
     transceiver.setup(error);
-//    transceiver.spi_write_8(AT86RF215::RegisterAddress::RF_IQIFC1, 0b00010010, error);
+    transceiver.spi_write_8(AT86RF215::RegisterAddress::RF_IQIFC0, 0b00010011, error);
+    transceiver.spi_write_8(AT86RF215::RegisterAddress::RF_IQIFC1, 0b00010010, error);
+//    transceiver.spi_write_8(AT86RF215::RegisterAddress::RF_IQIFC2, 0b00010010, error);
     transceiver.spi_write_8(AT86RF215::RegisterAddress::RF24_PADFE, 2 << 6, error);
 //    transceiver.spi_write_8(AT86RF215::RegisterAddress::RF09_PADFE, 2 << 6, error);
     LOG_DEBUG << "passed chip_reset and setup";
 
 //    transceiver.spi_write_8(AT86RF215::RegisterAddress::RF09_PADFE, 2 << 6, error);
+//    transceiver.transmitPacketsIQ(AT86RF215::RF24, true, error);
+//    transceiver.transmitPacketsIQ(AT86RF215::RF24, true, error);
+    transceiver.transmitPacketsIQ(AT86RF215::RF24, true, error);
     while (true) {
-        transceiver.transmitPacketsIQ(AT86RF215::RF24, true, error);
-//        transceiver.transmitPacketsIQ(AT86RF215::RF09, true, error);
-        LOG_DEBUG << "interrupt count: " << interruptCount;
+//        LOG_DEBUG << "interrupt count: " << interruptCount;
+        uint8_t a = transceiver.spi_read_8(AT86RF215::RegisterAddress::RF_IQIFC0, error);
+        uint8_t b = transceiver.spi_read_8(AT86RF215::RegisterAddress::RF_IQIFC1, error);
+        uint8_t c = transceiver.spi_read_8(AT86RF215::RegisterAddress::RF_IQIFC2, error);
+        LOG_DEBUG << "read register iqifc0: " << a;
+        LOG_DEBUG << "read register iqifc1: " << b;
+        LOG_DEBUG << "read register iqifc2: " << c;
+        uint8_t state = transceiver.get_state(AT86RF215::Transceiver::RF24, error);
+        LOG_DEBUG << "current state: " << state;
+        if (state == AT86RF215::State::RF_TXPREP){
+            HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+        }
+        LOG_INFO << "Interrupt count: " << interruptCount;
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
