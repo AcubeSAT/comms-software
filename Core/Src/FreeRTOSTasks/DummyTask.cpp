@@ -1,6 +1,5 @@
 #include "FreeRTOSTasks/DummyTask.h"
 #include "Task.hpp"
-#include <iostream>
 
 void DummyTask::execute() {
     for(;;){
