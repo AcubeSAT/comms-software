@@ -4,7 +4,6 @@
 #include "task.h"
 #include "DummyTask.h"
 #include "at86rf215.hpp"
-#include "at86rf215customConfig.hpp"
 #include "MCUTemperatureTask.hpp"
 #include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
@@ -18,6 +17,8 @@ extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
 extern I2C_HandleTypeDef hi2c2;
 extern RTC_HandleTypeDef hrtc;
+
+extern AT86RF215::At86rf215 transceiver;
 
 template<class T>
 static void vClassTask(void *pvParameters) {
@@ -38,10 +39,6 @@ void blinkyTask2(void * pvParameters){
         HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
         HAL_Delay(300);
     }
-}
-
-namespace AT86RF215 {
-    AT86RF215 transceiver = AT86RF215(&hspi1, AT86RF215CustomConfiguration());
 }
 
 extern "C" void main_cpp(){
@@ -77,5 +74,5 @@ extern "C" void main_cpp(){
  */
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-    TransceiverTask::transceiver.handle_irq();
+    transceiver.handle_irq();
 }

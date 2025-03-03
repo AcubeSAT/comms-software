@@ -1,138 +1,220 @@
 #include "TransceiverTask.hpp"
 
-AT86RF215::AT86RF215 TransceiverTask::transceiver = AT86RF215::AT86RF215(&hspi1, AT86RF215::AT86RF215CustomConfiguration());
+AT86RF215::At86rf215 transceiver = AT86RF215::At86rf215(&hspi1);
 
-uint8_t TransceiverTask::checkTheSPI() {
-    uint8_t spi_error = 0;
-    AT86RF215::DevicePartNumber dpn = transceiver.get_part_number(error);
-    if(dpn == AT86RF215::DevicePartNumber::AT86RF215)
-        LOG_DEBUG << "SPI OK" ;
-    else{
-        spi_error = 1;
-        LOG_DEBUG << "SPI ERROR" ;
-        transceiver.chip_reset(error);
+void TransceiverTask::createRandomPacket() {
+    static uint8_t currPacketNum = 0;
+    static etl::array<uint8_t, 4> packetSizes = {10, 20, 30, 200};
+
+    // cycle through packet sizes
+    currPacketNum = (currPacketNum == 3) ? 0 : currPacketNum + 1;
+
+    packetString.clear();
+    for (std::size_t i = 0; i < packetSizes[currPacketNum]; i++) {
+        txPacketBuff[i] = i;
+        packetString.append(std::to_string(i).c_str());
+        packetString.append(" ");
     }
-    return spi_error;
+    txPacketLength = packetSizes[currPacketNum] + fcsOffset09;
+    uint8_t test  = txPacketLength;
 }
 
-TransceiverTask::PacketType TransceiverTask::createRandomPacket(uint16_t length) {
-    PacketType packet;
-    for (std::size_t i = 0; i < length; i++) {
-        packet[i] = i;
+void TransceiverTask::loadDefaultTransceiverConfiguration() {
+    transceiver.setGeneralConfig(AT86RF215::GeneralConfiguration::DefaultGeneralConfig());
+    transceiver.setRXConfig(AT86RF215::RXConfig::DefaultRXConfig());
+    transceiver.setTXConfig(AT86RF215::TXConfig::DefaultTXConfig());
+    transceiver.setBaseBandCoreConfig(AT86RF215::BasebandCoreConfig::DefaultBasebandCoreConfig());
+    transceiver.setFrequencySynthesizerConfig(AT86RF215::FrequencySynthesizer::DefaultFrequencySynthesizerConfig());
+    transceiver.setExternalFrontEndControlConfig(AT86RF215::ExternalFrontEndConfig::DefaultExternalFrontEndConfig());
+    transceiver.setInterruptConfig(
+            AT86RF215::BasebandCoreInterruptsConfig::DefaultBasebandCoreInterruptsConfig());
+    transceiver.setRadioInterruptConfig(AT86RF215::RadioInterruptsConfig::DefaultRadioInterruptsConfig());
+    transceiver.setIQInterfaceConfig(AT86RF215::IQInterfaceConfig::DefaultIQInterfaceConfig());
+}
+
+void TransceiverTask::setupCommunicationChain(OperationalMode operationalMode) {
+    switch (operationalMode) {
+        case TRANSCEIVER_PROCESSING_UHF_TXRX:
+            // peripheral power supply and external RF frontend setup
+//            HAL_GPIO_WritePin(P5V_RF_EN_GPIO_Port, P5V_RF_EN_Pin, GPIO_PIN_SET); // 5V RF power supply ON (includes transceiver)
+//            HAL_GPIO_WritePin(P5V_FPGA_EN_GPIO_Port, P5V_FPGA_EN_Pin, GPIO_PIN_RESET); // FPGA power supply OFF
+//
+//            HAL_GPIO_WritePin(EN_S_BAND_TX_GPIO_Port,EN_S_BAND_TX_Pin, GPIO_PIN_SET); // SBAND RF current limiter OFF
+//            HAL_GPIO_WritePin(EN_RX_UHF_GPIO_Port, EN_RX_UHF_Pin, GPIO_PIN_RESET); // UHF RF current limiters ON
+//            HAL_GPIO_WritePin(EN_PA_UHF_GPIO_Port, EN_PA_UHF_Pin, GPIO_PIN_RESET);
+
+            // transceiver setup
+            //     load stored default configuration
+            loadDefaultTransceiverConfiguration();
+            //     turn off IQ interface
+            transceiver.iqInterfaceConfig.set_RF_IQIFC1(AT86RF215::ChipMode::RF_MODE_BBRF, AT86RF215::SkewAlignment::SKEW3906NS);
+            //     turn off BBC1 (2.4 GHz baseband core)
+            transceiver.basebandCoreConfig.setBBC_PC(AT86RF215::Transceiver::RF24, false, true, false, AT86RF215::FrameCheckSequenceType::FCS_32, false, AT86RF215::PhysicalLayerType::BB_OFF);
+
+            transceiver.setup(transceiverError);
+            if (transceiverError != AT86RF215::Error::NO_ERRORS) {
+                LOG_DEBUG << "Error during transceiver setup";
+            }
+            //     set 2.4 GHz radio to sleep mode (low power consumption)
+            transceiver.set_state(AT86RF215::RF24, AT86RF215::State::RF_SLEEP, transceiverError);
+            break;
+        case FPGA_PROCESSING_SBAND_TX:
+            // peripheral power supply and external RF frontend setup
+//            HAL_GPIO_WritePin(P5V_RF_EN_GPIO_Port, P5V_RF_EN_Pin, GPIO_PIN_SET); // 5V RF power supply ON (includes transceiver)
+//            HAL_GPIO_WritePin(P5V_FPGA_EN_GPIO_Port, P5V_FPGA_EN_Pin, GPIO_PIN_SET); // FPGA power supply ON
+//
+//            HAL_GPIO_WritePin(EN_S_BAND_TX_GPIO_Port,EN_S_BAND_TX_Pin, GPIO_PIN_RESET); // SBAND RF current limiter ON
+//            HAL_GPIO_WritePin(EN_RX_UHF_GPIO_Port, EN_RX_UHF_Pin, GPIO_PIN_SET); // UHF RF current limiters OFF
+//            HAL_GPIO_WritePin(EN_PA_UHF_GPIO_Port, EN_PA_UHF_Pin, GPIO_PIN_SET);
+
+            // transceiver setup
+            //     load stored default configuration
+            loadDefaultTransceiverConfiguration();
+
+            transceiver.setup(transceiverError);
+            if (transceiverError != AT86RF215::Error::NO_ERRORS) {
+                LOG_DEBUG << "Error during transceiver setup";
+            }
+            //     set sub GHz radio to sleep mode (low power consumption)
+            transceiver.set_state(AT86RF215::RF09, AT86RF215::State::RF_SLEEP, transceiverError); // set
+
+            // fpga setup (if needed)
+            break;
+        case FPGA_PROCESSING_UHF_TXRX:
+            // @TODO
+            break;
+        case FPGA_PROCESSING_LOOPBACK:
+            // peripheral power supply and external RF frontend setup
+//            HAL_GPIO_WritePin(P5V_RF_EN_GPIO_Port, P5V_RF_EN_Pin, GPIO_PIN_SET); // 5V RF power supply ON (includes transceiver)
+//            HAL_GPIO_WritePin(P5V_FPGA_EN_GPIO_Port, P5V_FPGA_EN_Pin, GPIO_PIN_SET); // FPGA power supply ON
+//
+//            HAL_GPIO_WritePin(EN_S_BAND_TX_GPIO_Port,EN_S_BAND_TX_Pin, GPIO_PIN_SET); // SBAND RF current limiter OFF
+//            HAL_GPIO_WritePin(EN_RX_UHF_GPIO_Port, EN_RX_UHF_Pin, GPIO_PIN_SET); // UHF RF current limiters OFF
+//            HAL_GPIO_WritePin(EN_PA_UHF_GPIO_Port, EN_PA_UHF_Pin, GPIO_PIN_SET);
+
+            // transceiver setup
+            //     load stored default configuration
+            loadDefaultTransceiverConfiguration();
+            //     enable loopback
+            transceiver.iqInterfaceConfig.set_RF_IQIFC0(AT86RF215::ExternalLoopback::ENABLED,
+                                                        AT86RF215::IQOutputCurrent::CURR_2_MA,
+                                                        AT86RF215::IQmodeVoltage::MODE_150_MV,
+                                                        AT86RF215::IQmodeVoltageIEE::IEEE,
+                                                        AT86RF215::EmbeddedControlTX::ENABLED);
+
+            transceiver.setup(transceiverError);
+            if (transceiverError != AT86RF215::Error::NO_ERRORS) {
+                LOG_DEBUG << "Error during transceiver setup";
+            }
+
+            // fpga setup (if needed)
+            break;
+        case SLEEP:
+//            HAL_GPIO_WritePin(P5V_RF_EN_GPIO_Port, P5V_RF_EN_Pin, GPIO_PIN_RESET); // RF power supply OFF (includes transceiver)
+//            HAL_GPIO_WritePin(P5V_FPGA_EN_GPIO_Port, P5V_FPGA_EN_Pin, GPIO_PIN_RESET); // FPGA power supply OFF
+            break;
     }
-    return packet;
+}
+
+void TransceiverTask::communicationOperations(OperationalMode operationalMode) {
+
+    switch (operationalMode) {
+        case TRANSCEIVER_PROCESSING_UHF_TXRX:
+            if (rxTx) {
+                // tx operations
+                // TXFE interrupt was raised -> successful transmission occurred. Print message and reset flag
+                if (transceiver.TransmitterFrameEnd_flag) {
+                    LOG_DEBUG << "Sent packet: " << packetString.c_str();
+                    LOG_DEBUG << "Total packets sent count: " << ++packetsSentCount;
+                    transceiver.TransmitterFrameEnd_flag = false;
+                }
+
+                // transceiver is ready to transmit
+                if (!(transceiver.tx_ongoing || transceiver.rx_ongoing || transceiver.cca_ongoing)) {
+                    createRandomPacket();
+                    transceiver.packetTransmissionBaseband(AT86RF215::RF09, txPacketBuff.data(), txPacketLength + fcsOffset09,
+                                                           transceiverError);
+                    if (transceiverError != AT86RF215::NO_ERRORS) {
+                        LOG_DEBUG << "Transceiver error during transmission";
+                    }
+                }
+            }
+            else {
+                // rx operations
+                // RXFE interrupt was raised -> successful reception occurred. Read the packet, print a message and reset the flag
+                if (transceiver.ReceiverFrameEnd_flag) {
+                    transceiver.packetReceptionBaseband(AT86RF215::RF09, transceiverError);
+                    for (uint16_t i = 0; i < transceiver.received_packet_length - fcsOffset09; i++) {
+                        packetString.append(std::to_string(transceiver.received_packet[i]).c_str());
+                    }
+                    LOG_DEBUG << "Received packet of length " << transceiver.received_packet_length - fcsOffset09 << ": "  << packetString.c_str();
+                    LOG_DEBUG << "Total packets received: " << ++packetsReceivedCount;
+                    transceiver.ReceiverFrameEnd_flag = false;
+                }
+
+                // transceiver is ready to receive
+                if (!(transceiver.tx_ongoing || transceiver.rx_ongoing || transceiver.cca_ongoing)) {
+                    transceiver.beginBasebandPacketReception(AT86RF215::RF09, transceiverError);
+                    if (transceiverError != AT86RF215::NO_ERRORS) {
+                        LOG_DEBUG << "Transceiver error while preparing for reception";
+                    }
+                }
+            }
+
+            break;
+        case FPGA_PROCESSING_SBAND_TX:
+            // @TODO Send frames to FPGA via spi. Due to the embedded control feature, no other action needs to be taken
+            if (transceiver.get_iqSyncStatus(transceiverError)) {
+                LOG_DEBUG << "IQ synchronization detected. Total detection count: " << ++iqSyncCount;
+            }
+            break;
+        case FPGA_PROCESSING_UHF_TXRX:
+            // @TODO
+            break;
+        case FPGA_PROCESSING_LOOPBACK:
+            if (transceiver.get_iqSyncStatus(transceiverError)) {
+                LOG_DEBUG << "IQ synchronization detected. Total detection count: " << ++iqSyncCount;
+            }
+            break;
+        case SLEEP:
+            LOG_DEBUG << "No communications";
+            break;
+    }
 }
 
 void TransceiverTask::execute() {
-    // Check SPI
-    while (checkTheSPI() != 0) {
-        vTaskDelay(10);
-    };
+    opMode = TRANSCEIVER_PROCESSING_UHF_TXRX;
 
-    transceiver.chip_reset(error);
-    transceiver.setup(error);
-    LOG_DEBUG << "passed chip_reset and setup";
-
-    // Disable baseband cores if needed (by default, they are both turned on)
-    if (!enableBBC0){
-        uint8_t reg = transceiver.spi_read_8(AT86RF215::BBC0_PC,error);
-        transceiver.spi_write_8(AT86RF215::BBC0_PC,reg | 0x4, error);
-    }
-    if (!enableBBC1){
-        uint8_t reg = transceiver.spi_read_8(AT86RF215::BBC1_PC,error);
-        transceiver.spi_write_8(AT86RF215::BBC1_PC,reg | 0x4, error);
+    // relevant for transceiver baseband processing only
+    rxTx = true;
+    if (transceiver.basebandCoreConfig.frameCheckSequenceFilterEn09) {
+        if (transceiver.basebandCoreConfig.frameCheckSequenceType09 == AT86RF215::FrameCheckSequenceType::FCS_32) {
+            fcsOffset09 = 4;
+        }
+        else {
+            fcsOffset09 = 2;
+        }
     }
 
-    uint16_t currentPacketLength = 100;
-    PacketType packet = createRandomPacket(currentPacketLength);
-
+    setupCommunicationChain(opMode);
     while (true) {
+        // monitor transceiver's supply voltage
+//        if (transceiver.BatteryLow_flag) {
+//            LOG_DEBUG << "LOW BATTERY";
+//            transceiver.BatteryLow_flag = false;
+//        }
 
-        /** Energy measurement
-        transceiver.clear_channel_assessment(AT86RF215::RF09,error);           // sets the tranceiver to state RF_TXPREP (handle_irq() then sets the state
-                                                                                  RF_RX and energy measurements begin)
-        vTaskDelay(pdMS_TO_TICKS(3));      //wait for handle_irq() to read the measurement
-        if (error!=AT86RF215::NO_ERRORS)
-            LOG_DEBUG << "Error: " << static_cast<uint8_t>(error) << "\n";    // look enum at at86rf215.hpp for error values
-        else
-            LOG_DEBUG << "Energy (EDC register): " << transceiver.energy_measurement << "\n";    // range -127..4 dbm
-            LOG_DEBUG << "Energy (RSSI register): " << transceiver.get_rssi(AT86RF215::RF09,error) << "\n";
-        **/
-
-        bool packet_correct = true;
-        // UHF
-        if (enableBBC0) {
-            if (RxTxUHF){  // Transmission
-                transceiver.basebandPacketsTx(AT86RF215::RF09, packet.data(), currentPacketLength, error);
-                if (error != AT86RF215::NO_ERRORS){
-                    LOG_DEBUG << "UHF: Could not send packet";
-                }
-                else{
-                    LOG_DEBUG << "UHF: Packet sent";
-                }
-            }
-            else {  // Reception
-                transceiver.basebandPacketsRx(AT86RF215::RF09, error); // Sets the tranceiver to state RX
-                vTaskDelay(pdMS_TO_TICKS(100));                        // Wait for handle_irq() to detect the interrupts and read the packets
-                if (transceiver.BBC0_got_rxfe){
-                    for (uint16_t i=0; i<currentPacketLength; i++){
-                        if (transceiver.received_packet[i+2] != packet.data()[i]){   // For some reason the received bits start on index 2
-                            LOG_DEBUG << "UHF: Incorrect Packet Reception";
-                            packet_correct = false;
-                            break;
-                        }
-                    }
-                    if (packet_correct){
-                        LOG_DEBUG << "UHF: Correct Packet Reception";
-                    }
-
-                    packet_correct = true;                                   // Reset flags
-                    transceiver.BBC0_got_rxfe = false;
-                    for (uint16_t i=0; i<currentPacketLength+2; i++){        // Reset packet buffer
-                        transceiver.received_packet[i] = 0;
-                    }
-                }
-            }
+        if (transceiver.get_battery_monitor_status(transceiverError) == AT86RF215::BatteryMonitorStatus::ABOVE_THRESHOLD) {
+            LOG_DEBUG << "Transceiver voltage above set threshold (1.8 V)";
+        }
+        else {
+            LOG_DEBUG << "Transceiver voltage below set threshold (1.8 V)";
         }
 
-        // S-BAND
-        if (enableBBC1) {
-            if (RxTxSBAND){  // Transmission
-                transceiver.basebandPacketsTx(AT86RF215::RF24, packet.data(), currentPacketLength, error);
-                if (error != AT86RF215::NO_ERRORS){
-                    LOG_DEBUG << "S-BAND: Could not send packet";
-                }
-                else{
-                    LOG_DEBUG << "S-BAND: Packet sent";
-                }
-            }
-            else {  // Reception
-                transceiver.basebandPacketsRx(AT86RF215::RF24, error); // Sets the tranceiver to state RX
-                vTaskDelay(pdMS_TO_TICKS(100));                        // Wait for handle_irq() to detect the interrupts and read the packets
-                if (transceiver.BBC1_got_rxfe){
-                    for (uint16_t i=0; i<currentPacketLength; i++){
-                        if (transceiver.received_packet[i+2] != packet.data()[i]){   // For some reason the received bits start on index 2
-                            LOG_DEBUG << "S-BAND: Incorrect Packet Reception";
-                            packet_correct = false;
-                            break;
-                        }
-                    }
-                    if (packet_correct){
-                        LOG_DEBUG << "s-BAND: Correct Packet Reception";
-                    }
+        // Track total interrupts
+        LOG_DEBUG << "Current interrupt count: " << transceiverInterruptCount;
 
-                    packet_correct = true;                                   // Reset flags
-                    transceiver.BBC1_got_rxfe = false;
-                    for (uint16_t i=0; i<currentPacketLength+2; i++){        // Reset packet buffer
-                        transceiver.received_packet[i] = 0;
-                    }
-                }
-            }
-        }
-
-        vTaskDelay(pdMS_TO_TICKS(DelayMs));
+        communicationOperations(opMode);
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
-
-
-
