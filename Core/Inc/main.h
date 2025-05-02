@@ -70,6 +70,10 @@ void main_cpp();
 #define PH1_MCU_GPIO_Port GPIOH
 #define SPI_NSS_Pin GPIO_PIN_4
 #define SPI_NSS_GPIO_Port GPIOA
+#define RF_SCK_Pin GPIO_PIN_5
+#define RF_SCK_GPIO_Port GPIOA
+#define RF_MISO_Pin GPIO_PIN_6
+#define RF_MISO_GPIO_Port GPIOA
 #define LD1_Pin GPIO_PIN_0
 #define LD1_GPIO_Port GPIOB
 #define LD3_Pin GPIO_PIN_14
@@ -78,6 +82,9 @@ void main_cpp();
 #define STLINK_RX_GPIO_Port GPIOD
 #define STLINK_TX_Pin GPIO_PIN_9
 #define STLINK_TX_GPIO_Port GPIOD
+#define RF_IRQ_Pin GPIO_PIN_14
+#define RF_IRQ_GPIO_Port GPIOD
+#define RF_IRQ_EXTI_IRQn EXTI15_10_IRQn
 #define USB_FS_OVCR_Pin GPIO_PIN_7
 #define USB_FS_OVCR_GPIO_Port GPIOG
 #define USB_FS_VBUS_Pin GPIO_PIN_9
@@ -88,6 +95,10 @@ void main_cpp();
 #define USB_FS_N_GPIO_Port GPIOA
 #define USB_FS_P_Pin GPIO_PIN_12
 #define USB_FS_P_GPIO_Port GPIOA
+#define RF_NSS_Pin GPIO_PIN_15
+#define RF_NSS_GPIO_Port GPIOA
+#define RF_MOSI_Pin GPIO_PIN_5
+#define RF_MOSI_GPIO_Port GPIOB
 #define LD2_Pin GPIO_PIN_1
 #define LD2_GPIO_Port GPIOE
 

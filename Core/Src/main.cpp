@@ -1,24 +1,24 @@
 #include "main.h"
+
+#include <CWBeaconTask.hpp>
+
 #include "FreeRTOS.h"
 #include "list.h"
 #include "task.h"
 #include "DummyTask.h"
 #include "at86rf215.hpp"
 #include "MCUTemperatureTask.hpp"
-#include "txUHFTask.hpp"
 #include "UARTGatekeeperTask.hpp"
 #include "TemperatureSensorsTask.hpp"
 #include "CurrentSensorsTask.hpp"
-#include "TransceiverTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "WatchdogTask.hpp"
+#include "TransceiverInterruptHandlingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
 extern I2C_HandleTypeDef hi2c2;
 extern RTC_HandleTypeDef hrtc;
-
-extern AT86RF215::At86rf215 transceiver;
 
 template<class T>
 static void vClassTask(void *pvParameters) {
@@ -42,12 +42,17 @@ void blinkyTask2(void * pvParameters){
 }
 
 extern "C" void main_cpp(){
+    /** Peripheral Initialization **/
+    AT86RF215::transceiverUtils.registerTransceiver(&hspi1);
+
+    /** FreeRTOS Tasks **/
     uartGatekeeperTask.emplace();
     //mcuTemperatureTask.emplace();
     //temperatureSensorsTask.emplace();
     //timeKeepingTask.emplace();
     //currentSensorsTask.emplace();
-    transceiverTask.emplace();
+    transceiverInterruptHandlingTask.emplace();
+    cwBeaconTask.emplace();
     watchdogTask.emplace();
 
     uartGatekeeperTask->createTask();
@@ -55,7 +60,8 @@ extern "C" void main_cpp(){
     //temperatureSensorsTask->createTask();
     //timeKeepingTask->createTask();
     //currentSensorsTask->createTask();
-    transceiverTask->createTask();
+    transceiverInterruptHandlingTask->createTask();
+    cwBeaconTask->createTask();
     watchdogTask->createTask();
 
     vTaskStartScheduler();
@@ -70,9 +76,28 @@ extern "C" void main_cpp(){
 }
 
 /**
- * @brief This function handles EXTI line[15:10] interrupts.
+ * @brief This function handles EXTI15_10 line interrupts
+ * @note The transceiver interrupt pin is assigned to this line (extremely time critical application).
  */
 extern "C" void EXTI15_10_IRQHandler(void) {
-    HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
-    transceiver.handle_irq();
+    HAL_GPIO_EXTI_IRQHandler(RF_IRQ_Pin);
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+    xTaskNotifyFromISR(transceiverInterruptHandlingTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+
+    // The task notified is high priority and should be executed as fast as possible.
+    // Ask for a context switch, if it is indeed the highest priority task at the moment.
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+}
+
+/* SPI callbacks in non blocking mode (DMA)*/
+extern "C" [[maybe_unused]] void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi) {
+    if (hspi == &hspi1) {
+        xSemaphoreGive(AT86RF215::transceiverUtils.spiWriteCompleteSemaphoreHandle);
+    }
+}
+
+extern "C" [[maybe_unused]] void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef* hspi) {
+    if (hspi == &hspi1) {
+        xSemaphoreGive(AT86RF215::transceiverUtils.spiReadCompleteSemaphoreHandle);
+    }
 }
