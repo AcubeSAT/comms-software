@@ -13,6 +13,7 @@
 #include "CurrentSensorsTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "WatchdogTask.hpp"
+#include "TransceiverBasebandCoreTask.hpp"
 #include "TransceiverInterruptHandlingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
@@ -42,13 +43,6 @@ void blinkyTask2(void * pvParameters){
 }
 
 extern "C" void main_cpp(){
-    /** Peripheral Initialization **/
-    AT86RF215::Error error;
-    AT86RF215::transceiverUtils.initializeResources(&hspi1, error);
-    if (error != AT86RF215::Error::NO_ERRORS) {
-        LOG_ERROR << "Failed to initialize resources";
-    }
-
     /** FreeRTOS Tasks **/
     uartGatekeeperTask.emplace();
     //mcuTemperatureTask.emplace();
@@ -56,6 +50,7 @@ extern "C" void main_cpp(){
     //timeKeepingTask.emplace();
     //currentSensorsTask.emplace();
     transceiverInterruptHandlingTask.emplace();
+    //transceiverBasebandCoreTask.emplace();
     cwBeaconTask.emplace();
     watchdogTask.emplace();
 
@@ -65,6 +60,7 @@ extern "C" void main_cpp(){
     //timeKeepingTask->createTask();
     //currentSensorsTask->createTask();
     transceiverInterruptHandlingTask->createTask();
+    //transceiverBasebandCoreTask->createTask();
     cwBeaconTask->createTask();
     watchdogTask->createTask();
 

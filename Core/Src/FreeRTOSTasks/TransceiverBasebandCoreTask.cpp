@@ -3,6 +3,7 @@
 
 void TransceiverBasebandCoreTask::execute() {
     // initialize dummy packets with various sizes
+
     for (uint8_t i = 0; i < 10; i++) {
         dummyPacket10[i] = i;
     }
@@ -11,7 +12,7 @@ void TransceiverBasebandCoreTask::execute() {
         dummyPacket50[i] = i;
     }
 
-    for (uint8_t i = 0; i < 256; i++) {
+    for (uint16_t i = 0; i < 256; i++) {
         dummyPacket256[i] = i;
     }
 

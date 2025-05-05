@@ -6,7 +6,7 @@
 
 class TransceiverBasebandCoreTask : public Task {
 private:
-    const static inline uint16_t TaskStackDepth = 3000;
+    const static inline uint16_t TaskStackDepth = 5000;
 
     StackType_t taskStack[TaskStackDepth];
 public:
@@ -16,7 +16,7 @@ public:
 
     uint8_t dummyPacket10[10];
     uint8_t dummyPacket50[50];
-    uint8_t dummyPacket256[255];
+    uint8_t dummyPacket256[256];
     uint8_t cyclicalCounter = 0;
 
     uint8_t receivedPacket[500];
@@ -32,5 +32,5 @@ public:
     }
 };
 
-inline std::optional<TransceiverBasebandCoreTask> transceiverBasebandCore;
+inline std::optional<TransceiverBasebandCoreTask> transceiverBasebandCoreTask;
 
