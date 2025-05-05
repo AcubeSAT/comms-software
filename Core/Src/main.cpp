@@ -43,7 +43,11 @@ void blinkyTask2(void * pvParameters){
 
 extern "C" void main_cpp(){
     /** Peripheral Initialization **/
-    AT86RF215::transceiverUtils.registerTransceiver(&hspi1);
+    AT86RF215::Error error;
+    AT86RF215::transceiverUtils.initializeResources(&hspi1, error);
+    if (error != AT86RF215::Error::NO_ERRORS) {
+        LOG_ERROR << "Failed to initialize resources";
+    }
 
     /** FreeRTOS Tasks **/
     uartGatekeeperTask.emplace();
@@ -83,21 +87,28 @@ extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(RF_IRQ_Pin);
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     xTaskNotifyFromISR(transceiverInterruptHandlingTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
-
-    // The task notified is high priority and should be executed as fast as possible.
-    // Ask for a context switch, if it is indeed the highest priority task at the moment.
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 /* SPI callbacks in non blocking mode (DMA)*/
 extern "C" [[maybe_unused]] void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi) {
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (hspi == &hspi1) {
-        xSemaphoreGive(AT86RF215::transceiverUtils.spiWriteCompleteSemaphoreHandle);
+        xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
+            AT86RF215::transceiverUtils.spiWriteCompleteGroupBit,
+            &xHigherPriorityTaskWoken);
     }
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 extern "C" [[maybe_unused]] void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef* hspi) {
+    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (hspi == &hspi1) {
-        xSemaphoreGive(AT86RF215::transceiverUtils.spiReadCompleteSemaphoreHandle);
+        xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
+            AT86RF215::transceiverUtils.spiReadCompleteGroupBit,
+            &xHigherPriorityTaskWoken);
     }
+    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
+
+
