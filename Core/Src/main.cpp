@@ -82,7 +82,7 @@ extern "C" void main_cpp(){
 extern "C" void EXTI15_10_IRQHandler(void) {
     HAL_GPIO_EXTI_IRQHandler(RF_IRQ_Pin);
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    xTaskNotifyFromISR(transceiverInterruptHandlingTask->taskHandle, 0, eNoAction, &xHigherPriorityTaskWoken);
+    xTaskNotifyFromISR(transceiverInterruptHandlingTask->taskHandle, 0, eIncrement, &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
@@ -91,7 +91,7 @@ extern "C" [[maybe_unused]] void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi)
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (hspi == &hspi1) {
         xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
-            AT86RF215::transceiverUtils.spiWriteCompleteGroupBit,
+            AT86RF215::spiWriteCompleteGroupBit,
             &xHigherPriorityTaskWoken);
     }
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
@@ -101,7 +101,7 @@ extern "C" [[maybe_unused]] void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef* hsp
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (hspi == &hspi1) {
         xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
-            AT86RF215::transceiverUtils.spiReadCompleteGroupBit,
+            AT86RF215::spiReadCompleteGroupBit,
             &xHigherPriorityTaskWoken);
     }
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);

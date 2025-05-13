@@ -10,7 +10,7 @@ void TransceiverInterruptHandlingTask::execute() {
     }
 
     while (true) {
-        xTaskNotifyWait(0, 0, NULL, portMAX_DELAY);
+        xTaskNotifyWait(0, 0, &interruptCount, portMAX_DELAY);
         AT86RF215::Error err;
         AT86RF215::transceiverUtils.handle_irq(err);
     }

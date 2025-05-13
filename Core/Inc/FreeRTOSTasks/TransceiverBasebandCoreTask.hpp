@@ -4,6 +4,12 @@
 #include "Task.hpp"
 #include "etl/string.h"
 
+enum Process {
+    BASEBAND_TX,
+    BASEBAND_RX,
+    POWER_MEASUREMENT
+};
+
 class TransceiverBasebandCoreTask : public Task {
 private:
     const static inline uint16_t TaskStackDepth = 5000;
@@ -12,7 +18,7 @@ private:
 public:
     void execute();
 
-    bool txRx = true; // true for tx, false for rx
+    Process process = BASEBAND_TX;
 
     uint8_t dummyPacket10[10];
     uint8_t dummyPacket50[50];
