@@ -8,12 +8,12 @@ void CWBeaconTask::execute() {
 
     while(true) {
         LOG_DEBUG << "[CWBeacon Task] Starting transmission";
-        AT86RF215::transceiverUtils.transmitMorseCode(AT86RF215::RF09, err, 20, message.c_str(), message.size());
+        AT86RF215::transceiverUtils.transmitMorseCode(AT86RF215::RF09, err, 5, message.c_str(), message.size());
         if (err != AT86RF215::Error::NO_ERRORS) {
             LOG_DEBUG << "[CWBeacon Task] Got error during transmission";
         } else {
             LOG_DEBUG << "[CWBeacon Task] Finished transmission";
         }
-        vTaskDelay(pdMS_TO_TICKS(10000));
+        vTaskDelay(pdMS_TO_TICKS(3000));
     }
 }

@@ -13,7 +13,7 @@
 #include "CurrentSensorsTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "WatchdogTask.hpp"
-#include "TransceiverBasebandCoreTask.hpp"
+#include "RfDebuggingTask.hpp"
 #include "TransceiverInterruptHandlingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
@@ -49,9 +49,9 @@ extern "C" void main_cpp(){
     //temperatureSensorsTask.emplace();
     //timeKeepingTask.emplace();
     //currentSensorsTask.emplace();
-    transceiverInterruptHandlingTask.emplace();
-    //transceiverBasebandCoreTask.emplace();
-    cwBeaconTask.emplace();
+    //transceiverInterruptHandlingTask.emplace();
+    rfDebuggingTask.emplace();
+    //cwBeaconTask.emplace();
     watchdogTask.emplace();
 
     uartGatekeeperTask->createTask();
@@ -60,8 +60,8 @@ extern "C" void main_cpp(){
     //timeKeepingTask->createTask();
     //currentSensorsTask->createTask();
     transceiverInterruptHandlingTask->createTask();
-    //transceiverBasebandCoreTask->createTask();
-    cwBeaconTask->createTask();
+    rfDebuggingTask->createTask();
+    //cwBeaconTask->createTask();
     watchdogTask->createTask();
 
     vTaskStartScheduler();
@@ -80,14 +80,15 @@ extern "C" void main_cpp(){
  * @note The transceiver interrupt pin is assigned to this line (extremely time critical application).
  */
 extern "C" void EXTI15_10_IRQHandler(void) {
-    HAL_GPIO_EXTI_IRQHandler(RF_IRQ_Pin);
+    // clear the it flag
+    __HAL_GPIO_EXTI_CLEAR_IT(1 << 10);
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     xTaskNotifyFromISR(transceiverInterruptHandlingTask->taskHandle, 0, eIncrement, &xHigherPriorityTaskWoken);
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
 /* SPI callbacks in non blocking mode (DMA)*/
-extern "C" [[maybe_unused]] void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi) {
+extern "C" void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi) [[maybe_unused]] {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (hspi == &hspi1) {
         xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
@@ -97,7 +98,7 @@ extern "C" [[maybe_unused]] void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi)
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
-extern "C" [[maybe_unused]] void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef* hspi) {
+extern "C" void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef* hspi) [[maybe_unused]] {
     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
     if (hspi == &hspi1) {
         xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,

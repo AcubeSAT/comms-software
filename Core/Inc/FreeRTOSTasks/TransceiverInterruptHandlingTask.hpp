@@ -8,7 +8,7 @@ private:
 
     StackType_t taskStack[TaskStackDepth];
 public:
-    void execute();
+    [[noreturn]] void execute();
     TaskHandle_t taskHandle;
     uint32_t interruptCount = 0;
 
@@ -16,7 +16,7 @@ public:
 
     void createTask(){
         taskHandle = xTaskCreateStatic(vClassTask<TransceiverInterruptHandlingTask>, this->TaskName,
-                          TransceiverInterruptHandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2,
+                          TransceiverInterruptHandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 3,
                           this->taskStack, &(this->taskBuffer));
     }
 };
