@@ -39,11 +39,21 @@ void RfDebuggingTask::execute() {
         switch (process) {
             case INTERRUPT_TEST:
                 if (AT86RF215::transceiverUtils.get_state(AT86RF215::RF09, err) == AT86RF215::State::RF_TRXOFF) {
+                    err = AT86RF215::Error::NO_ERRORS;
                     AT86RF215::transceiverUtils.set_state(AT86RF215::RF09, AT86RF215::State::RF_TXPREP,err);
-                    LOG_DEBUG << "Just set state to TXPREP";
+                    if (err == AT86RF215::Error::NO_ERRORS) {
+                        LOG_DEBUG << "[RfDebuggingTask] Just set state to TXPREP";
+                    } else {
+                        LOG_DEBUG << "[RfDebuggingTask] Failed to set state to TXPREP";
+                    }
                 } else {
+                    err = AT86RF215::Error::NO_ERRORS;
                     AT86RF215::transceiverUtils.set_state(AT86RF215::RF09, AT86RF215::State::RF_TRXOFF,err);
-                    LOG_DEBUG << "Just set state to TRXOFF";
+                    if (err == AT86RF215::Error::NO_ERRORS) {
+                        LOG_DEBUG << "[RfDebuggingTask] Just set state to TRXOFF";
+                    } else {
+                        LOG_DEBUG << "[RfDebuggingTask] Failed to set state to TRXOFF";
+                    }
                 }
                 break;
             case BASEBAND_TX_UHF:

@@ -121,6 +121,7 @@ int main(void)
 
   /* Initialize interrupts */
   MX_NVIC_Init();
+  HAL_NVIC_DisableIRQ(EXTI15_10_IRQn); // we do not want the interrupt to trigger if the freertos scheduler is not started yet
   /* USER CODE BEGIN 2 */
     main_cpp();
   /* USER CODE END 2 */

@@ -25,7 +25,7 @@ private:
 public:
     [[noreturn]] void execute();
 
-    Process process = BASEBAND_TX_UHF;
+    Process process = INTERRUPT_TEST;
     static constexpr uint32_t timeoutDelayMs = 10000; // How long the transceiver will wait for baseband packet reception until it times out
 
     uint8_t dummyPacket10[10];
