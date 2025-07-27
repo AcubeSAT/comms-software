@@ -15,6 +15,7 @@
 #include "WatchdogTask.hpp"
 #include "RfDebuggingTask.hpp"
 #include "TransceiverInterruptHandlingTask.hpp"
+#include "FpgaMcuSpiTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
 extern UART_HandleTypeDef huart3;
@@ -45,24 +46,26 @@ void blinkyTask2(void * pvParameters){
 extern "C" void main_cpp(){
     /** FreeRTOS Tasks **/
     uartGatekeeperTask.emplace();
-    //mcuTemperatureTask.emplace();
+    mcuTemperatureTask.emplace();
     //temperatureSensorsTask.emplace();
     //timeKeepingTask.emplace();
     //currentSensorsTask.emplace();
     //transceiverInterruptHandlingTask.emplace();
     // rfDebuggingTask.emplace();
-    cwBeaconTask.emplace();
+    // cwBeaconTask.emplace();
     watchdogTask.emplace();
+    fpgaMcuSpiTask.emplace();
 
     uartGatekeeperTask->createTask();
-    //mcuTemperatureTask->createTask();
+    mcuTemperatureTask->createTask();
     //temperatureSensorsTask->createTask();
     //timeKeepingTask->createTask();
     //currentSensorsTask->createTask();
-    transceiverInterruptHandlingTask->createTask();
+    // transceiverInterruptHandlingTask->createTask();
     // rfDebuggingTask->createTask();
-    cwBeaconTask->createTask();
+    // cwBeaconTask->createTask();
     watchdogTask->createTask();
+    fpgaMcuSpiTask->createTask();
 
     vTaskStartScheduler();
 
@@ -79,33 +82,33 @@ extern "C" void main_cpp(){
  * @brief This function handles EXTI15_10 line interrupts (PD14)
  * @note The transceiver interrupt pin is assigned to this line (extremely time critical application).
  */
-extern "C" void EXTI15_10_IRQHandler(void) {
-    // clear the it flag
-    __HAL_GPIO_EXTI_CLEAR_IT(1 << 14);
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    xTaskNotifyFromISR(transceiverInterruptHandlingTask->taskHandle, 0, eIncrement, &xHigherPriorityTaskWoken);
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-}
-
-/* SPI callbacks in non blocking mode (DMA)*/
-extern "C" void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi) [[maybe_unused]] {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    if (hspi == &hspi1) {
-        xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
-            AT86RF215::spiWriteCompleteGroupBit,
-            &xHigherPriorityTaskWoken);
-    }
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-}
-
-extern "C" void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef* hspi) [[maybe_unused]] {
-    BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-    if (hspi == &hspi1) {
-        xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
-            AT86RF215::spiReadCompleteGroupBit,
-            &xHigherPriorityTaskWoken);
-    }
-    portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-}
+// extern "C" void EXTI15_10_IRQHandler(void) {
+//     // clear the it flag
+//     __HAL_GPIO_EXTI_CLEAR_IT(1 << 14);
+//     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+//     xTaskNotifyFromISR(transceiverInterruptHandlingTask->taskHandle, 0, eIncrement, &xHigherPriorityTaskWoken);
+//     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+// }
+//
+// /* SPI callbacks in non blocking mode (DMA)*/
+// extern "C" void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef* hspi) [[maybe_unused]] {
+//     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+//     if (hspi == &hspi1) {
+//         xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
+//             AT86RF215::spiWriteCompleteGroupBit,
+//             &xHigherPriorityTaskWoken);
+//     }
+//     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+// }
+//
+// extern "C" void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef* hspi) [[maybe_unused]] {
+//     BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+//     if (hspi == &hspi1) {
+//         xEventGroupSetBitsFromISR(AT86RF215::transceiverUtils.eventGroupHandle,
+//             AT86RF215::spiReadCompleteGroupBit,
+//             &xHigherPriorityTaskWoken);
+//     }
+//     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
+// }
 
 
