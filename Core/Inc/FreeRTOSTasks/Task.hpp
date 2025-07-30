@@ -5,8 +5,6 @@
 #include "Logger.hpp"
 #include "main.h"
 
-#include "Platform/Parameters/PlatformParameters.hpp"
-#include "Platform/Parameters/CommonParameters.hpp"
 /**
  * Base class, whose method 'execute' is meant to be inherited by each and every individual FreeRTOS task.
  */

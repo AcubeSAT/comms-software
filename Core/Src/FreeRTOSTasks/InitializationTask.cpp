@@ -25,5 +25,15 @@ void InitializationTask::execute() {
     // transceiverTask.emplace();
     // transceiverTask->createTask();
 
+#ifdef SERVICE_PARAMETERSTATISTICS
+    statisticsReportingTask.emplace();
+    statisticsReportingTask->createTask();
+#endif
+
+#ifdef SERVICE_TIMESCHEDULING
+    timeBasedSchedulingTask.emplace();
+    timeBasedSchedulingTask->createTask();
+#endif
+
     vTaskDelete(NULL);
 }

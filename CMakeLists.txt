@@ -62,7 +62,10 @@ include_directories("Core/lib/FreeRTOS/Source/portable/GCC/ARM_CM4F")
 include_directories("Core/lib/FreeRTOS/Source/portable/MemMang")
 include_directories(Drivers/Src)
 include_directories(Core/lib/ecss-services/inc)
-include_directories(Core/lib/ecss-services/inc/Platform/x86)
+include_directories(Core/lib/ecss-services/inc/etl)
+include_directories(Core/lib/ecss-services/inc/Helpers)
+include_directories(Core/lib/ecss-services/inc/Services)
+include_directories(Core/lib/ecss-services/inc/Time)
 include_directories(Core/lib/etl/include)
 include_directories(Core/lib/logger/inc)
 include_directories(Core/lib/Catch2)
@@ -120,7 +123,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
-add_subdirectory(Core/lib/ecss-services EXCLUDE_FROM_ALL)
+#add_subdirectory(Core/lib/ecss-services EXCLUDE_FROM_ALL)  TODO ?
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common)
 
 # configure log level: LOG_LEVEL_TRACE shows all generated logs

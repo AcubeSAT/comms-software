@@ -9,6 +9,8 @@
 #include "MCUTemperatureTask.hpp"
 #include "CurrentSensorsTask.hpp"
 #include "TimeKeepingTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
+#include "StatisticsReportingTask.hpp"
 
 class InitializationTask: public Task {
 public:

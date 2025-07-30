@@ -1,6 +1,8 @@
 #pragma once
 
 #include <optional>
+
+#include "AcubeSATParameters.hpp"
 #include "Task.hpp"
 #include "main.h"
 #include "TMP117.hpp"
@@ -68,13 +70,13 @@ private:
 
     etl::array<sensor, 3> sensors = {
             sensor {TMP117::TMP117(hi2c2, TMP117::I2CAddress::Address3, config),
-                    PlatformParameters::commsPCBTemperatureMCU,
+                        AcubeSATParameters::commsPCBTemperature,
                     sensorName(TMP117::Address3)},
             sensor {TMP117::TMP117(hi2c2, TMP117::I2CAddress::Address1, config),
-                    PlatformParameters::commsPCBTemperatureUHF,
+                    AcubeSATParameters::commsUHFBandPATemperature,
                     sensorName(TMP117::I2CAddress::Address1)},
             sensor {TMP117::TMP117(hi2c2, TMP117::I2CAddress::Address4, config),
-                    PlatformParameters::commsPCBTemperatureSBAND,
+                    AcubeSATParameters::commsSBandPATemperature,
                     sensorName(TMP117::I2CAddress::Address4)},
     };
 };

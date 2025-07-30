@@ -1,4 +1,6 @@
 #include "TimeKeepingTask.hpp"
+#include "CommonParameters.hpp"
+#include "Parameters.hpp"
 
 void TimeKeepingTask::convertToTM(const RTC_TimeTypeDef &rtcTime, const RTC_DateTypeDef &rtcDate, tm &time) {
     time.tm_sec = static_cast<int>(rtcTime.Seconds);
