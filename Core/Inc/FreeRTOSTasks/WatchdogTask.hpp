@@ -16,7 +16,7 @@ public:
 
     void createTask() {
         xTaskCreateStatic(vClassTask < WatchdogTask > , this->TaskName, WatchdogTask::TaskStackDepth, this,
-                          tskIDLE_PRIORITY, this->taskStack, &(this->taskBuffer));
+                          tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
     }
 
 private:
@@ -49,7 +49,7 @@ private:
      */
     const uint16_t WindowTime = 1000 * (WindowValue * CounterClockPrescaler) / ClockFrequency;
 
-    static constexpr uint16_t TaskStackDepth = 1000;
+    static constexpr uint16_t TaskStackDepth = 2000;
 
     StackType_t taskStack[TaskStackDepth];
 };

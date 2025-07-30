@@ -5,6 +5,6 @@
 void DummyTask::execute() {
     for(;;){
         HAL_GPIO_TogglePin(LD1_GPIO_Port, LD1_Pin);
-        HAL_Delay(300);
+        vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }

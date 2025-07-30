@@ -1,24 +1,29 @@
 #include "InitializationTask.hpp"
 
 void InitializationTask::execute() {
-
     uartGatekeeperTask.emplace();
-    dummyTask.emplace();
-    temperatureSensorsTask.emplace();
-    transceiverTask.emplace();
-    watchdogTask.emplace();
-    mcuTemperatureTask.emplace();
-    timeKeepingTask.emplace();
-    currentSensorsTask.emplace();
-
     uartGatekeeperTask->createTask();
-    dummyTask->createTask();
-    temperatureSensorsTask->createTask();
-    transceiverTask->createTask();
-    watchdogTask->createTask();
-    mcuTemperatureTask->createTask();
-    timeKeepingTask->createTask();
-    currentSensorsTask->createTask();
 
-    vTaskSuspend(NULL);
+    watchdogTask.emplace();
+    watchdogTask->createTask();
+
+    timeKeepingTask.emplace();
+    timeKeepingTask->createTask();
+
+    dummyTask.emplace();
+    dummyTask->createTask();
+
+    // temperatureSensorsTask.emplace();
+    // temperatureSensorsTask->createTask();
+
+    // currentSensorsTask.emplace();
+    // currentSensorsTask->createTask();
+
+    mcuTemperatureTask.emplace();
+    mcuTemperatureTask->createTask();
+
+    // transceiverTask.emplace();
+    // transceiverTask->createTask();
+
+    vTaskDelete(NULL);
 }
