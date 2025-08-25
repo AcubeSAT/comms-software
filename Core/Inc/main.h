@@ -70,8 +70,8 @@ void main_cpp();
 #define PH1_MCU_GPIO_Port GPIOH
 #define SPI_NSS_Pin GPIO_PIN_4
 #define SPI_NSS_GPIO_Port GPIOA
-#define RF_SCK_Pin GPIO_PIN_5
-#define RF_SCK_GPIO_Port GPIOA
+#define RF_CLK_Pin GPIO_PIN_5
+#define RF_CLK_GPIO_Port GPIOA
 #define RF_MISO_Pin GPIO_PIN_6
 #define RF_MISO_GPIO_Port GPIOA
 #define LD1_Pin GPIO_PIN_0

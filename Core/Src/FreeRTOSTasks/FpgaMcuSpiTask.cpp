@@ -1,13 +1,13 @@
 #include "FpgaMcuSpiTask.hpp"
+#include "main.h"
 
 void FpgaMcuSpiTask::execute() {
     const uint16_t timeoutMs = 1000;
 
-
     while (true) {
         // Blocking mode spi and just transmit (simplest scenario)
-        const uint16_t outBuffSize = 4;
-        const uint8_t outBuff[outBuffSize] = {10, 20, 30, 40};
+        const uint16_t outBuffSize = 8; // Note: this is the word size. For example, if word size was 4 bytes, an outBuff size of 2 would send 2 words = 8 bytes
+        const uint8_t outBuff[outBuffSize] = {'G', 'k', 'a', 'r', 'i', 'p', 'i', 's'};
         HAL_GPIO_WritePin(SPI_NSS_GPIO_Port, SPI_NSS_Pin, GPIO_PIN_RESET); // select slave
         auto status = HAL_SPI_Transmit(&hspi1, outBuff, outBuffSize, timeoutMs); // transmit data
         HAL_GPIO_WritePin(SPI_NSS_GPIO_Port, SPI_NSS_Pin, GPIO_PIN_SET);

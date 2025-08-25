@@ -330,12 +330,19 @@ void HAL_SPI_MspInit(SPI_HandleTypeDef* hspi)
     PA6     ------> SPI1_MISO
     PB5     ------> SPI1_MOSI
     */
-    GPIO_InitStruct.Pin = RF_SCK_Pin|RF_MISO_Pin;
+    GPIO_InitStruct.Pin = RF_CLK_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
+    HAL_GPIO_Init(RF_CLK_GPIO_Port, &GPIO_InitStruct);
+
+    GPIO_InitStruct.Pin = RF_MISO_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF5_SPI1;
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    HAL_GPIO_Init(RF_MISO_GPIO_Port, &GPIO_InitStruct);
 
     GPIO_InitStruct.Pin = RF_MOSI_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -372,7 +379,7 @@ void HAL_SPI_MspDeInit(SPI_HandleTypeDef* hspi)
     PA6     ------> SPI1_MISO
     PB5     ------> SPI1_MOSI
     */
-    HAL_GPIO_DeInit(GPIOA, RF_SCK_Pin|RF_MISO_Pin);
+    HAL_GPIO_DeInit(GPIOA, RF_CLK_Pin|RF_MISO_Pin);
 
     HAL_GPIO_DeInit(RF_MOSI_GPIO_Port, RF_MOSI_Pin);
 
