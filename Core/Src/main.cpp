@@ -15,9 +15,10 @@
 #include "WatchdogTask.hpp"
 #include "RfDebuggingTask.hpp"
 #include "TransceiverInterruptHandlingTask.hpp"
-#include "FpgaMcuSpiTask.hpp"
+#include "FpgaMcuSpiTestingTask.hpp"
 
 extern SPI_HandleTypeDef hspi1;
+extern SPI_HandleTypeDef hspi2;
 extern UART_HandleTypeDef huart3;
 extern I2C_HandleTypeDef hi2c2;
 extern RTC_HandleTypeDef hrtc;
@@ -54,7 +55,7 @@ extern "C" void main_cpp(){
     // rfDebuggingTask.emplace();
     // cwBeaconTask.emplace();
     watchdogTask.emplace();
-    fpgaMcuSpiTask.emplace();
+    fpgaMcuSpiTestingTask.emplace();
 
     uartGatekeeperTask->createTask();
     mcuTemperatureTask->createTask();
@@ -65,7 +66,7 @@ extern "C" void main_cpp(){
     // rfDebuggingTask->createTask();
     // cwBeaconTask->createTask();
     watchdogTask->createTask();
-    fpgaMcuSpiTask->createTask();
+    fpgaMcuSpiTestingTask->createTask();
 
     vTaskStartScheduler();
 

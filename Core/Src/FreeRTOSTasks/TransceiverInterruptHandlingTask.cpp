@@ -1,7 +1,7 @@
 #include "TransceiverInterruptHandlingTask.hpp"
 #include "at86rf215.hpp"
 
-extern SPI_HandleTypeDef hspi1;
+extern SPI_HandleTypeDef hspi2;
 
 void TransceiverInterruptHandlingTask::execute() {
     // Now that the task is running anc can receive notifications, enable interrupts
@@ -9,7 +9,7 @@ void TransceiverInterruptHandlingTask::execute() {
 
     // also configure the transceiver here
     AT86RF215::Error err;
-    AT86RF215::transceiverUtils.initializeResources(&hspi1, err);
+    AT86RF215::transceiverUtils.initializeResources(&hspi2, err);
     if (err != AT86RF215::Error::NO_ERRORS) {
         LOG_DEBUG << "[TransceiverInterruptHandlingTask] Failed to initialize transceiver";
     }
